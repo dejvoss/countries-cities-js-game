@@ -1,13 +1,3 @@
-var hdrTxt = ["Country", "City", "Animal", "Thing", "Plant", "Name", "Car", "Points"];
-
-function writeCategory() {
-    var hdrTag = document.getElementById("headerRow").getElementsByTagName("th");
-    for (ctr = 0; ctr < hdrTag.length; ctr++) {
-    hdrTag[ctr].innerHTML = hdrTxt[ctr];
-    }
-
-}
-
 var categoryNames = "Country City Animal Thing Plant Name Car Points";
 var letterCtr = 0;
 var headerIndx = 0;
