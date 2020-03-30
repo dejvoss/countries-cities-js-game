@@ -17,10 +17,15 @@ body {
 
 .categoryRow {
     overflow: hidden;
-    text-align: center;
     font-size: 26px;
     font-weight: bold;
     font-family: 'Permanent Marker', cursive;
     color: #330867;
+    height: 5%;
 
+}
+
+th {
+    width: 12.5%;
+    text-align: left;
 }
