@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
     <title>Countries Cities game - Have Fun and raise your knowledge</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/script.js"></script>
 </head>
 
@@ -59,11 +60,12 @@
         </article>
     </section>
     <section class="game">
-        <button onclick="wrtieCategory()">Draw the play card</button>
-        <p id="demo"></p>
+        <button onclick="drawTable()">Draw the play card</button>
+        <button onclick="wrtieCategory()">write category names</button>
+
         <div class="gameBoard" id="gameDiv">
-            
-            <table class="gameTable">
+
+            <table id="GameTable" class="gameTable">
                 <thead id="tableHeaders">
                     <tr id="headerRow" class="categoryRow">
                         <th></th>
@@ -76,10 +78,11 @@
                         <th></th>
                     </tr>
                 </thead>
-                    <tbody></tbody>
+                <tbody>
                 </tbody>
             </table>
         </div>
+
     </section>
 </body>
 

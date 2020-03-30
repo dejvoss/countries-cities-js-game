@@ -10,22 +10,44 @@ body {
     background-size: cover;
 }
 
-.gameTable {
-    width: 100%;
-
-}
-
 .categoryRow {
     overflow: hidden;
     font-size: 26px;
     font-weight: bold;
     font-family: 'Permanent Marker', cursive;
     color: #330867;
-    height: 5%;
-
 }
 
 th {
     width: 12.5%;
     text-align: left;
+    height: 40px;
+    margin-left: 5%;
+
+}
+
+
+.bottomLine {
+    border-bottom: 3px solid #330867;
+    width: 0;    
+    animation-name: drawLine;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+}
+
+@keyframes drawLine {
+    from {width: 0;}
+    to {width: 100%;}
+}
+
+
+
+canvas {
+    width: 100%;
+    background-image: url(../images/emptyCard.jpg);
+    background-size: cover;
+    z-index: -1;
 }
