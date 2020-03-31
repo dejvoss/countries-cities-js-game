@@ -13,12 +13,12 @@
 </head>
 
 <body>
-    <header>
-        <h1>Countries, cities game</h1>
-        <p>Have fun and raise your knowledge</p>
+    <header class="container">
+        <h1 class="mainHeading">Countries, cities - game</h1>
+        <p>Pick up letter, type word and win!</p>
     </header>
     <section class="TopSection">
-        <article class="gameHisotry">
+        <article id="Story" class="gameHisotry">
             <h2>My Game History</h2>
             <p>Some time ago, when the computer was not in every house and the phone was only one per family - by the
                 way - phone was on the cable. A group of children came back from the cold yard - it was severe winter.
@@ -28,15 +28,15 @@
             <p>From that day they did spend many of hours raising their knowlegde and having fun.</p>
             <p>Today i would like to give you opportunity to play in this game online.</p>
         </article>
-        <article class="realGameRules">
-            <h2>Game Rules - real version</h2>
+        <article id="realRules" class="realGameRules">
+            <h2>"Paper and pen" game rules</h2>
             <p>The game has no age limit and can be played from 2 to 10 persons.
                 Every player had to make his own game card by drawing on the notebook page a table. The first row
                 contain catogories choosen by participants. Common categories were country, city, animal, thing, plant,
                 name, car, and total points.</p>
             <p>Every turn start by saing loudly by one person x, y, z and then in slience he is going thru by alphabet
                 letters. Person next to him has to say stop to choose letter. When the first person say the letter loud
-                - game turn start. Everybody needs to write word for each category started by the choosen letter.</p>
+                - game turn start. Everybody needs to write word for each category started by the chosen letter.</p>
             <p>Person who finish first, start loudly count from 0 to 30, when he finish counting everybody stop writing.
             </p>
             <p>Now everyone share words for each category and writing the points:</p>
@@ -58,32 +58,18 @@
             <p>Game is finish after the number of rounds set at the beginning or when the cards are full. The points are
                 counted and the player with the highest number won.</p>
         </article>
-    </section>
-    <section class="game">
-        <button onclick="drawTable()">Draw the play card</button>
-        <button onclick="wrtieCategory()">write category names</button>
+        </section>
+        <footer class="mainFooter">
+            <span>Countries, cities ... game</span>
+            <ul class="footerMenu">
+                <li><a href="play_game.html">Play</a></li>
+                <li><a href=#>Home</a></li>
+                <li><a href="#Story">Game story</a></li>
+                <li><a href="#realRules">Real game</a></li>
+            </ul>
+        </footer>
 
-        <div class="gameBoard" id="gameDiv">
 
-            <table id="GameTable" class="gameTable">
-                <thead id="tableHeaders">
-                    <tr id="headerRow" class="categoryRow">
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-
-    </section>
 </body>
 
 </html>
