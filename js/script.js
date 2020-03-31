@@ -1,3 +1,6 @@
+
+
+
 // function for writing category names
 var categoryNames = "Country City Animal Thing Plant Name Car Points";
 var letterCtr = 0;

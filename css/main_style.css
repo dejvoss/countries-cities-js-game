@@ -8,22 +8,23 @@ body {
 }
 
 
-/* Header */
-header {
+/* ↓Header↓ */
+.myHeader {
     background-size: cover;
     color: white;
-    margin: 0;
+    margin: auto;
     padding-top: 2.5vh;
     padding-bottom: 2.5vh;
     text-align: center;
-    border-bottom: 3px solid black;
+    width: 100%;
+
 }
 
 .mainHeading {
     text-transform: uppercase;
     text-align: center;
 }
-
+/* ↑Header↑ */
 
 /* ↓Top Section↓ */
 
@@ -31,8 +32,10 @@ header {
     margin-top: 5%;
     margin-left: 10%;
     margin-right: 10%;
+    z-index: -1;
 }
 
+/* ↑Top Section↑ */
 
 /* ↓article game history↓ */
 
@@ -62,6 +65,8 @@ article h2 {
 }
 
 /* ↑Article paper pen game rules↑ */
+
+
 /* ↓Footer↓ */
 .mainFooter {
     width: 100%;
@@ -93,58 +98,3 @@ article h2 {
 }
 
 /* ↑Footer↑ */
-
-
-
-
-
-
-.gameBoard {
-    width: 90vw;
-    height: 50vh;
-    margin: 5vw;
-    background-image: url(../images/emptyCard.jpg);
-    background-size: cover;
-}
-
-.categoryRow {
-    overflow: hidden;
-    font-size: 26px;
-    font-weight: bold;
-    font-family: 'Permanent Marker', cursive;
-    color: #330867;
-}
-
-th {
-    width: 12.5%;
-    text-align: left;
-    height: 40px;
-    margin-left: 5%;
-
-}
-
-
-.bottomLine {
-    border-bottom: 3px solid #330867;
-    width: 0;    
-    animation-name: drawLine;
-    animation-duration: 3s;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-
-}
-
-@keyframes drawLine {
-    from {width: 0;}
-    to {width: 100%;}
-}
-
-
-
-canvas {
-    width: 100%;
-    background-image: url(../images/emptyCard.jpg);
-    background-size: cover;
-    z-index: -1;
-}

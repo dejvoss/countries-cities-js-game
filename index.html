@@ -2,21 +2,51 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF=8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Countries Cities game - Have Fun and raise your knowledge</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" href="css/main_style.css">
+
 </head>
 
 <body>
-    <header class="container">
+    <header class="myHeader container">
         <h1 class="mainHeading">Countries, cities - game</h1>
         <p>Pick up letter, type word and win!</p>
     </header>
+
+    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light ">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Story">Game Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#realRules">"Paper pen" version</a>
+                    </li>
+
+                </ul>
+
+            </div>
+            <a class=" btn btn-dark" href="play_game.html">Go to Game</a>
+        </div>
+    </nav>
+
+
     <section class="TopSection">
         <article id="Story" class="gameHisotry text-center">
             <h2>Game Story</h2>
@@ -29,7 +59,7 @@
             <p>Today i would like to give you opportunity to play in this game online.</p>
         </article>
         <article id="realRules" class="realGameRules">
-            <h2>"Paper and pen" game rules</h2>
+            <h2>"Paper and pen" game version</h2>
             <p>The game has no age limit and can be played from 2 to 10 persons.
                 Every player had to make his own game card by drawing on the notebook page a table. The first row
                 contain catogories choosen by participants. Common categories are: country, city, animal, thing, plant,
@@ -62,27 +92,35 @@
     <footer class="mainFooter container">
         <div class="row">
             <div class="col-12 col-sm-4 col-md-3">
-            <span>Countries, cities ... game</span>
-        </div>
-        
-        
-        <div class="col-12 col-sm-8 col-md-6">
-            <ul class="footerMenuList">
-                <li><a href="play_game.html">Play</a></li>
-                <li><a href=#>Home</a></li>
-                <li><a href="#Story">Game story</a></li>
-                <li><a href="#realRules">Real game</a></li>
-            </ul>
+                <span>Countries, cities ... game</span>
+            </div>
 
-        </div>
-        <div class="col-12 col-md-3 text-center">
-            <span>Maked for school project</span>
-        </div>
+
+            <div class="col-12 col-sm-8 col-md-6">
+                <ul class="footerMenuList">
+                    <li><a href="play_game.html">Play</a></li>
+                    <li><a href=#>Home</a></li>
+                    <li><a href="#Story">Game story</a></li>
+                    <li><a href="#realRules">"Paper pen" version</a></li>
+                </ul>
+
+            </div>
+            <div class="col-12 col-md-3 text-center">
+                <span>Maked for school project</span>
+            </div>
         </div>
 
     </footer>
-
-
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
