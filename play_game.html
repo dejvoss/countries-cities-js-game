@@ -15,7 +15,8 @@
     <!-- Game board CSS -->
     <link rel="stylesheet" type="text/css" href="css/game_style.css">
     <!-- jquery cdn link -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/5a4d742966.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -45,11 +46,26 @@
                 </ul>
 
             </div>
-            <form class="form-inline">
-                <button class=" btn btn-dark" type="button">Start</button>
-            </form>
+            <!-- Start game button - trigged pop-up to enter user name -->
+            <button class=" btn btn-dark" onclick="openUserNameForm()">Get Started</button>
         </div>
     </nav>
+
+    <!-- Pop up form for entering user name -->
+    <div class="usrNamePopUp" id="userNameForm">
+        <form class="form-container">
+            <h2>Enter your name:</h2>
+            <span class="noNameMessage" id="noMessSpan"><i class="fas fa-arrow-left narrowIcon"></i><i class="fas fa-exclamation-triangle attentionIcon"></i>This filed cannot
+                be empty.</span>
+            <input type="text" placeholder="type here" name="userName" required class="inputName" id="userNameInp">
+
+            <div class="btnDiv">
+                <button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
+                <button type="button" class="btn btn-primary btn-next" onclick="openLeterForm()">Next</button>
+            </div>
+        </form>
+    </div>
+
     <section class="gameSection" id="gameBoard">
         <button onclick="drawTable()">Draw the play card</button>
         <button onclick="wrtieCategory()">write category names</button>
@@ -108,7 +124,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-        <script src="js/game_script.js"></script>
+    <script src="js/game_script.js"></script>
 </body>
 
 </html>

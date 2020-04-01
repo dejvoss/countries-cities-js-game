@@ -21,6 +21,6 @@ function wrtieCategory() {
 
 function drawTable() {
     document.getElementById("GameTable").classList.add("bottomLine");
- 
+    
 }
 
