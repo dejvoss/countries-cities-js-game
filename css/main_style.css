@@ -28,30 +28,28 @@ body {
 
 /* ↓Top Section↓ */
 
-.TopSection {
-    margin-top: 5%;
-    margin-left: 10%;
-    margin-right: 10%;
-    z-index: -1;
+.section {
+    margin: 0;
+    padding: 0;
 }
 
 /* ↑Top Section↑ */
 
 /* ↓article game history↓ */
 
-.gameHisotry {
-    width: 90%;
-    background-color: white;
-    margin: auto;
+.whiteBackground {
+    width: 100%;
+    margin: 5% auto 5% auto;
     padding: 5%;
-    border-radius: 15%;
+    background-color: #ffffff;
+
 }
 /*  ↑article game history↑ */
 
 /* ↓Article paper pen game rules↓ */
 
-.realGameRules {
-    width: 90%;
+.transpBlackBackground {
+    width: 100%;
     margin: 5% auto 5% auto;
     padding: 5%;
     background-color: rgba(0,0,0,.5);

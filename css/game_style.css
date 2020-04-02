@@ -1,15 +1,16 @@
-
 /* ↓User name input form↓ */
-.usrNamePopUp {
+
+.PopUpDiv {
     display: none;
     position: fixed;
-    top:0;
+    top: 0;
     z-index: 10309;
-    background-color: rgba(0,0,5,.5);
+    background-color: rgba(0, 0, 5, .5);
     width: 100%;
     height: 100%;
 }
-.form-container {
+
+.pupUp-container {
     text-align: center;
     background-color: #ffffff;
     border: 3px solid #f1f1f1;
@@ -18,7 +19,7 @@
     margin: auto;
     margin-top: 25vh;
     min-height: 50vh;
-  }
+}
 
 .inputName {
     border: 1px solid #000000;
@@ -32,17 +33,21 @@
     margin-top: 10px;
     z-index: 1;
 }
+
 .btn-cancel {
     float: left;
     width: 150px;
     margin-top: 10px;
 }
+
 .btn-next {
     float: right;
     width: 150px;
     margin-top: 10px;
 }
+
 /* message when input is not filled in */
+
 .noNameMessage {
     display: none;
     position: absolute;
@@ -61,31 +66,46 @@
 .attentionIcon {
     color: #ffa500;
 }
+
 .narrowIcon {
     color: black;
     padding-right: 20px;
     margin-left: -10px;
 }
 
-
 /* ↑User name input form↑ */
 
-
-/* User name input form - message when input is not filled in  - position for small screen*/
-@media(max-width:311px) {
-    .noNameMessage {
-        top: 45%;
-    }
+.btnInGroup {
+    margin: 10px;
 }
 
 
 
+/* User name input form - message when input is not filled in  - position for small screen*/
 
+@media(max-width:311px) {
+    .noNameMessage {
+        top: 45%;
+    }
+    .inputName {
+        width: 80%;
+    }
 
+}
 
-
-
-
+@media(max-width:366px) {
+    .btn-cancel {
+        float: none;
+        width: 150px;
+        margin-top: 10px;
+    }
+    
+    .btn-next {
+        float: none;
+        width: 150px;
+        margin-top: 10px;
+    }
+}
 
 
 .gameBoard {
@@ -109,27 +129,26 @@ th {
     text-align: left;
     height: 40px;
     margin-left: 5%;
-
 }
-
 
 .bottomLine {
     border-bottom: 3px solid #330867;
-    width: 0;    
+    width: 0;
     animation-name: drawLine;
     animation-duration: 3s;
     animation-iteration-count: 1;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
-
 }
 
 @keyframes drawLine {
-    from {width: 0;}
-    to {width: 100%;}
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 }
-
-
 
 canvas {
     width: 100%;
