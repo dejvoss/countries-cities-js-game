@@ -12,7 +12,11 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Main CSS -->
     <link rel="stylesheet" type="text/css" href="css/main_style.css">
-
+    <!-- Game board CSS -->
+    <link rel="stylesheet" type="text/css" href="css/game_style.css">
+    <!-- jquery cdn link -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/5a4d742966.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -33,63 +37,94 @@
                         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#Story">Game Story</a>
+                        <a class="nav-link" href="game_story.html#Story">Game Story</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#realRules">"Paper pen" version</a>
+                        <a class="nav-link" href="game_story.html#realRules">"Paper pen" version</a>
                     </li>
 
                 </ul>
 
             </div>
-            <a class=" btn btn-dark" href="play_game.html">Go to Game</a>
+            <!-- Start game button - trigged pop-up to enter user name -->
+            <button class=" btn btn-dark" onclick="openUserNameForm()">Get Started</button>
         </div>
     </nav>
+    <!-- game instruction section -->
+    <section class="container-fluid section">
+        <article class="transpBlackBackground">
 
-
-    <section class="TopSection">
-        <article id="Story" class="gameHisotry text-center">
-            <h2>Game Story</h2>
-            <p>Some time ago, when the computer was not in every house and the phone was only one per family - by the
-                way - phone was on the cable. A group of children came back from the cold yard - it was severe winter.
+            <h2>Game instructions</h2>
+            <div class="instr_collapsed">
+            <p>
+                The game consists of writing words starting with the selected letter for each category.
             </p>
-            <p>Grandma did make them hot chocolate and show the game. Game for which they were need only page of paper
-                and pen. Game called "countries, cities".</p>
-            <p>From that day they did spend many of hours raising their knowlegde and having fun.</p>
-            <p>Today i would like to give you opportunity to play in this game online.</p>
-        </article>
-        <article id="realRules" class="realGameRules">
-            <h2>"Paper and pen" game version</h2>
-            <p>The game has no age limit and can be played from 2 to 10 persons.
-                Every player had to make his own game card by drawing on the notebook page a table. The first row
-                contain catogories choosen by participants. Common categories are: country, city, animal, thing, plant,
-                name, car, and total points.</p>
-            <p>Every turn start by saing loudly by one person x, y, z and then in slience he is going thru by alphabet
-                letters. Person next to him has to say stop to choose letter. When the first person say the letter loud
-                - game turn start. Everybody needs to write word for each category started by the chosen letter.</p>
-            <p>Person who finish first, start loudly count from 0 to 30, when he finish counting everybody stop writing.
+            <p>At the top is the "get started" button that starts the game. At first you will need to enter your username.
             </p>
-            <p>Now everyone share words for each category and writing the points:</p>
+            <p>You will have choice between 2 category options:
+                <ul>
+                    <li>standard 5 categories</li>
+                    <li>own categories choosen from 5 standard ones</li>
+                </ul> and 3 dificult levels: 
             <ul>
-                <li>If everyone has the word in category:</li>
-                <ul>
-                    <li>5 points: for players who has the same word</li>
-                    <li>10 points: for players who has different words</li>
-                </ul>
-                <li>If someone has no word in some category:</li>
-                <ul>
-                    <li>0 points: for the player who has empty</li>
-                    <li>10 points: for players who has the same words</li>
-                    <li>15 points: for player who has different word than others.</li>
-                </ul>
-            </ul>
-            <p>Everybody sum the points, write in total column and next round start. Person who was saying stop is
-                saying x, y, z now. If he was stopped on the same letter, then he start again from x, y, z.</p>
-            <p>Game is finish after the number of rounds set at the beginning or when the cards are full. The points are
-                counted and the player with the highest number won.</p>
+                <li>easy</li>
+                <li>medium</li>
+                <li>hard</li>
+            </ul></p>
+            <p>Difficult level can be changed after each round. Changing category will reset your game.</p>
+            <p>You will play against the computer. You'll choose the letter alternately. Once used, the letter cannot be used again.</p>
+            <p>At the end of every round you will see results and points in the table card game.</p>
+            <p>At the end of the game you will see the total points and overview.</p>
+            <p>When you get started the instruction will be hidden, but don't worry you will found it in donw of the site.</p>
+            <p>Enjoy and ... a lot of words.</p>
+        </div>
+            
         </article>
     </section>
-    <footer class="mainFooter container">
+    <!-- Pop up form for entering user name -->
+    <div class="PopUpDiv" id="userNameForm">
+        <form class="pupUp-container">
+            <h2>Enter your name:</h2>
+            <span class="noNameMessage" id="noMessSpan"><i class="fas fa-arrow-left narrowIcon"></i><i
+                    class="fas fa-exclamation-triangle attentionIcon"></i>This filed cannot
+                be empty.</span>
+            <input type="text" placeholder="type here" name="userName" required class="inputName" id="userNameInp">
+
+            <div class="btnDiv">
+                <button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
+                <button type="button" class="btn btn-primary btn-next" onclick="openLeterForm()">Next</button>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- <section class="gameSection" id="gameBoard">
+        <button onclick="drawTable()">Draw the play card</button>
+        <button onclick="wrtieCategory()">write category names</button>
+
+        <div class="gameBoard" id="gameDiv">
+
+            <table id="GameTable" class="gameTable">
+                <thead id="tableHeaders">
+                    <tr id="headerRow" class="categoryRow">
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+    </section> -->
+
+    <footer class="mainFooter container-fluid">
         <div class="row">
             <div class="col-12 col-sm-4 col-md-3">
                 <span>Countries, cities ... game</span>
@@ -99,9 +134,9 @@
             <div class="col-12 col-sm-8 col-md-6">
                 <ul class="footerMenuList">
                     <li><a href="play_game.html">Play</a></li>
-                    <li><a href=#>Home</a></li>
-                    <li><a href="#Story">Game story</a></li>
-                    <li><a href="#realRules">"Paper pen" version</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="game_Story.html#Story">Game story</a></li>
+                    <li><a href="game_Story.html#realRules">"Paper pen" version</a></li>
                 </ul>
 
             </div>
@@ -121,6 +156,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="js/game_script.js"></script>
 </body>
 
 </html>
