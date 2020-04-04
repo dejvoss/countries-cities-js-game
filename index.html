@@ -50,6 +50,71 @@
             <button class=" btn btn-dark" onclick="openUserNameForm()">Get Started</button>
         </div>
     </nav>
+    <!-- Game board section hidden in default -->
+    <section class="container gameSection" id="gameSection">
+        
+        <div class="btn-group-md menuButtons" role="group" aria-label="Menu group buttons">
+            <button type="button" class="btn btn-primary">New game</button>
+            <div class="btn-group" role="group">
+            <button id="categoryDropBtn" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">Categories</button>
+            <div class="dropdown-menu" aria-labelledby="categoryDropBtn">
+                <div class="btn-group-vertical">
+                <button type="button" class="btn btn-primary active" aria-pressed="true">Countries</button>
+                <button type="button" class="btn btn-primary active" aria-pressed="true">Cities</button>
+                <button type="button" class="btn btn-primary active" aria-pressed="true">Animals</button>
+                <button type="button" class="btn btn-primary active" aria-pressed="true">Plants</button>
+                <button type="button" class="btn btn-primary active" aria-pressed="true">Names</button>
+            </div>
+            </div>
+        </div>
+        <div class="btn-group" role="group">
+            <button id="difficultDropBtn" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">Difficult level</button>
+            <div class="dropdown-menu" aria-labelledby="difficultDropBtn">
+                <div class="btn-group-vertical">
+                <button type="button" class="btn btn-primary active" aria-pressed="true">Easy</button>
+                <button type="button" class="btn btn-primary active" aria-pressed="true">Medium</button>
+                <button type="button" class="btn btn-primary active" aria-pressed="true">Hard</button>
+            </div>
+            </div>
+        </div>
+            <button type="button" class="btn btn-primary">Exit</button>
+        </div>
+        <div class="gameBoard">
+            <div class="resultTable">
+                <table class="table table-hover table-responsive-md">
+                    <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">First</th>
+                          <th scope="col">Last</th>
+                          <th scope="col">Handle</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                          <td>@fat</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td>Larry</td>
+                          <td>the Bird</td>
+                          <td>@twitter</td>
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
     <!-- game instruction section -->
     <section class="container-fluid section">
         <article class="transpBlackBackground">
@@ -156,7 +221,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-    <script src="js/game_script.js"></script>
+    <script src="js/visual_js.js"></script>
 </body>
 
 </html>

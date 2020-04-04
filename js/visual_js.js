@@ -20,7 +20,9 @@ function openLeterForm() {
     } else {
         userName = inputForm.value;
         document.getElementById("userNameForm").style.display = "none";
-        document.getElementById("gameModeForm").style.display = "block";
+        document.getElementById("gameSection").style.display = "block";
+        
+        
     }      
     console.log(userName);
 };

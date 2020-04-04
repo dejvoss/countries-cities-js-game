@@ -107,13 +107,25 @@
     }
 }
 
+/* gameBoard */
+
+.gameSection {
+    margin-top: 5%;
+    display: block;
+}
+
+.menuButtons {
+    background-color: #ffffff;
+    text-align: justify;
+
+}
 
 .gameBoard {
-    width: 90vw;
-    height: 50vh;
-    margin: 5vw;
+    min-height: 50vh;
+    color: #330867;
     background-image: url(../images/emptyCard.jpg);
     background-size: cover;
+    border: 10px solid #ffffff;
 }
 
 .categoryRow {
