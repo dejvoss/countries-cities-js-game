@@ -20,9 +20,7 @@ function openLeterForm() {
     } else {
         userName = inputForm.value;
         document.getElementById("userNameForm").style.display = "none";
-        document.getElementById("gameSection").style.display = "block";
-        
-        
+        document.getElementById("gameSection").style.display = "block";   
     }      
     console.log(userName);
 };
@@ -32,3 +30,13 @@ $("#userNameInp").focus(function(){
     document.getElementById("noMessSpan").style.display = "none";
 });
 
+// category choosing function
+
+function categoryChoosen() {
+    var btnStatus = document.getElementById("btnCountries").getAttribute("aria-pressed");
+    if (btnStatus == "true") {
+        document.getElementById("colCountries").style.display = "table-cell";
+    } else {
+        document.getElementById("colCountries").style.display = "none";
+    }
+}

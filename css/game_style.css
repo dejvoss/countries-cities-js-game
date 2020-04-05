@@ -113,12 +113,10 @@
     margin-top: 5%;
     display: block;
 }
+ #menuGroupBtns {
+     background-color: #007bff;
 
-.menuButtons {
-    background-color: #ffffff;
-    text-align: justify;
-
-}
+ }
 
 .gameBoard {
     min-height: 50vh;
@@ -126,6 +124,7 @@
     background-image: url(../images/emptyCard.jpg);
     background-size: cover;
     border: 10px solid #ffffff;
+
 }
 
 .categoryRow {

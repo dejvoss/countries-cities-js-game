@@ -54,30 +54,13 @@
     <section class="container gameSection" id="gameSection">
         
         <div class="btn-group-md menuButtons" role="group" aria-label="Menu group buttons">
-            <button type="button" class="btn btn-primary">New game</button>
-            <div class="btn-group" role="group">
-            <button id="categoryDropBtn" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">Categories</button>
-            <div class="dropdown-menu" aria-labelledby="categoryDropBtn">
-                <div class="btn-group-vertical">
-                <button type="button" class="btn btn-primary active" aria-pressed="true">Countries</button>
-                <button type="button" class="btn btn-primary active" aria-pressed="true">Cities</button>
-                <button type="button" class="btn btn-primary active" aria-pressed="true">Animals</button>
-                <button type="button" class="btn btn-primary active" aria-pressed="true">Plants</button>
-                <button type="button" class="btn btn-primary active" aria-pressed="true">Names</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#menuGroupBtns" aria-expanded="false">Game Menu</button>
+            <div class="collapse" id="menuGroupBtns">
+                <button type="button" class="btn btn-secondary">New Game</button>
+                <button type="button" class="btn btn-secondary">Categories</button>
+                <button type="button" class="btn btn-secondary">Difficult level</button>
+                <button type="button" class="btn btn-secondary">Exit</button>
             </div>
-            </div>
-        </div>
-        <div class="btn-group" role="group">
-            <button id="difficultDropBtn" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">Difficult level</button>
-            <div class="dropdown-menu" aria-labelledby="difficultDropBtn">
-                <div class="btn-group-vertical">
-                <button type="button" class="btn btn-primary active" aria-pressed="true">Easy</button>
-                <button type="button" class="btn btn-primary active" aria-pressed="true">Medium</button>
-                <button type="button" class="btn btn-primary active" aria-pressed="true">Hard</button>
-            </div>
-            </div>
-        </div>
-            <button type="button" class="btn btn-primary">Exit</button>
         </div>
         <div class="gameBoard">
             <div class="resultTable">
@@ -85,9 +68,12 @@
                     <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
+                          <th scope="col" id="colCountries">Countries</th>
+                          <th scope="col" id="colCities">Cities</th>
+                          <th scope="col" id="colAnimals">Animals</th>
+                          <th scope="col" id="colPlants">Plants</th>
+                          <th scope="col" id="colNames">Names</th>
+                          <th scope="col">Points</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -96,18 +82,30 @@
                           <td>Mark</td>
                           <td>Otto</td>
                           <td>@mdo</td>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                          
                         </tr>
                         <tr>
                           <th scope="row">2</th>
                           <td>Jacob</td>
                           <td>Thornton</td>
                           <td>@fat</td>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                          <td>@fat</td>
+                          
                         </tr>
                         <tr>
                           <th scope="row">3</th>
                           <td>Larry</td>
                           <td>the Bird</td>
                           <td>@twitter</td>
+                          <td>Larry</td>
+                          <td>the Bird</td>
+                          <td>@twitter</td>
+                          
                         </tr>
                       </tbody>
                 </table>
