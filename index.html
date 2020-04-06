@@ -57,8 +57,8 @@
             <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#menuGroupBtns" aria-expanded="false">Game Menu</button>
             <div class="collapse" id="menuGroupBtns">
                 <button type="button" class="btn btn-secondary">New Game</button>
-                <button type="button" class="btn btn-secondary">Categories</button>
-                <button type="button" class="btn btn-secondary">Difficult level</button>
+                <button type="button" class="btn btn-secondary">Settings</button>
+                <button type="button" class="btn btn-secondary">Restart</button>
                 <button type="button" class="btn btn-secondary">Exit</button>
             </div>
         </div>
@@ -155,11 +155,51 @@
 
             <div class="btnDiv">
                 <button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
-                <button type="button" class="btn btn-primary btn-next" onclick="openLeterForm()">Next</button>
+                <button type="button" class="btn btn-primary btn-next" onclick="openSettings()">Next</button>
             </div>
         </form>
     </div>
+<!-- Pop up game settings -->
+<div class="PopUpDiv" id="gameSettings">
+    <form class="pupUp-container">
+        <h2>Game Settings</h2>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="difLevel">Difficult level</label>
+            </div>
+            <select class="custom-select" id="difLevel">
+              <option selected>Choose...</option>
+              <option value="1">Easy</option>
+              <option value="2">Medium</option>
+              <option value="3">Hard</option>
+            </select>
+          </div>
+        <div class="">
+            <h5>Choose categories</h5>
+            <div class="settChsCategor">
+                <div class="">
+                    <input type="checkbox" id="Countries" name="Countries" value="Countries" checked>
+                    <label for="Countries">Countries</label>
+                    <input type="checkbox" id="Cities" name="Cities" value="Cities" checked>
+                    <label for="Cities">Cities</label>
+                    <input type="checkbox" id="Animals" name="Animals" value="Animals" checked>
+                    <label for="Animals">Animals</label>
+                    <input type="checkbox" id="Plants" name="Plants" value="Plants" checked>
+                    <label for="Plants">Plants</label>
+                    <input type="checkbox" id="Names" name="Names" value="Names" checked>
+                    <label for="Names">Names</label>
+                </div>
+                <button class="btn btn-outline-secondary active" aria-pressed="true">select all</button>
+                <button class="btn btn-outline-secondary">unselect all</button>
+            </div>
+        </div>
 
+        <div class="btnDiv">
+            <button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
+            <button type="button" class="btn btn-primary btn-next" onclick="openLeterForm()">Next</button>
+        </div>
+    </form>
+</div>
 
     <!-- <section class="gameSection" id="gameBoard">
         <button onclick="drawTable()">Draw the play card</button>
