@@ -124,17 +124,66 @@
 }
  #menuGroupBtns {
      background-color: #007bff;
+     text-align: center;
+ }
 
+ #menuGroupBtns button {
+     margin: 0.1rem;
+     width: 10rem;
  }
 
 .gameBoard {
+    background-color: #ffffff;
+    text-align: left;
+    text-transform: uppercase;
+    padding: 1rem;
+
+}
+.gameBoard h5 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border: 1px solid #4949e6;
+    border-bottom: none;
+}
+
+.gameBoardTable {
     min-height: 50vh;
     color: #330867;
     background-image: url(../images/emptyCard.jpg);
     background-size: cover;
-    border: 10px solid #ffffff;
+    text-align: center;
 
 }
+/* start game button */
+.startBtn {
+    width: 10rem;
+    margin-top: 7rem;
+}
+
+
+
+/* moving letters source https://tobiasahlin.com/moving-letters/#4 */
+
+.letterChoos {
+
+
+}
+
+.ml4 {
+    position: relative;
+    font-weight: 900;
+    font-size: 4.5em;
+  }
+  .ml4 .letters {
+      color: #000000;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0.3em;
+    right: 0;
+    opacity: 0; 
+  }
+
 
 .categoryRow {
     overflow: hidden;

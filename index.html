@@ -55,17 +55,31 @@
         <!-- game menu -->
         <div class="btn-group-md menuButtons" role="group" aria-label="Menu group buttons">
             <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#menuGroupBtns" aria-expanded="false">Game Menu</button>
+            
             <div class="collapse" id="menuGroupBtns">
                 <button type="button" class="btn btn-secondary">New Game</button>
                 <button type="button" class="btn btn-secondary">Settings</button>
                 <button type="button" class="btn btn-secondary">Restart</button>
                 <button type="button" class="btn btn-secondary">Exit</button>
             </div>
+            
         </div>
         <!-- game board -->
         <div class="gameBoard">
-            <div class="resultTable">
-                <table class="table table-hover table-responsive-md">
+            <h5>Game card</h5>
+            <div class="gameBoardTable">
+                <button type="button" class="btn btn-success btn-lg startBtn" id="startBtn">Start</button>
+                <div class="letterChoos">
+                    <!-- moving letters source https://tobiasahlin.com/moving-letters/#4-->
+                    <h1 class="ml4">
+                        <span class="letters letters-1">X</span>
+                        <span class="letters letters-2">Y</span>
+                        <span class="letters letters-3">Z</span>
+                      </h1>
+                      
+                </div>
+                </div>
+                <!-- <table class="table table-hover table-responsive-md">
                     <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -109,7 +123,7 @@
                           
                         </tr>
                       </tbody>
-                </table>
+                </table> -->
             </div>
         </div>
     </section>
@@ -234,7 +248,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-    <script src="js/visual_js.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="js/game_init.js"></script>
 </body>
 
 </html>
