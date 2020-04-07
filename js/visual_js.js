@@ -23,7 +23,7 @@ function openSettings() {
         document.getElementById("userNameForm").style.display = "none"; // close username form
         document.getElementById("gameSettings").style.display = "block";   // open game settings form
     }      
-    console.log(userName);
+
 };
 
 // remove message when user name was empty but user click on user name input field
@@ -32,17 +32,31 @@ $("#userNameInp").focus(function(){
 });
 
 // game settings category buttons - select, unselect all
+var inputCheck = document.getElementById("setCatCheckboxes").getElementsByTagName("input");
 document.getElementById("selectAllCat").addEventListener("click", function(){
-    var inputCheck = document.getElementById("setCatCheckboxes").getElementsByTagName("input");
     for (i=0; i < inputCheck.length; i++) {
         inputCheck[i].checked = true;
     }
-})
-
+});
 
 document.getElementById("unSelectAllCat").addEventListener("click", function(){
-    var inputCheck = document.getElementById("setCatCheckboxes").getElementsByTagName("input");
     for (i=0; i < inputCheck.length; i++) {
         inputCheck[i].checked = false;
     }
-})
+});
+
+// save button in game settings
+    //declare global variable for difficult level and setted categories
+var difLevel;
+var selCategor =[];
+// click save settings button
+document.getElementById("saveSettBtn").addEventListener("click", function(){
+    difLevel = document.getElementById("difLevel").value;
+    var tempSelCategor =[];             //declare local empty variable for categoriers
+    for (i=0; i< inputCheck.length; i++){   //check if category is choosen and add to the local category variable
+        if (inputCheck[i].checked === true){    
+            tempSelCategor.push(inputCheck[i].value);
+        }
+    }
+    selCategor = tempSelCategor; // assing local category variable to the global one 
+});

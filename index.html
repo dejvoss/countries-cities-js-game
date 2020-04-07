@@ -52,7 +52,7 @@
     </nav>
     <!-- Game board section hidden in default -->
     <section class="container gameSection" id="gameSection">
-        
+        <!-- game menu -->
         <div class="btn-group-md menuButtons" role="group" aria-label="Menu group buttons">
             <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#menuGroupBtns" aria-expanded="false">Game Menu</button>
             <div class="collapse" id="menuGroupBtns">
@@ -62,6 +62,7 @@
                 <button type="button" class="btn btn-secondary">Exit</button>
             </div>
         </div>
+        <!-- game board -->
         <div class="gameBoard">
             <div class="resultTable">
                 <table class="table table-hover table-responsive-md">
@@ -168,13 +169,12 @@
               <label class="input-group-text" for="difLevel">Difficult level</label>
             </div>
             <select class="custom-select" id="difLevel">
-              <option selected>Choose...</option>
               <option value="1">Easy</option>
-              <option value="2">Medium</option>
+              <option value="2" selected>Medium</option>
               <option value="3">Hard</option>
             </select>
           </div>
-        <div class="">
+        <div>
             <h5>Choose categories</h5>
             <div class="settChsCategor">
                 <div id="setCatCheckboxes">
@@ -196,37 +196,12 @@
 
         <div class="btnDiv">
             <button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
-            <button type="button" class="btn btn-primary btn-next" onclick="openLeterForm()">Next</button>
+            <button type="button" class="btn btn-primary btn-next" id="saveSettBtn">Save</button>
         </div>
     </form>
 </div>
 
-    <!-- <section class="gameSection" id="gameBoard">
-        <button onclick="drawTable()">Draw the play card</button>
-        <button onclick="wrtieCategory()">write category names</button>
-
-        <div class="gameBoard" id="gameDiv">
-
-            <table id="GameTable" class="gameTable">
-                <thead id="tableHeaders">
-                    <tr id="headerRow" class="categoryRow">
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-
-    </section> -->
-
+  
     <footer class="mainFooter container-fluid">
         <div class="row">
             <div class="col-12 col-sm-4 col-md-3">
