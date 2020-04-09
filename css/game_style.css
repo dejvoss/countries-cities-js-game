@@ -164,26 +164,21 @@
 
 /* moving letters source https://tobiasahlin.com/moving-letters/#4 */
 
-.letterChoos {
-
-
+.xyzLetters {
+    font-size: 12px;
 }
 
-.ml4 {
-    position: relative;
-    font-weight: 900;
-    font-size: 4.5em;
-  }
-  .ml4 .letters {
-      color: #000000;
-    position: absolute;
-    margin: auto;
-    left: 0;
-    top: 0.3em;
-    right: 0;
-    opacity: 0; 
+.transform {
+    -webkit-transition: all 1s ease;  
+    -moz-transition: all 1s ease;  
+    -o-transition: all 1s ease;  
+    -ms-transition: all 1s ease;  
+    transition: all 1s ease;
   }
 
+  .transform-active {
+      font-size: 102px;
+  }
 
 .categoryRow {
     overflow: hidden;

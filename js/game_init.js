@@ -3,7 +3,8 @@
 var userName; //declare global variable user name    
 var difLevel;   // global variable for difficult level
 var selCategor =[]; // global variable for selected categories
-
+var alphabet = ["A", "B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var chsnLetter;
 
 // Initialize User name form by clicking get started button
 function openUserNameForm() {
@@ -69,61 +70,34 @@ document.getElementById("saveSettBtn").addEventListener("click", function(){
     selCategor = tempSelCategor; // assing local category variable to the global one 
     document.getElementById("gameSettings").style.display = "none"; // hide game settings div
 });
+// create sleep function for showStartLetters function
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-// moving letters source https://tobiasahlin.com/moving-letters/#4
-document.getElementById("startBtn").addEventListener("click", function(){
+// add event listener to the start button which will triger showStartLetters function
+document.getElementById("startBtn").addEventListener("click", showStartLetters);
 
 
-var ml4 = {};
-ml4.opacityIn = [0,1];
-ml4.scaleIn = [0.2, 1];
-ml4.scaleOut = 3;
-ml4.durationIn = 800;
-ml4.durationOut = 600;
-ml4.delay = 500;
+// function showStartLetters
+async function showStartLetters() {
+  $('#startBtn').css("display", "none");
+var letters = ["X", "Y", "Z"]
+for (i=0; i < letters.length; i++) {
+  $('#letters').text(letters[i]);
+  $('.transform').addClass('transform-active');
+  await sleep(1000);
+  $('.transform').removeClass('transform-active');
+  await sleep(1000);
+};
+$('#letters').html("<p>Computer is saying alphabet in silence. Please press stop button to stop it for choosing letter</p>");
 
-anime.timeline({})
-  .add({
-    targets: '.ml4 .letters-1',
-    opacity: ml4.opacityIn,
-    scale: ml4.scaleIn,
-    duration: ml4.durationIn
-  }).add({
-    targets: '.ml4 .letters-1',
-    opacity: 0,
-    scale: ml4.scaleOut,
-    duration: ml4.durationOut,
-    easing: "easeInExpo",
-    delay: ml4.delay
-  }).add({
-    targets: '.ml4 .letters-2',
-    opacity: ml4.opacityIn,
-    scale: ml4.scaleIn,
-    duration: ml4.durationIn
-  }).add({
-    targets: '.ml4 .letters-2',
-    opacity: 0,
-    scale: ml4.scaleOut,
-    duration: ml4.durationOut,
-    easing: "easeInExpo",
-    delay: ml4.delay
-  }).add({
-    targets: '.ml4 .letters-3',
-    opacity: ml4.opacityIn,
-    scale: ml4.scaleIn,
-    duration: ml4.durationIn
-  }).add({
-    targets: '.ml4 .letters-3',
-    opacity: 0,
-    scale: ml4.scaleOut,
-    duration: ml4.durationOut,
-    easing: "easeInExpo",
-    delay: ml4.delay
-  }).add({
-    targets: '.ml4',
-    opacity: 0,
-    duration: 500,
-    delay: 500
-  });
-  
-})
+};
+
+
+var stopclicked = 0;
+
+document.getElementById("stopBtn").addEventListener("click", function(){
+  stopclicked = 1;
+});
+
