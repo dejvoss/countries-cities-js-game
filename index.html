@@ -2,84 +2,86 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Countries Cities game - Have Fun and raise your knowledge</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Countries Cities game - Have Fun and raise your knowledge</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- Main CSS -->
-    <link rel="stylesheet" type="text/css" href="css/main_style.css">
-    <!-- Game board CSS -->
-    <link rel="stylesheet" type="text/css" href="css/game_style.css">
-    <!-- jquery cdn link -->
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-    <script src="https://kit.fontawesome.com/5a4d742966.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- Main CSS -->
+	<link rel="stylesheet" type="text/css" href="css/main_style.css">
+	<!-- Game board CSS -->
+	<link rel="stylesheet" type="text/css" href="css/game_style.css">
+	<!-- jquery cdn link -->
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+	<script src="https://kit.fontawesome.com/5a4d742966.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <header class="myHeader container">
-        <h1 class="mainHeading">Countries, cities - game</h1>
-        <p>Pick up letter, type word and win!</p>
-    </header>
+	<header class="myHeader container">
+		<h1 class="mainHeading">Countries, cities - game</h1>
+		<p>Pick up letter, type word and win!</p>
+	</header>
 
-    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light ">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+	<nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light ">
+		<div class="container">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="game_story.html#Story">Game Story</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="game_story.html#realRules">"Paper pen" version</a>
-                    </li>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="game_story.html#Story">Game Story</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="game_story.html#realRules">"Paper pen" version</a>
+					</li>
 
-                </ul>
+				</ul>
 
-            </div>
-            <!-- Start game button - trigged pop-up to enter user name -->
-            <button class=" btn btn-dark" onclick="openUserNameForm()">Get Started</button>
-        </div>
-    </nav>
-    <!-- Game board section hidden in default -->
-    <section class="container gameSection" id="gameSection">
-        <!-- game menu -->
-        <div class="btn-group-md menuButtons" role="group" aria-label="Menu group buttons">
-            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#menuGroupBtns" aria-expanded="false">Game Menu</button>
-            
-            <div class="collapse" id="menuGroupBtns">
-                <button type="button" class="btn btn-secondary">New Game</button>
-                <button type="button" class="btn btn-secondary">Settings</button>
-                <button type="button" class="btn btn-secondary">Restart</button>
-                <button type="button" class="btn btn-secondary">Exit</button>
-            </div>
-            
-        </div>
-        <!-- game board -->
-        <div class="gameBoard">
-            <h5>Game card</h5>
-            <div class="gameBoardTable">
-                <button type="button" class="btn btn-success btn-lg startBtn" id="startBtn">Start</button>
-                <div id="letterChoos">
-                    <!-- moving letters source https://tobiasahlin.com/moving-letters/#4-->
-                    
-                        <span class="xyzLetters transform" id="letters"></span>
+			</div>
+			<!-- Start game button - trigged pop-up to enter user name -->
+			<button class=" btn btn-dark" onclick="openUserNameForm()">Get Started</button>
+		</div>
+	</nav>
+	<!-- Game board section hidden in default -->
+	<section class="container gameSection" id="gameSection">
+		<!-- game menu -->
+		<div class="btn-group-md menuButtons" role="group" aria-label="Menu group buttons">
+			<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#menuGroupBtns" aria-expanded="false">Game Menu</button>
 
-                        
-                      
-                </div>
-                <button class='btn btn-warning' id="stopBtn">STOP</button>
-                </div>
-                <!-- <table class="table table-hover table-responsive-md">
+			<div class="collapse" id="menuGroupBtns">
+				<button type="button" class="btn btn-secondary">New Game</button>
+				<button type="button" class="btn btn-secondary">Settings</button>
+				<button type="button" class="btn btn-secondary">Restart</button>
+				<button type="button" class="btn btn-secondary">Exit</button>
+			</div>
+
+		</div>
+		<!-- game board -->
+		<div class="gameBoard">
+			<h5>Game card</h5>
+			<div class="gameBoardTable">
+				<button type="button" class="btn btn-success btn-lg startBtn" id="startBtn">Start</button>
+				<div id="letterChoos">
+					<!-- moving letters source https://tobiasahlin.com/moving-letters/#4-->
+
+					<span class="xyzLetters transform" id="letters"></span>
+					<div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status" >
+						<span class="sr-only" id="alphabetSayStatus">Saying alphabet...</span>
+					</div>
+
+
+				</div>
+				<button type="button" class='btn btn-warning' id="stopBtn">STOP</button>
+			</div>
+			<!-- <table class="table table-hover table-responsive-md">
                     <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -124,132 +126,136 @@
                         </tr>
                       </tbody>
                 </table> -->
-            </div>
-        </div>
-    </section>
+		</div>
+		</div>
+	</section>
 
-    <!-- game instruction section -->
-    <section class="container-fluid section">
-        <article class="transpBlackBackground">
+	<!-- game instruction section -->
+	<section class="container-fluid section">
+		<article class="transpBlackBackground">
 
-            <h2>Game instructions</h2>
-            <div class="instr_collapsed">
-            <p>
-                The game consists of writing words starting with the selected letter for each category.
-            </p>
-            <p>At the top is the "get started" button that starts the game. At first you will need to enter your username.
-            </p>
-            <p>You will have choice between 2 category options:
-                <ul>
-                    <li>standard 5 categories</li>
-                    <li>own categories choosen from 5 standard ones</li>
-                </ul> and 3 dificult levels: 
-            <ul>
-                <li>easy</li>
-                <li>medium</li>
-                <li>hard</li>
-            </ul></p>
-            <p>Difficult level can be changed after each round. Changing category will reset your game.</p>
-            <p>You will play against the computer. You'll choose the letter alternately. Once used, the letter cannot be used again.</p>
-            <p>At the end of every round you will see results and points in the table card game.</p>
-            <p>At the end of the game you will see the total points and overview.</p>
-            <p>When you get started the instruction will be hidden, but don't worry you will found it in donw of the site.</p>
-            <p>Enjoy and ... a lot of words.</p>
-        </div>
-            
-        </article>
-    </section>
-    <!-- Pop up form for entering user name -->
-    <div class="PopUpDiv" id="userNameForm">
-        <form class="pupUp-container">
-            <h2>Enter your name:</h2>
-            <span class="noNameMessage" id="noMessSpan"><i class="fas fa-arrow-left narrowIcon"></i><i
+			<h2>Game instructions</h2>
+			<div class="instr_collapsed">
+				<p>
+					The game consists of writing words starting with the selected letter for each category.
+				</p>
+				<p>At the top is the "get started" button that starts the game. At first you will need to enter your
+					username.
+				</p>
+				<p>You will have choice between 2 category options:
+					<ul>
+						<li>standard 5 categories</li>
+						<li>own categories choosen from 5 standard ones</li>
+					</ul> and 3 dificult levels:
+					<ul>
+						<li>easy</li>
+						<li>medium</li>
+						<li>hard</li>
+					</ul>
+				</p>
+				<p>Difficult level can be changed after each round. Changing category will reset your game.</p>
+				<p>You will play against the computer. You'll choose the letter alternately. Once used, the letter
+					cannot be used again.</p>
+				<p>At the end of every round you will see results and points in the table card game.</p>
+				<p>At the end of the game you will see the total points and overview.</p>
+				<p>When you get started the instruction will be hidden, but don't worry you will found it in donw of the
+					site.</p>
+				<p>Enjoy and ... a lot of words.</p>
+			</div>
+
+		</article>
+	</section>
+	<!-- Pop up form for entering user name -->
+	<div class="PopUpDiv" id="userNameForm">
+		<form class="pupUp-container">
+			<h2>Enter your name:</h2>
+			<span class="noNameMessage" id="noMessSpan"><i class="fas fa-arrow-left narrowIcon"></i><i
                     class="fas fa-exclamation-triangle attentionIcon"></i>This filed cannot
                 be empty.</span>
-            <input type="text" placeholder="type here" name="userName" required class="inputName" id="userNameInp">
+			<input type="text" placeholder="type here" name="userName" required class="inputName" id="userNameInp">
 
-            <div class="btnDiv">
-                <button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
-                <button type="button" class="btn btn-primary btn-next" onclick="openSettings()">Next</button>
-            </div>
-        </form>
-    </div>
-<!-- Pop up game settings -->
-<div class="PopUpDiv" id="gameSettings">
-    <form class="pupUp-container">
-        <h2>Game Settings</h2>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="difLevel">Difficult level</label>
-            </div>
-            <select class="custom-select" id="difLevel">
+			<div class="btnDiv">
+				<button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
+				<button type="button" class="btn btn-primary btn-next" onclick="openSettings()">Next</button>
+			</div>
+		</form>
+	</div>
+	<!-- Pop up game settings -->
+	<div class="PopUpDiv" id="gameSettings">
+		<form class="pupUp-container">
+			<h2>Game Settings</h2>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="difLevel">Difficult level</label>
+				</div>
+				<select class="custom-select" id="difLevel">
               <option value="1">Easy</option>
               <option value="2" selected>Medium</option>
               <option value="3">Hard</option>
             </select>
-          </div>
-        <div>
-            <h5>Choose categories</h5>
-            <div class="settChsCategor">
-                <div id="setCatCheckboxes">
-                    <input type="checkbox" id="Countries" name="Countries" value="Countries" checked>
-                    <label for="Countries">Countries</label>
-                    <input type="checkbox" id="Cities" name="Cities" value="Cities" checked>
-                    <label for="Cities">Cities</label>
-                    <input type="checkbox" id="Animals" name="Animals" value="Animals" checked>
-                    <label for="Animals">Animals</label>
-                    <input type="checkbox" id="Plants" name="Plants" value="Plants" checked>
-                    <label for="Plants">Plants</label>
-                    <input type="checkbox" id="Names" name="Names" value="Names" checked>
-                    <label for="Names">Names</label>
-                </div>
-                <button type="button" id="selectAllCat" class="btn btn-outline-secondary active" aria-pressed="true">select all</button>
-                <button type="button" id="unSelectAllCat" class="btn btn-outline-secondary">unselect all</button>
-            </div>
-        </div>
+			</div>
+			<div>
+				<h5>Choose categories</h5>
+				<div class="settChsCategor">
+					<div id="setCatCheckboxes">
+						<input type="checkbox" id="Countries" name="Countries" value="Countries" checked>
+						<label for="Countries">Countries</label>
+						<input type="checkbox" id="Cities" name="Cities" value="Cities" checked>
+						<label for="Cities">Cities</label>
+						<input type="checkbox" id="Animals" name="Animals" value="Animals" checked>
+						<label for="Animals">Animals</label>
+						<input type="checkbox" id="Plants" name="Plants" value="Plants" checked>
+						<label for="Plants">Plants</label>
+						<input type="checkbox" id="Names" name="Names" value="Names" checked>
+						<label for="Names">Names</label>
+					</div>
+					<button type="button" id="selectAllCat" class="btn btn-outline-secondary active" aria-pressed="true">select all</button>
+					<button type="button" id="unSelectAllCat" class="btn btn-outline-secondary">unselect all</button>
+				</div>
+			</div>
 
-        <div class="btnDiv">
-            <button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
-            <button type="button" class="btn btn-primary btn-next" id="saveSettBtn">Save</button>
-        </div>
-    </form>
-</div>
-
-  
-    <footer class="mainFooter container-fluid">
-        <div class="row">
-            <div class="col-12 col-sm-4 col-md-3">
-                <span>Countries, cities ... game</span>
-            </div>
+			<div class="btnDiv">
+				<button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
+				<button type="button" class="btn btn-primary btn-next" id="saveSettBtn">Save</button>
+			</div>
+		</form>
+	</div>
 
 
-            <div class="col-12 col-sm-8 col-md-6">
-                <ul class="footerMenuList">
-                    <li><a href="play_game.html">Play</a></li>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="game_Story.html#Story">Game story</a></li>
-                    <li><a href="game_Story.html#realRules">"Paper pen" version</a></li>
-                </ul>
+	<footer class="mainFooter container-fluid">
+		<div class="row">
+			<div class="col-12 col-sm-4 col-md-3">
+				<span>Countries, cities ... game</span>
+			</div>
 
-            </div>
-            <div class="col-12 col-md-3 text-center">
-                <span>Maked for school project</span>
-            </div>
-        </div>
 
-    </footer>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-    <script src="js/game_init.js"></script>
+			<div class="col-12 col-sm-8 col-md-6">
+				<ul class="footerMenuList">
+					<li><a href="play_game.html">Play</a></li>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="game_Story.html#Story">Game story</a></li>
+					<li><a href="game_Story.html#realRules">"Paper pen" version</a></li>
+				</ul>
+
+			</div>
+			<div class="col-12 col-md-3 text-center">
+				<span>Maked for school project</span>
+			</div>
+		</div>
+
+	</footer>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+	<script src="js/game_init.js"></script>
 </body>
 
 </html>

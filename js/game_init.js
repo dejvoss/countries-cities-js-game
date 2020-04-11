@@ -3,8 +3,9 @@
 var userName; //declare global variable user name    
 var difLevel;   // global variable for difficult level
 var selCategor =[]; // global variable for selected categories
-var alphabet = ["A", "B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-var chsnLetter;
+var alphabetOnStart = ["A", "B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var currentGameAlphabet =[]; // global variable for current game alphabet - after each round the chosen letter is removed from that alphabet to don't repeat it in next rounds
+var rundLetter; // global variable for chosen letter for current game rund
 
 // Initialize User name form by clicking get started button
 function openUserNameForm() {
@@ -90,14 +91,16 @@ for (i=0; i < letters.length; i++) {
   $('.transform').removeClass('transform-active');
   await sleep(1000);
 };
-$('#letters').html("<p>Computer is saying alphabet in silence. Please press stop button to stop it for choosing letter</p>");
-
+$('#alphabetSayStatus').css("display", "inline-block");
+currentGameAlphabet = alphabetOnStart;
 };
 
+document.getElementById("stopBtn").addEventListener("click", chooseLetter);
 
-var stopclicked = 0;
 
-document.getElementById("stopBtn").addEventListener("click", function(){
-  stopclicked = 1;
-});
 
+function chooseLetter(){
+    var ltrIndicator = Math.floor(Math.random() * currentGameAlphabet.length);
+    rundLetter = currentGameAlphabet[ltrIndicator];
+    currentGameAlphabet = currentGameAlphabet.splice(ltrIndicator, 1);
+}

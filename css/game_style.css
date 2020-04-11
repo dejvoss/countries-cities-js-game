@@ -160,7 +160,9 @@
     margin-top: 7rem;
 }
 
-
+#alphabetSayStatus {
+    display: none;
+}
 
 /* moving letters source https://tobiasahlin.com/moving-letters/#4 */
 
