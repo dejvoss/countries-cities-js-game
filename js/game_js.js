@@ -2,7 +2,7 @@ function printStartGameInfo(){
 console.log(userName);
 console.log(difLevel);
 console.log(selCategor);
-console.log(rundLetter);
+console.log(roundLetter);
 console.log(currentGameAlphabet);
 }
 

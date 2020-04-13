@@ -5,7 +5,7 @@ var difLevel;   // global variable for difficult level
 var selCategor =[]; // global variable for selected categories
 var alphabetOnStart = ["A", "B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 var currentGameAlphabet =[]; // global variable for current game alphabet - after each round the chosen letter is removed from that alphabet to don't repeat it in next rounds
-var rundLetter; // global variable for chosen letter for current game rund
+var roundLetter; // global variable for chosen letter for current game round
 
 // Initialize User name form by clicking get started button
 function openUserNameForm() {
@@ -28,6 +28,7 @@ function openSettings() {
         userName = inputForm.value;
         document.getElementById("userNameForm").style.display = "none"; // close username form
         document.getElementById("gameSettings").style.display = "block";   // open game settings form
+        document.getElementById("gameSection").style.display = "block";
     }      
 
 };
@@ -79,10 +80,15 @@ function sleep(ms) {
 // add event listener to the start button which will triger showStartLetters function
 document.getElementById("startBtn").addEventListener("click", showStartLetters);
 
+//letter choosing and loading alphabet spin
+var letterChoosingDiv = '<div id="letterChoos"><span class="xyzLetters transform" id="letters"></span></div>'
+var loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height: 3rem;" role="status"><span class="sr-only hidden" id="alphabetSayStatus">Saying alphabet...</span></div>'
 
 // function showStartLetters
 async function showStartLetters() {
+    $('#roundPopUp').css('display', 'block')
   $('#startBtn').css("display", "none");
+  $('#startInit').html(letterChoosingDiv);
 var letters = ["X", "Y", "Z"]
 for (i=0; i < letters.length; i++) {
   $('#letters').text(letters[i]);
@@ -91,23 +97,31 @@ for (i=0; i < letters.length; i++) {
   $('.transform').removeClass('transform-active');
   await sleep(1000);
 };
-$('#alphabetSayStatus').css("display", "inline-block");
+$('#startInit').html(loadingAlphabetSpin);
+await sleep(500);
+$('#stopButtonDiv').removeClass('hide');
+$('#stopButtonDiv').addClass('show');
 currentGameAlphabet = alphabetOnStart;
 };
 
-document.getElementById("stopBtn").addEventListener("click", chooseLetter);
+document.getElementById("stopBtn").addEventListener("click", stopButtonPress);
 
-
+function stopButtonPress(){
+    chooseLetter();
+    gameRoundInitialize(selCategor, roundLetter);
+}
 
 function chooseLetter(){
     var ltrIndicator = Math.floor(Math.random() * currentGameAlphabet.length);
-    rundLetter = currentGameAlphabet[ltrIndicator];
-    currentGameAlphabet = currentGameAlphabet.splice(ltrIndicator, 1);
+    roundLetter = currentGameAlphabet[ltrIndicator];
+    currentGameAlphabet.splice(ltrIndicator, 1);
+    var htmlLetter = "<span class='showLetter'>" + roundLetter + "</span>";
+    $('#startInit').html(htmlLetter);
 }
 
-function gameRoundInitialize(selCategor, rundLetter){
-    for (i = 0; i < selCategor.length; i++){
-        var htmlFormContent = "<div class='form-group'><label for='" + selCategor[i] + "'>" + selCategor[i] + "</label><input type='text' class='form-control' id='" + selCategor[i] + "' placeholder='" + rundLetter + "'></div>"
+function gameRoundInitialize(selCategor, roundLetter){
+    for (var i = 0; i < selCategor.length; i++){
+        var htmlFormContent = "<div class='form-group'><label for='" + selCategor[i] + "'>" + selCategor[i] + "</label><input type='text' class='form-control' id='" + selCategor[i] + "' placeholder='" + roundLetter + "'></div>"
         $('#roundInput').append(htmlFormContent);
     };
 }

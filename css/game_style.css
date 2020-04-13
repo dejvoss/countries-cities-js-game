@@ -120,7 +120,7 @@
 
 .gameSection {
     margin-top: 5%;
-    display: block;
+    display: none;
 }
  #menuGroupBtns {
      background-color: #007bff;
@@ -167,7 +167,7 @@
 /* moving letters source https://tobiasahlin.com/moving-letters/#4 */
 
 .xyzLetters {
-    font-size: 12px;
+    font-size: 0;
 }
 
 .transform {
@@ -179,46 +179,30 @@
   }
 
   .transform-active {
-      font-size: 102px;
+      font-size: 3rem;
   }
 
-.categoryRow {
-    overflow: hidden;
-    font-size: 26px;
+
+#letterChoos {
+    height: 3rem;
+}
+
+#startInit {
+    height: 3.5rem;
+    display: inline-block;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: inline-block;
+    margin-left: 3rem;
+}
+
+.showLetter {
+    font-size: 3rem;
     font-weight: bold;
-    font-family: 'Permanent Marker', cursive;
-    color: #330867;
-}
-
-th {
-    width: 12.5%;
-    text-align: left;
-    height: 40px;
-    margin-left: 5%;
-}
-
-.bottomLine {
-    border-bottom: 3px solid #330867;
-    width: 0;
-    animation-name: drawLine;
-    animation-duration: 3s;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-}
-
-@keyframes drawLine {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-canvas {
-    width: 100%;
-    background-image: url(../images/emptyCard.jpg);
-    background-size: cover;
-    z-index: -1;
+    text-transform: capitalize;
 }
