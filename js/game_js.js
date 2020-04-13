@@ -1,3 +1,5 @@
+
+
 function printStartGameInfo(){
 console.log(userName);
 console.log(difLevel);
@@ -6,12 +8,13 @@ console.log(roundLetter);
 console.log(currentGameAlphabet);
 }
 
-$("#finishRdBtn").click(finishRound());
+document.getElementById("finishRdBtn").addEventListener("click", finishRound);
+
 
 var userAllAnswers = [];
 
 function finishRound(){
-    
+    printStartGameInfo();
 }
 // get user Answers in to array
 function getUserAnswers(){
@@ -35,8 +38,8 @@ var settings = {
 	}
 }
 
-$.ajax(settings).done(function (response) {
-	console.log(response);
-});
+//$.ajax(settings).done(function (response) {
+//	console.log(response);
+//});
 var lookedWord = "Poland"
 var url = '"url": "https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=' + lookedWord + '"';
