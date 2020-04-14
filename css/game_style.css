@@ -92,12 +92,7 @@
 
 
     
-    .btn-next {
-        float: none;
-        width: 150px;
-        margin-top: 10px;
-    }
-}
+
 
 /* gameBoard */
 
@@ -188,7 +183,7 @@
     display: none;
 }
 
-.show {
+.showMyClass {
     display: inline-block;
     margin-left: 3rem;
 }
@@ -219,3 +214,9 @@
         width: 150px;
         margin-top: 10px;
     }
+    .btn-next {
+        float: none;
+        width: 150px;
+        margin-top: 10px;
+    }
+}

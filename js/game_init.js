@@ -100,7 +100,7 @@ for (i=0; i < letters.length; i++) {
 $('#startInit').html(loadingAlphabetSpin);
 await sleep(500);
 $('#stopButtonDiv').removeClass('hide');
-$('#stopButtonDiv').addClass('show');
+$('#stopButtonDiv').addClass('showMyClass');
 currentGameAlphabet = alphabetOnStart;
 };
 
