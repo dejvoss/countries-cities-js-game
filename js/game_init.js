@@ -84,7 +84,7 @@ document.getElementById("startBtn").addEventListener("click", showStartLetters);
 var letterChoosingDiv = '<div id="letterChoos"><span class="xyzLetters transform" id="letters"></span></div>'
 var loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height: 3rem;" role="status"><span class="sr-only hidden" id="alphabetSayStatus">Saying alphabet...</span></div>'
 
-// function showStartLetters
+// function showStartLetters - when user press start button start round pop up window is show and display letters x y z, after this stop btn is visible
 async function showStartLetters() {
     $('#roundPopUp').css('display', 'block')
   $('#startBtn').css("display", "none");
@@ -104,13 +104,15 @@ $('#stopButtonDiv').addClass('show');
 currentGameAlphabet = alphabetOnStart;
 };
 
+
+// when stop button is pressed 
 document.getElementById("stopBtn").addEventListener("click", stopButtonPress);
 
 function stopButtonPress(){
     chooseLetter();
     gameRoundInitialize(selCategor, roundLetter);
 }
-
+// find random number as use as a index for alphabet variable to set the round letter
 function chooseLetter(){
     var ltrIndicator = Math.floor(Math.random() * currentGameAlphabet.length);
     roundLetter = currentGameAlphabet[ltrIndicator];
@@ -118,10 +120,12 @@ function chooseLetter(){
     var htmlLetter = "<span class='showLetter'>" + roundLetter + "</span>";
     $('#startInit').html(htmlLetter);
 }
-
+// add user input for each category with selected letter
 function gameRoundInitialize(selCategor, roundLetter){
     for (var i = 0; i < selCategor.length; i++){
         var htmlFormContent = "<div class='form-group'><label for='" + selCategor[i] + "'>" + selCategor[i] + "</label><input type='text' class='form-control' id='" + selCategor[i] + "' placeholder='" + roundLetter + "'></div>"
         $('#roundInput').append(htmlFormContent);
     };
 }
+
+// functionality for menu buttons

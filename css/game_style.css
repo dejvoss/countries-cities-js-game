@@ -78,7 +78,7 @@
 .btnInGroup {
     margin: 10px;
 }
-
+/* option pup up window */
 .settChsCategor{
     border: 1px solid #ced4da;
     background-color: #e9ecef;
@@ -90,24 +90,7 @@
     margin-bottom: 5px;
 }
 
-/* User name input form - message when input is not filled in  - position for small screen*/
 
-@media(max-width:311px) {
-    .noNameMessage {
-        top: 45%;
-    }
-    .inputName {
-        width: 80%;
-    }
-
-}
-
-@media(max-width:366px) {
-    .btn-cancel {
-        float: none;
-        width: 150px;
-        margin-top: 10px;
-    }
     
     .btn-next {
         float: none;
@@ -164,8 +147,16 @@
     display: none;
 }
 
-/* moving letters source https://tobiasahlin.com/moving-letters/#4 */
+/* Start round pop up */
 
+.round-popUp-container {
+    margin-top: 15vh;
+    height: 80vh;
+    min-width: 800px;
+    overflow-x: scroll;
+}
+
+    /* animation on start round - animate letters x y z */
 .xyzLetters {
     font-size: 0;
 }
@@ -192,6 +183,7 @@
     display: inline-block;
 }
 
+/* hide class for javascript purpose to hide and show elements */
 .hide {
     display: none;
 }
@@ -200,16 +192,30 @@
     display: inline-block;
     margin-left: 3rem;
 }
-
+/* Style letter chosen for round */
 .showLetter {
     font-size: 3rem;
     font-weight: bold;
     text-transform: capitalize;
 }
 
-.round-popUp-container {
-    margin-top: 15vh;
-    height: 80vh;
-    min-width: 800px;
-    overflow-x: scroll;
+
+
+/* User name input form - message when input is not filled in  - position for small screen*/
+
+@media(max-width:311px) {
+    .noNameMessage {
+        top: 45%;
+    }
+    .inputName {
+        width: 80%;
+    }
+
 }
+
+@media(max-width:366px) {
+    .btn-cancel {
+        float: none;
+        width: 150px;
+        margin-top: 10px;
+    }
