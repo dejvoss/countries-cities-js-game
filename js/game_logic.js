@@ -24,11 +24,13 @@ function getUserAnswers(){
 };
 
 // dictionary api access
+var lookedWord = "France"
+var myUrl = '"url": "https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=' + lookedWord + '"';
 
 var settings = {
 	"async": true,
 	"crossDomain": true,
-	url,
+	myUrl,
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "twinword-word-graph-dictionary.p.rapidapi.com",
@@ -37,14 +39,13 @@ var settings = {
 }
 
 // get api response
-
+$(document).ready(function(){
 $.ajax(settings).done(function (response) {
 	console.log(response);
 });
-
+})
 // api purpose
-var lookedWord = "Poland"
-var url = '"url": "https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=' + lookedWord + '"';
+
 
 // function to get response from api for each user answer
 
