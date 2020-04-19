@@ -6,7 +6,7 @@ var selCategor =[]; // global variable for selected categories
 var alphabetOnStart = ["A", "B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 var currentGameAlphabet =[]; // global variable for current game alphabet - after each round the chosen letter is removed from that alphabet to don't repeat it in next rounds
 var roundLetter; // global variable for chosen letter for current game round
-
+var gameResults = [["Round Nr"]] // global array for game Results
 // Initialize User name form by clicking get started button
 function openUserNameForm() {
     document.getElementById("userNameForm").style.display = "block";
@@ -70,6 +70,13 @@ document.getElementById("saveSettBtn").addEventListener("click", function(){
         alert("You need to choose at least one category.");
     }
     selCategor = tempSelCategor; // assing local category variable to the global one 
+    // create a base game Result Array - add headings based on chosen categories
+
+    selCategor.forEach(function(item){
+	gameResults[0].push(item);
+
+});
+gameResults[0].push("Points");
     document.getElementById("gameSettings").style.display = "none"; // hide game settings div
 });
 // create sleep function for showStartLetters function
@@ -86,6 +93,8 @@ var loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height
 
 // function showStartLetters - when user press start button start round pop up window is show and display letters x y z, after this stop btn is visible
 async function showStartLetters() {
+    RoundCounter++; // add round number
+    $("#roundTitle").html("Round " + RoundCounter);
     $('#roundPopUp').css('display', 'block')
   $('#startBtn').css("display", "none");
   $('#startInit').html(letterChoosingDiv);
@@ -93,9 +102,9 @@ var letters = ["X", "Y", "Z"]
 for (i=0; i < letters.length; i++) {
   $('#letters').text(letters[i]);
   $('.transform').addClass('transform-active');
-  await sleep(1000);
+  await sleep(800);
   $('.transform').removeClass('transform-active');
-  await sleep(1000);
+  await sleep(800);
 };
 $('#startInit').html(loadingAlphabetSpin);
 await sleep(500);
@@ -109,6 +118,9 @@ currentGameAlphabet = alphabetOnStart;
 document.getElementById("stopBtn").addEventListener("click", stopButtonPress);
 
 function stopButtonPress(){
+    $('#stopButtonDiv').removeClass('showMyClass');
+    $('#stopButtonDiv').addClass('hide');
+    $('#finishRdBtn').removeClass('hide');
     chooseLetter();
     gameRoundInitialize(selCategor, roundLetter);
 }

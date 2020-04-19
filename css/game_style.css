@@ -184,8 +184,7 @@
 }
 
 .showMyClass {
-    display: inline-block;
-    margin-left: 3rem;
+    display: block;
 }
 /* Style letter chosen for round */
 .showLetter {

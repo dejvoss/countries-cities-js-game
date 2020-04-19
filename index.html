@@ -52,8 +52,8 @@
 	</nav>
 	<!-- Game board section hidden in default -->
 	<section class="container gameSection" id="gameSection">
-		<!-- game menu -->
-		<div class="btn-group-md menuButtons" role="group" aria-label="Menu group buttons">
+		<!-- game menu futures-->
+		<!-- <div class="btn-group-md menuButtons" role="group" aria-label="Menu group buttons">
 			<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse"
 				data-target="#menuGroupBtns" aria-expanded="false">Game Menu</button>
 
@@ -64,7 +64,7 @@
 				<button type="button" class="btn btn-secondary">Exit</button>
 			</div>
 
-		</div>
+		</div> -->
 		<!-- game board -->
 		<div class="gameBoard">
 			
@@ -134,16 +134,18 @@
 	<!-- Pop up game play round window -->
 	<div class="PopUpDiv playRound" id="roundPopUp">
 		<div class="pupUp-container round-popUp-container">
+			<h2 id="roundTitle">Round</h2>
 			<div id="startInit">
 		
 	</div>
-	<div id="stopButtonDiv" class="hide"><button type="button" class="btn btn-warning" id="stopBtn">STOP</button></div>
-		<h2>Round</h2>
+	
+		
 		<div class="userRoundInput">
 			<form id="roundInput">
 				
 			</form>
-			<button type="button" class="btn btn-primary" id="finishRdBtn">Finish Round</button>
+			<div id="stopButtonDiv" class="hide"><button type="button" class="btn btn-warning" id="stopBtn">STOP</button></div>
+			<button type="button" class="btn btn-primary hide" id="finishRdBtn">Finish Round</button>
 		</div>
 	</div>
 	</div>

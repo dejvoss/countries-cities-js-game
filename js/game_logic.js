@@ -6,30 +6,51 @@ console.log(difLevel);
 console.log(selCategor);
 console.log(roundLetter);
 console.log(currentGameAlphabet);
+console.log(gameResults);
 }
 
+let RoundCounter = 0;
 
-var userAllAnswers = []; // declare array for user answers
 
 // action for finish round button in game round section
-document.getElementById("finishRdBtn").addEventListener("click", getUserAnswers);
+document.getElementById("finishRdBtn").addEventListener("click", function(){
+	printStartGameInfo();
+	getUserAnswers();
+});
 
 // get user answers and save in array userAllAnswers
 
 function getUserAnswers(){
+
+	gameResults.push([RoundCounter]);
 	$("#roundInput").ready(function(){
+		//add round number to the gameResults array
     for (i = 0; i < selCategor.length; i++){
 		var answerIdBase = "usrAnsw";
 		var answerIdFull = answerIdBase + selCategor[i];
-		var usrAnswer = $('#' + answerIdFull).val();
-        userAllAnswers.push(usrAnswer);
+		var usrAnswer = $('#' + answerIdFull).val();		//get user answer for each category
+        gameResults[RoundCounter].push(usrAnswer);					//add each user answer 
 	};
 	
-	console.log(userAllAnswers);
+	console.log(gameResults);
 });
 };
 
 // check if country provided by user exist
+
+var baseUrl = "https://restcountries-v1.p.rapidapi.com/name/";
+
+function getURL(lookedWord) {
+    let finalURL = baseUrl + lookedWord;
+    return finalURL;
+}
+function apiSuccess(event) {
+    
+}
+
+function apiError(event) {
+    
+}
 
 
 var settings = {
