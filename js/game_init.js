@@ -124,7 +124,7 @@ function chooseLetter(){
 function gameRoundInitialize(selCategor, roundLetter){
     $('#roundInput').html("");
     for (var i = 0; i < selCategor.length; i++){
-        var htmlFormContent = "<div class='form-group'><label for='" + selCategor[i] + "'>" + selCategor[i] + "</label><input type='text' class='form-control' id='" + selCategor[i] + "' placeholder='" + roundLetter + "'></div>"
+        var htmlFormContent = "<div class='form-group'><label for='" + selCategor[i] + "'>" + selCategor[i] + "</label><input type='text' class='form-control' id='usrAnsw" + selCategor[i] + "' placeholder='" + roundLetter + "'></div>";
         $('#roundInput').append(htmlFormContent);
     };
 }

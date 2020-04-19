@@ -9,44 +9,43 @@ console.log(currentGameAlphabet);
 }
 
 
-var userAllAnswers = [];
+var userAllAnswers = []; // declare array for user answers
 
-function finishRound(){
-    printStartGameInfo();
-}
-// function to save user answers in to array
+// action for finish round button in game round section
+document.getElementById("finishRdBtn").addEventListener("click", getUserAnswers);
+
+// get user answers and save in array userAllAnswers
+
 function getUserAnswers(){
+	$("#roundInput").ready(function(){
     for (i = 0; i < selCategor.length; i++){
-        var answerId = '"#' + selCategor[i] + '"';
-        var usrAnswer = $(answerId).val();
+		var answerIdBase = "usrAnsw";
+		var answerIdFull = answerIdBase + selCategor[i];
+		var usrAnswer = $('#' + answerIdFull).val();
         userAllAnswers.push(usrAnswer);
-    }
+	};
+	
+	console.log(userAllAnswers);
+});
 };
 
-// dictionary api access
-var lookedWord = "France"
-var myUrl = '"url": "https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=' + lookedWord + '"';
+// check if country provided by user exist
+
 
 var settings = {
-	"async": true,
-	"crossDomain": true,
-	myUrl,
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "twinword-word-graph-dictionary.p.rapidapi.com",
-		"x-rapidapi-key": "611a569c35msh65ff74f34b25d3ap19724bjsne5db4e1e1809"
+		"async": true,
+		"crossDomain": true,
+		"url": "https://restcountries-v1.p.rapidapi.com/name/czech",
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
+			"x-rapidapi-key": "611a569c35msh65ff74f34b25d3ap19724bjsne5db4e1e1809"
+		}
 	}
-}
-
-// get api response
-$(document).ready(function(){
+	
 $.ajax(settings).done(function (response) {
-	console.log(response);
-});
-})
-// api purpose
-
-
+		console.log(response);
+	});
 // function to get response from api for each user answer
 
 // function for difficult level - set different time for user answers on different level, after that time show counter from 10 to 0, when timer show 0 lock user input and show message that time is gone, pop up round summary window;
