@@ -7,6 +7,7 @@ console.log(selCategor);
 console.log(roundLetter);
 console.log(currentGameAlphabet);
 console.log(gameResults);
+
 }
 
 let RoundCounter = 0;
@@ -16,6 +17,7 @@ let RoundCounter = 0;
 document.getElementById("finishRdBtn").addEventListener("click", function(){
 	printStartGameInfo();
 	getUserAnswers();
+	$.when(getUserAnswers).then(assingWord);
 });
 
 // get user answers and save in array userAllAnswers
@@ -29,7 +31,7 @@ function getUserAnswers(){
 		var answerIdBase = "usrAnsw";
 		var answerIdFull = answerIdBase + selCategor[i];
 		var usrAnswer = $('#' + answerIdFull).val();		//get user answer for each category
-        gameResults[RoundCounter].push(usrAnswer);					//add each user answer 
+        gameResults[RoundCounter].push(usrAnswer);					//add each user answer to game Result array
 	};
 	
 	console.log(gameResults);
@@ -38,7 +40,15 @@ function getUserAnswers(){
 
 // check if country provided by user exist
 
-var baseUrl = "https://restcountries-v1.p.rapidapi.com/name/";
+
+function assingWord(){
+
+	var indexX = gameResults[0].indexOf("Countries");
+console.log(gameResults[RoundCounter][indexX]);
+
+
+}
+var baseCountryUrl = "https://restcountries-v1.p.rapidapi.com/name/";
 
 function getURL(lookedWord) {
     let finalURL = baseUrl + lookedWord;
@@ -67,6 +77,50 @@ var settings = {
 $.ajax(settings).done(function (response) {
 		console.log(response);
 	});
+
+
+/**
+ * parse.js
+ *
+ * MediaWiki API Demos
+ * Demo of `Parse` module: Parse content of a page
+ *
+ * MIT License
+
+
+var url = "https://en.wikipedia.org/w/api.php"; 
+
+var params = {
+    action: "parse",
+	page: "List_of_ISO_3166_country_codes",
+	prop: "text",
+	section: 1,
+//	prop: "sections",
+    format: "json"
+};
+
+url = url + "?origin=*";
+Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+
+fetch(url)
+	.then(function(response){return response.json();})
+	.then(function(response) {
+		var obj = JSON.parse(json);
+
+            console.log(obj.text);
+        
+    })
+
+ */
+
+
+
+
+
+
+
+
+
 // function to get response from api for each user answer
 
 // function for difficult level - set different time for user answers on different level, after that time show counter from 10 to 0, when timer show 0 lock user input and show message that time is gone, pop up round summary window;

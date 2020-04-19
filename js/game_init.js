@@ -53,7 +53,9 @@ document.getElementById("unSelectAllCat").addEventListener("click", function(){
 });
 
 // click save settings button in game settings form, set categories and difficult level
-document.getElementById("saveSettBtn").addEventListener("click", function(){
+document.getElementById("saveSettBtn").addEventListener("click", saveSettings)
+
+function saveSettings(){
     difLevel = document.getElementById("difLevel").value;
     var tempSelCategor =[];             //declare local empty variable for categoriers
     for (i=0; i< inputCheck.length; i++){   //check if category is choosen and add to the local category variable
@@ -78,7 +80,7 @@ document.getElementById("saveSettBtn").addEventListener("click", function(){
 });
 gameResults[0].push("Points");
     document.getElementById("gameSettings").style.display = "none"; // hide game settings div
-});
+};
 // create sleep function for showStartLetters function
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
