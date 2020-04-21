@@ -40,20 +40,23 @@ function getUserAnswers(){
 
 // check if country provided by user exist
 
+// function to assign word for checking in API
+var assignedWord;
+function assingWord(category, roundNr){
 
-function assingWord(){
-
-	var indexX = gameResults[0].indexOf("Countries");
-console.log(gameResults[RoundCounter][indexX]);
-
-
+	var indexX = gameResults[0].indexOf(category);
+	assignedWord = gameResults[roundNr][indexX];
 }
-var baseCountryUrl = "https://restcountries-v1.p.rapidapi.com/name/";
 
-function getURL(lookedWord) {
-    let finalURL = baseUrl + lookedWord;
+
+// function to create a url for API
+function getURL(word, baseUrl) {
+    let finalURL = baseUrl + word;
     return finalURL;
 }
+
+
+
 function apiSuccess(event) {
     
 }
@@ -62,6 +65,7 @@ function apiError(event) {
     
 }
 
+// API for country check
 
 var settings = {
 		"async": true,
