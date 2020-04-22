@@ -60,8 +60,8 @@ var allCountriesSett = {
 	}
 }
 
-var PCAnswCountry;	// comuter country answer variable
-var PCAnswCity;
+var PCAnswCountry;	// computer country answer variable
+var PCAnswCity;		// computer city answer variable
 
 function getPCCountry(wordLetter){
 
@@ -91,13 +91,17 @@ $.ajax(allCountriesSett).done(function (CountriesApiData) {
 
 };
 
-
-
-
-
-
-
-
+var allWorldCountr = []; //array for all world countries
+var allCapitalCities = [] // array for all world capital cities
+// gett All countries name from rest API and save as array
+$.ajax(allCountriesSett).done(function(CountriesAPIData){
+	CountriesAPIData.forEach(function(APIItem){
+		allWorldCountr.push(APIItem.name);
+		allCapitalCities.push(APIItem.capital);
+	})
+	console.log(allWorldCountr);
+	console.log(allCapitalCities);
+})
 
 
 
