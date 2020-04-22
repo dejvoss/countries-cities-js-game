@@ -15,28 +15,92 @@ let RoundCounter = 0;
 
 // action for finish round button in game round section
 document.getElementById("finishRdBtn").addEventListener("click", function(){
-	printStartGameInfo();
 	getUserAnswers();
-	$.when(getUserAnswers).then(assingWord);
+	printStartGameInfo();
+	getPCCountry(roundLetter);
+	//	$.when(getUserAnswers).then(assingWord);
 });
 
 // get user answers and save in array userAllAnswers
 
 function getUserAnswers(){
 
-	gameResults.push([RoundCounter]);
+	gameResults.push([RoundCounter]);//add round number to the gameResults array
+
 	$("#roundInput").ready(function(){
-		//add round number to the gameResults array
     for (i = 0; i < selCategor.length; i++){
 		var answerIdBase = "usrAnsw";
 		var answerIdFull = answerIdBase + selCategor[i];
-		var usrAnswer = $('#' + answerIdFull).val();		//get user answer for each category
-        gameResults[RoundCounter].push(usrAnswer);					//add each user answer to game Result array
+		var usrAnswer = $('#' + answerIdFull).val();				//get user answer for each category
+		gameResults[RoundCounter].push(usrAnswer);					//add each user answer to game Result array
 	};
-	
-	console.log(gameResults);
 });
 };
+
+// function for generating computer answers
+function generatePCAnswers(){
+
+}
+
+
+
+
+
+
+// get random country name started with current round letter and assing as the computer answer
+	// API settings
+var allCountriesSett = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://restcountries-v1.p.rapidapi.com/all",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
+		"x-rapidapi-key": "611a569c35msh65ff74f34b25d3ap19724bjsne5db4e1e1809"
+	}
+}
+
+var PCAnswCountry;	// comuter country answer variable
+var PCAnswCity;
+
+function getPCCountry(wordLetter){
+
+	// get response from API with all countries and capital cities names and select only the ones which start with round letter	
+$.ajax(allCountriesSett).done(function (CountriesApiData) {
+	var PCCountries =[];	//create array for all countries and capital cities started with round letter
+	var PCCCities = [];
+	CountriesApiData.forEach(function(CountryItem){
+		var CountryName = CountryItem.name;			//get only country name from API response
+		var countryLtr = CountryName.charAt(0);		//check country start letter
+		if (countryLtr === wordLetter) {				
+			PCCountries.push(CountryName);			//add correct countries to array
+		}
+		var CapitalCity = CountryItem.capital;
+		var CountCapLtr = CapitalCity.charAt(0);
+		if (CountCapLtr === wordLetter) {
+			PCCCities.push(CapitalCity);
+		}
+	})
+	var rndIndxCntr = Math.floor(Math.random() * PCCountries.length);	//select random country and assing to PC answer variable
+	var rndIndxCity = Math.floor(Math.random() * PCCCities.length);
+	
+	PCAnswCountry = PCCountries[rndIndxCntr];
+	PCAnswCity = PCCCities[rndIndxCity];
+	console.log(PCAnswCountry, PCAnswCity);
+});
+
+};
+
+
+
+
+
+
+
+
+
+
+
 
 // check if country provided by user exist
 
@@ -46,6 +110,7 @@ function assingWord(category, roundNr){
 
 	var indexX = gameResults[0].indexOf(category);
 	assignedWord = gameResults[roundNr][indexX];
+	return assignedWord;
 }
 
 
@@ -70,7 +135,7 @@ function apiError(event) {
 var settings = {
 		"async": true,
 		"crossDomain": true,
-		"url": "https://restcountries-v1.p.rapidapi.com/name/czech",
+		"url": finalUrl,
 		"method": "GET",
 		"headers": {
 			"x-rapidapi-host": "restcountries-v1.p.rapidapi.com",

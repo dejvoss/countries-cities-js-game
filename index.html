@@ -108,16 +108,23 @@
 				<h5>Choose categories</h5>
 				<div class="settChsCategor">
 					<div id="setCatCheckboxes">
-						<input type="checkbox" id="Countries" name="Countries" value="Countries" checked>
+						<div class="catinpdiv">
+						<input type="checkbox" id="Countries" name="Countries" value="Country" checked>
 						<label for="Countries">Countries</label>
-						<input type="checkbox" id="Cities" name="Cities" value="Cities" checked>
-						<label for="Cities">Cities</label>
-						<input type="checkbox" id="Animals" name="Animals" value="Animals" checked>
+					</div>
+						<div class="catinpdiv"><input type="checkbox" id="Cities" name="Cities" value="Capital City" checked>
+						<label for="Cities">Capital Cities</label>
+					</div>
+					<div class="catinpdiv">
+						<input type="checkbox" id="Animals" name="Animals" value="Animal" checked>
 						<label for="Animals">Animals</label>
-						<input type="checkbox" id="Plants" name="Plants" value="Plants" checked>
+					</div><div class="catinpdiv">
+						<input type="checkbox" id="Plants" name="Plants" value="Plant" checked>
 						<label for="Plants">Plants</label>
-						<input type="checkbox" id="Names" name="Names" value="Names" checked>
+					</div><div class="catinpdiv">
+						<input type="checkbox" id="Names" name="Names" value="Name" checked>
 						<label for="Names">Names</label>
+					</div>
 					</div>
 					<button type="button" id="selectAllCat" class="btn btn-outline-secondary active"
 						aria-pressed="true">select all</button>

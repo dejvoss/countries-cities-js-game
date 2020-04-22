@@ -83,14 +83,18 @@
     border: 1px solid #ced4da;
     background-color: #e9ecef;
     border-radius: .25rem;
-    padding: 10px;
+    padding: 20px;
 }
 
 .settChsCategor button {
     margin-bottom: 5px;
 }
 
-
+.catinpdiv {
+    display: inline-block;
+    width: 120px;
+    text-align: justify;
+}
     
 
 
@@ -147,7 +151,6 @@
 .round-popUp-container {
     margin-top: 15vh;
     height: 80vh;
-    min-width: 800px;
     overflow-x: scroll;
 }
 
@@ -217,5 +220,11 @@
         float: none;
         width: 150px;
         margin-top: 10px;
+    }
+}
+
+@media(min-width: 850px){
+    .round-popUp-container {
+        min-width: 800px;
     }
 }
