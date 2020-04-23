@@ -37,18 +37,9 @@ function getUserAnswers(){
 });
 };
 
-// function for generating computer answers
-function generatePCAnswers(){
+// download list of all countries and all capital cities names and save as a arrays
 
-}
-
-
-
-
-
-
-// get random country name started with current round letter and assing as the computer answer
-	// API settings
+	// rest API with list of countries data - API settings
 var allCountriesSett = {
 	"async": true,
 	"crossDomain": true,
@@ -60,36 +51,7 @@ var allCountriesSett = {
 	}
 }
 
-var PCAnswCountry;	// computer country answer variable
-var PCAnswCity;		// computer city answer variable
-
-function getPCCountry(wordLetter){
-
-	// get response from API with all countries and capital cities names and select only the ones which start with round letter	
-$.ajax(allCountriesSett).done(function (CountriesApiData) {
-	var PCCountries =[];	//create array for all countries and capital cities started with round letter
-	var PCCCities = [];
-	CountriesApiData.forEach(function(CountryItem){
-		var CountryName = CountryItem.name;			//get only country name from API response
-		var countryLtr = CountryName.charAt(0);		//check country start letter
-		if (countryLtr === wordLetter) {				
-			PCCountries.push(CountryName);			//add correct countries to array
-		}
-		var CapitalCity = CountryItem.capital;
-		var CountCapLtr = CapitalCity.charAt(0);
-		if (CountCapLtr === wordLetter) {
-			PCCCities.push(CapitalCity);
-		}
-	})
-	var rndIndxCntr = Math.floor(Math.random() * PCCountries.length);	//select random country and assing to PC answer variable
-	var rndIndxCity = Math.floor(Math.random() * PCCCities.length);
-	
-	PCAnswCountry = PCCountries[rndIndxCntr];
-	PCAnswCity = PCCCities[rndIndxCity];
-	console.log(PCAnswCountry, PCAnswCity);
-});
-
-};
+// download list of countries and cities and save as a arrays
 
 var allWorldCountr = []; //array for all world countries
 var allCapitalCities = [] // array for all world capital cities
@@ -99,9 +61,57 @@ $.ajax(allCountriesSett).done(function(CountriesAPIData){
 		allWorldCountr.push(APIItem.name);
 		allCapitalCities.push(APIItem.capital);
 	})
-	console.log(allWorldCountr);
-	console.log(allCapitalCities);
 })
+
+
+// download list of plants and save as array
+
+/**
+ * parse.js
+ *
+ * MediaWiki API Demos
+ * Demo of `Parse` module: Parse content of a page
+ *
+ * MIT License
+ */
+ 
+/**
+ * parse.js
+ *
+ * MediaWiki API Demos
+ * Demo of `Parse` module: Parse content of a page
+ *
+ * MIT License
+ */
+ 
+
+
+var url = "https://en.wikipedia.org/w/api.php"; 
+
+var params = {
+    action: "parse",
+	page: "List_of_animal_names",
+	section: 2,
+	prop: "links",
+    format: "json"
+};
+
+url = url + "?origin=*";
+Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+
+fetch(url)
+    .then(function(response){return response.json();})
+    .then(function(response) {
+		
+        console.log(response)
+        })
+
+    .catch(function(error){console.log(error);});
+
+
+let animals =[];
+
+
 
 
 

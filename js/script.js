@@ -181,3 +181,37 @@ fetch(url)
     .catch(function(error){console.log(error);});
 
     
+
+
+
+    // function for generate country and capital city started with round letter, replaced for function which is download list of countries and cities to decrease number of requests from API
+    var PCAnswCountry;	// computer country answer variable
+var PCAnswCity;		// computer city answer variable
+
+function getPCCountry(wordLetter){
+
+	// get response from API with all countries and capital cities names and select only the ones which start with round letter	
+$.ajax(allCountriesSett).done(function (CountriesApiData) {
+	var PCCountries =[];	//create array for all countries and capital cities started with round letter
+	var PCCCities = [];
+	CountriesApiData.forEach(function(CountryItem){
+		var CountryName = CountryItem.name;			//get only country name from API response
+		var countryLtr = CountryName.charAt(0);		//check country start letter
+		if (countryLtr === wordLetter) {				
+			PCCountries.push(CountryName);			//add correct countries to array
+		}
+		var CapitalCity = CountryItem.capital;
+		var CountCapLtr = CapitalCity.charAt(0);
+		if (CountCapLtr === wordLetter) {
+			PCCCities.push(CapitalCity);
+		}
+	})
+	var rndIndxCntr = Math.floor(Math.random() * PCCountries.length);	//select random country and assing to PC answer variable
+	var rndIndxCity = Math.floor(Math.random() * PCCCities.length);
+	
+	PCAnswCountry = PCCountries[rndIndxCntr];
+	PCAnswCity = PCCCities[rndIndxCity];
+	console.log(PCAnswCountry, PCAnswCity);
+});
+
+};
