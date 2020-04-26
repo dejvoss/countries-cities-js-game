@@ -71,7 +71,7 @@ $.ajax(allCountriesSett).done(function (CountriesAPIData)
     })
 })
 
-
+var allAnimalNames =[];
 // get list of animals from wikipedia by mediawiki api and save as array
 /**
  * parse.js
@@ -103,97 +103,20 @@ var ajSett = {
     url: url,
 }
 
-$.ajax(ajSett).done(function (response)
-{
-    console.log(response.parse.links)
+$.ajax(ajSett).done(function (response){
+    var animalNameArr = response.parse.links;
+    animalNameArr = animalNameArr.slice(3, 338);
+    console.log(animalNameArr);
+    animalNameArr.forEach(function(element){
+        allAnimalNames.push(element["*"]);
+        console.log(element["*"]);
+    })
 })
 
 
-// check if country provided by user exist
-
-// function to assign word for checking in API
-var assignedWord;
-
-function assingWord(category, roundNr)
-{
-
-    var indexX = gameResults[0].indexOf(category);
-    assignedWord = gameResults[roundNr][indexX];
-    return assignedWord;
-}
 
 
-// function to create a url for API
-function getURL(word, baseUrl)
-{
-    let finalURL = baseUrl + word;
-    return finalURL;
-}
 
-
-function apiSuccess(event)
-{
-
-}
-
-function apiError(event)
-{
-
-}
-
-// API for country check
-
-var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": finalUrl,
-    "method": "GET",
-    "headers":
-    {
-        "x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
-        "x-rapidapi-key": "611a569c35msh65ff74f34b25d3ap19724bjsne5db4e1e1809"
-    }
-}
-
-$.ajax(settings).done(function (response)
-{
-    console.log(response);
-});
-
-
-/**
- * parse.js
- *
- * MediaWiki API Demos
- * Demo of `Parse` module: Parse content of a page
- *
- * MIT License
-
-
-var url = "https://en.wikipedia.org/w/api.php"; 
-
-var params = {
-    action: "parse",
-	page: "List_of_ISO_3166_country_codes",
-	prop: "text",
-	section: 1,
-//	prop: "sections",
-    format: "json"
-};
-
-url = url + "?origin=*";
-Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
-
-fetch(url)
-	.then(function(response){return response.json();})
-	.then(function(response) {
-		var obj = JSON.parse(json);
-
-            console.log(obj.text);
-        
-    })
-
- */
 
 
 // function to get response from api for each user answer
