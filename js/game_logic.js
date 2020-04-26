@@ -71,7 +71,7 @@ $.ajax(allCountriesSett).done(function (CountriesAPIData)
     })
 })
 
-var allAnimalNames =[];
+
 // get list of animals from wikipedia by mediawiki api and save as array
 /**
  * parse.js
@@ -102,19 +102,42 @@ Object.keys(params).forEach(function (key)
 var ajSett = {
     url: url,
 }
-
+// get list of links from wikipedia Animal list page
+var unfAnimList =[];
+var frmtAnimList =[];
 $.ajax(ajSett).done(function (response){
-    var animalNameArr = response.parse.links;
-    animalNameArr = animalNameArr.slice(3, 338);
-    console.log(animalNameArr);
-    animalNameArr.forEach(function(element){
-        allAnimalNames.push(element["*"]);
-        console.log(element["*"]);
+    var WikiAnimLinks = response.parse.links;
+  
+    WikiAnimLinks.forEach(function(element){
+    
+    unfAnimList.push(element["*"]);
+})
+    console.log(unfAnimList)
+}).done(function (){
+    unfAnimList = unfAnimList.slice(3, 338);
+    unfAnimList.forEach(function(item, index){
+        var chckr = item.includes("List");
+        if (chckr === false) {
+            console.log(chckr);
+            frmtAnimList = unfAnimList.slice(index, 1)
+        }
     })
+    console.log(unfAnimList);
+    console.log(frmtAnimList);
 })
 
+// format list of links as the list contain not only animal names
 
 
+
+unfAnimList.forEach(function(element){
+    itemPrcsCheck ++;
+    if (element.includes("List") === false) {
+        frmtAnimList.push(element);
+    };
+
+    return frmtAnimList;
+})
 
 
 
