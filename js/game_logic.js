@@ -33,7 +33,6 @@ async function showCounter(){
     await sleep(difLvlTime);
     $("#endCountDiv").css('display', 'block');
     for (var x = 15; x >= 0; x--){
-        console.log(x);
     $("#endCount").html(x);
     await sleep(1000);
     if (FinishRndBtnClick == 1){
@@ -59,6 +58,7 @@ function finishRound(){
     getUserAnswers();
     getPCAnswers();
     console.log(gameResults);
+    compareAnswers();
 };
 
     
@@ -119,4 +119,11 @@ function getPCAnswers(){
     }
 };
 
+function compareAnswers(){
+    $.ajax(getUserAnswers()).done(function(){
+    let arrLength = gameResults[0].length;
+    let tmpusrAnswers = gameResults[1].slice(2, 6);
+    let PcAnswers = gameResults[RoundCounter + 1].slice(2, arrLength);
 
+})
+}

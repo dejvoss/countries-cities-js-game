@@ -1,3 +1,11 @@
+var difLvlTime;
+var CountryList = [];
+var CapitalCityList = [];
+var AnimalList =[];
+var PlantList = [];
+
+
+
 // load game settings when the start round button is pressed
 
 function loadSettings(){
@@ -22,7 +30,7 @@ function loadCatSett(){
     })
 };
 // function for loading different settings for different difficulties level selected in settings
-var difLvlTime;
+
 function loadDiffLev(){
     var myCtr = selCategor.length;
     if (difLevel == 1){      
@@ -82,7 +90,7 @@ var ajSett = {
 
 // download list of countries and save as array
 
-var CountryList = [];
+
 function loadCountryList(){
     $.ajax(allCountriesSett).done(function(APIData){
         APIData.forEach(function (APIItem){
@@ -93,7 +101,7 @@ function loadCountryList(){
 };
 
 // download list of capital cities and save as array
-var CapitalCityList = [];
+
 function loadCptlCitList(){
     $.ajax(allCountriesSett).done(function(APIData){
         APIData.forEach(function (APIItem){
@@ -105,7 +113,7 @@ function loadCptlCitList(){
 
 // get list of links from wikipedia Animal list page and format list as there are more links and some of these are not animal names
 var unfAnimList =[];
-var AnimalList =[];
+
 function loadAnimalList(){
     $.ajax(ajSett).done(function (response){
         var WikiAnimLinks = response.parse.links;    
@@ -146,7 +154,7 @@ var plantAjSet = {
     dataType: "text",
 
 }
-var PlantList = [];
+
 function loadPlantList(){
 $.ajax(plantAjSet).done(function(response){
    var mydat = $.csv.toObjects(response);
