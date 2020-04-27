@@ -154,6 +154,31 @@
     overflow-x: scroll;
 }
 
+.finish-round-popUp-container {
+    margin-top: 15vh;
+    height: 50vh;
+}
+
+.finish-round-popUp-container button{
+    margin: 1rem;
+}
+
+.counterDiv {
+    position: absolute;
+    display: none;
+    padding: 2rem;
+}
+
+.ctrspan {
+font-size: 3rem;
+font-weight: bold;
+padding: .5rem;
+color: red;
+border: solid .3rem black;
+border-radius: 50%;
+}
+
+
     /* animation on start round - animate letters x y z */
 .xyzLetters {
     font-size: 0;

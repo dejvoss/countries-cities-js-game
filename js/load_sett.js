@@ -2,14 +2,14 @@
 
 function loadSettings(){
     loadCatSett();
-   // loadDiffLev();
+    loadDiffLev();
 };
 // function for loading different function for different category based on selected settings
 function loadCatSett(){
     selCategor.forEach(function(element){
         if (element === "Country"){
             loadCountryList();
-        } else if (element === "Capital City"){
+        } else if (element === "CapitalCity"){
             loadCptlCitList();
         } else if (element === "Animal") {
             loadAnimalList();
@@ -17,20 +17,21 @@ function loadCatSett(){
             loadPlantList();
         } else {
             alert("Something went wrong - it looks like you didn't save game settings");
+            
         }
     })
 };
 // function for loading different settings for different difficulties level selected in settings
+var difLvlTime;
 function loadDiffLev(){
-    if (difLevel === 1){
-        
-    }
-    if (difLevel === 2){
-
-    }
-    if (difLevel === 3){
-
-    }
+    var myCtr = selCategor.length;
+    if (difLevel == 1){      
+        let difLvlTime = myCtr * 3000
+    } else if (difLevel == 2){
+       difLvlTime = myCtr * 2000;
+    }else if (difLevel == 3){
+        difLvlTime = myCtr * 1000;
+    };
 };
 
 // functions for loading list of words for each game category
@@ -88,7 +89,7 @@ function loadCountryList(){
             allWorldCountr.push(APIItem.name);
         });
     });
-    console.log(allWorldCountr);
+
 };
 
 // download list of capital cities and save as array
@@ -99,7 +100,7 @@ function loadCptlCitList(){
             allCapitalCities.push(APIItem.capital);
         });
     });
-    console.log(allCapitalCities);
+
 };
 
 // get list of links from wikipedia Animal list page and format list as there are more links and some of these are not animal names
@@ -121,7 +122,7 @@ function loadAnimalList(){
             }
         })
     }).done(formatList)
-    console.log(frmtAnimList);
+
 };
 // remove none animal names from list and add extra names which was not in the list on the beginning
 function formatList(){
@@ -153,8 +154,9 @@ $.ajax(plantAjSet).done(function(response){
        plantList.push(mydat[x].name);
    }
 });
-console.log(plantList);
+
 };
+
 
 
 
@@ -164,15 +166,20 @@ function sleep(ms) {
 }
 
 // add event listener to the start round button which will triger showStartLetters function
-document.getElementById("startBtn").addEventListener("click", showStartLetters);
+document.getElementById("startBtn").addEventListener("click", roundStart);
 
 //letter choosing and loading alphabet spin
 var letterChoosingDiv = '<div id="letterChoos"><span class="xyzLetters transform" id="letters"></span></div>'
 var loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height: 3rem;" role="status"><span class="sr-only hidden" id="alphabetSayStatus">Saying alphabet...</span></div>'
 
+// function on start round button press
+function roundStart(){
+    loadSettings();
+    showStartLetters();
+}
+
 // function showStartLetters - when user press start button start round pop up window is show and display letters x y z, after this stop btn is visible
 async function showStartLetters() {
-    loadSettings();
 	RoundCounter++; // add round number
 	$("#roundTitle").html("Round " + RoundCounter);
 	$('#roundPopUp').css('display', 'block')
@@ -190,5 +197,5 @@ async function showStartLetters() {
 	await sleep(500);
 	$('#stopButtonDiv').removeClass('hide');
 	$('#stopButtonDiv').addClass('showMyClass');
-	currentGameAlphabet = alphabetOnStart;
+    currentGameAlphabet = alphabetOnStart;
 };

@@ -114,7 +114,7 @@
 							<input type="checkbox" id="Countries" name="Countries" value="Country" checked>
 							<label for="Countries">Countries</label>
 						</div>
-						<div class="catinpdiv"><input type="checkbox" id="Cities" name="Cities" value="Capital City"
+						<div class="catinpdiv"><input type="checkbox" id="Cities" name="Cities" value="CapitalCity"
 								checked>
 							<label for="Cities">Capital Cities</label>
 						</div>
@@ -140,25 +140,39 @@
 		</form>
 	</div>
 	<!-- Pop up game play round window -->
-	<div class="PopUpDiv playRound" id="roundPopUp">
+	<div class="PopUpDiv" id="roundPopUp">
 		<div class="pupUp-container round-popUp-container">
+			<div class="counterDiv" id="endCountDiv"><span class="ctrspan" id="endCount">15</span></div>
 			<h2 id="roundTitle">Round</h2>
 			<div id="startInit">
 
 			</div>
 
-
+			
 			<div class="userRoundInput">
+				
 				<form id="roundInput">
 
 				</form>
+				
 				<div id="stopButtonDiv" class="hide"><button type="button" class="btn btn-warning"
 						id="stopBtn">STOP</button></div>
 				<button type="button" class="btn btn-primary hide" id="finishRdBtn">Finish Round</button>
 			</div>
 		</div>
 	</div>
-
+<!-- Pop up round finish -->
+<div class="PopUpDiv" id="roundFinishPopUp">
+	<div class="pupUp-container finish-round-popUp-container">
+		<h2>Round is finished</h2>
+		<p>You achieve xx points</p>
+		
+		
+		<button type="button" class="btn btn-primary" id="goGameBoard">Go to game board</button>
+		<button type="button" class="btn btn-primary" id="nxtRnd">Play next round</button>
+		</div>
+	</div>
+</div>
 	<!-- game instruction section -->
 	<section class="container-fluid section">
 		<article class="transpBlackBackground">

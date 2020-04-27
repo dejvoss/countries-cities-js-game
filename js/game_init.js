@@ -86,32 +86,3 @@ function saveSettings() {
 	document.getElementById("gameSettings").style.display = "none"; // hide game settings div
 };
 
-
-// when stop button is pressed 
-document.getElementById("stopBtn").addEventListener("click", stopButtonPress);
-
-function stopButtonPress() {
-	$('#stopButtonDiv').removeClass('showMyClass');
-	$('#stopButtonDiv').addClass('hide');
-	$('#finishRdBtn').removeClass('hide');
-	chooseLetter();
-	gameRoundInitialize(selCategor, roundLetter);
-}
-// find random number as use as a index for alphabet variable to set the round letter
-function chooseLetter() {
-	var ltrIndicator = Math.floor(Math.random() * currentGameAlphabet.length);
-	roundLetter = currentGameAlphabet[ltrIndicator];
-	currentGameAlphabet.splice(ltrIndicator, 1);
-	var htmlLetter = "<span class='showLetter'>" + roundLetter + "</span>";
-	$('#startInit').html(htmlLetter);
-}
-// add user input for each category with selected letter
-function gameRoundInitialize(selCategor, roundLetter) {
-	$('#roundInput').html("");
-	for (var i = 0; i < selCategor.length; i++) {
-		var htmlFormContent = "<div class='form-group'><label for='" + selCategor[i] + "'>" + selCategor[i] + "</label><input type='text' class='form-control' id='usrAnsw" + selCategor[i] + "' placeholder='" + roundLetter + "'></div>";
-		$('#roundInput').append(htmlFormContent);
-	};
-}
-
-// functionality for menu buttons
