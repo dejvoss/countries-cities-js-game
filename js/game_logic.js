@@ -57,17 +57,19 @@ function finishRound(){
     $("#roundPopUp").css("display", "none");
     $("#roundFinishPopUp").css("display", "block");
     getUserAnswers();
+    getPCAnswers();
 };
 
     
 
 
-// get user answers and save in array userAllAnswers
+// get user answers and save in array gameResults
 
 function getUserAnswers()
 {
 
     gameResults.push([RoundCounter]); //add round number to the gameResults array
+    gameResults[RoundCounter].push(userName);
 
     $("#roundInput").ready(function ()
     {
@@ -82,6 +84,24 @@ function getUserAnswers()
     });
 };
 
-function generatePCAnswers(){
-    
-}
+// function for generate user answer based on round letter
+    function generatePCAnswers(wordList, rndLetter){
+        var tmpWordList = [];
+        wordList.forEach(function(item){
+            var wrdLetter = item.charAt(0);
+            if (wrdLetter === rndLetter){
+                tmpWordList.push(item);
+            };
+        });
+       var rndCntr = Math.floor(Math.random() * tmpWordList.length);
+       return PCanswer = tmpWordList[rndCntr];
+    };
+
+function getPCAnswers(){
+    var PCCountry = generatePCAnswers(CountryList, roundLetter);
+    var PCCity = generatePCAnswers(CapitalCityList, roundLetter);
+    var PCAnimal = generatePCAnswers(AnimalList, roundLetter);
+    var PCPlant = generatePCAnswers(PlantList, roundLetter);
+};
+
+

@@ -17,7 +17,7 @@ function loadCatSett(){
             loadPlantList();
         } else {
             alert("Something went wrong - it looks like you didn't save game settings");
-            
+
         }
     })
 };
@@ -82,22 +82,22 @@ var ajSett = {
 
 // download list of countries and save as array
 
-var allWorldCountr = [];
+var CountryList = [];
 function loadCountryList(){
     $.ajax(allCountriesSett).done(function(APIData){
         APIData.forEach(function (APIItem){
-            allWorldCountr.push(APIItem.name);
+            CountryList.push(APIItem.name);
         });
     });
 
 };
 
 // download list of capital cities and save as array
-var allCapitalCities = [];
+var CapitalCityList = [];
 function loadCptlCitList(){
     $.ajax(allCountriesSett).done(function(APIData){
         APIData.forEach(function (APIItem){
-            allCapitalCities.push(APIItem.capital);
+            CapitalCityList.push(APIItem.capital);
         });
     });
 
@@ -105,7 +105,7 @@ function loadCptlCitList(){
 
 // get list of links from wikipedia Animal list page and format list as there are more links and some of these are not animal names
 var unfAnimList =[];
-var frmtAnimList =[];
+var AnimalList =[];
 function loadAnimalList(){
     $.ajax(ajSett).done(function (response){
         var WikiAnimLinks = response.parse.links;    
@@ -118,7 +118,7 @@ function loadAnimalList(){
             var chckr = item.includes("List");
             var chckr2 = item.includes("identifier")
             if (chckr === false && chckr2 === false) {
-                frmtAnimList.push(item);
+                AnimalList.push(item);
             }
         })
     }).done(formatList)
@@ -128,14 +128,14 @@ function loadAnimalList(){
 function formatList(){
     var listOfNoneAnimal = ["African buffalo", "Bacon", "Beef", "Capon", "Carabeef", "Common chimpanzee", "Common merganser", "Collateral adjective", "Collective noun", "Colt (horse)", "Common merganser", "Domestic pig", "Domesticated turkey", "Escargot", "Black panther", "Blackback", "Blubber", "European goldfinch", "Female", "Flake (fish)", "Flocking (behaviour)", "Foal", "Goat meat", "Ham", "Herd", "Herpetoculture", "Jenny (donkey)", "Juliana Berners", "Kettle (birds)", "Kitten", "Lamb and mutton", "Male", "Mare", "Meat", "Planula", "Polyp (zoology)", "Pork", "Poultry", "Pristella maxillaris", "Puppy", "Rock salmon", "Scyphozoa", "Silverback", "Squab (food)", "Stallion (horse)", "Swarm", "Tim Caro", "Veal", "Venison", "Vixen", "Wayback Machine", "Wildebeest", "William Blades", "Spiny dogfish"];
     listOfNoneAnimal.forEach(function(element){
-        var indxInFrmtList = frmtAnimList.indexOf(element);
-        frmtAnimList.splice(indxInFrmtList, 1);
+        var indxInFrmtList = AnimalList.indexOf(element);
+        AnimalList.splice(indxInFrmtList, 1);
     })
     var listOfExtraAnimal = ["Buffalo", "Chimpanzee", "Dogfish", "Eland", "Gnu", "Goldfinch", "Goosander", "Pig", "Seal", "Turkey", "Vinegaroon"];
     listOfExtraAnimal.forEach(function(element){
-        frmtAnimList.push(element);
+        AnimalList.push(element);
     })
-    frmtAnimList.sort();
+    AnimalList.sort();
 };
 
 
@@ -146,12 +146,12 @@ var plantAjSet = {
     dataType: "text",
 
 }
-var plantList = [];
+var PlantList = [];
 function loadPlantList(){
 $.ajax(plantAjSet).done(function(response){
    var mydat = $.csv.toObjects(response);
    for (x = 0; x < mydat.length; x++){
-       plantList.push(mydat[x].name);
+       PlantList.push(mydat[x].name);
    }
 });
 

@@ -7,7 +7,7 @@ var alphabetOnStart = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L
 var currentGameAlphabet = []; // global variable for current game alphabet - after each round the chosen letter is removed from that alphabet to don't repeat it in next rounds
 var roundLetter; // global variable for chosen letter for current game round
 var gameResults = [
-	["Round Nr"]
+	["Round Nr", "User"]
 ] // global array for game Results
 // Initialize User name form by clicking get started button
 function openUserNameForm() {
