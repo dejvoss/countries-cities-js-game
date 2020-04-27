@@ -58,6 +58,7 @@ function finishRound(){
     $("#roundFinishPopUp").css("display", "block");
     getUserAnswers();
     getPCAnswers();
+    console.log(gameResults);
 };
 
     
@@ -98,10 +99,24 @@ function getUserAnswers()
     };
 
 function getPCAnswers(){
-    var PCCountry = generatePCAnswers(CountryList, roundLetter);
-    var PCCity = generatePCAnswers(CapitalCityList, roundLetter);
-    var PCAnimal = generatePCAnswers(AnimalList, roundLetter);
-    var PCPlant = generatePCAnswers(PlantList, roundLetter);
+    gameResults.push([RoundCounter]);
+    gameResults[RoundCounter + 1].push("Machine");
+    if (selCategor.includes("Country")){
+        let PCCountry = generatePCAnswers(CountryList, roundLetter);
+        gameResults[RoundCounter + 1].push(PCCountry);
+    };
+    if (selCategor.includes("CapitalCity")){
+        let PCCity = generatePCAnswers(CapitalCityList, roundLetter);
+        gameResults[RoundCounter + 1].push(PCCity);
+    };
+    if (selCategor.includes("Animal")){
+        let PCAnimal = generatePCAnswers(AnimalList, roundLetter);
+        gameResults[RoundCounter + 1].push(PCAnimal);
+    }       
+    if (selCategor.includes("Plant")){
+        let PCPlant = generatePCAnswers(PlantList, roundLetter);
+        gameResults[RoundCounter + 1].push(PCPlant);
+    }
 };
 
 
