@@ -20,7 +20,7 @@ document.getElementById("finishRdBtn").addEventListener("click", function ()
     getUserAnswers();
     printStartGameInfo();
 
-    //	$.when(getUserAnswers).then(assingWord);
+
 });
 
 // get user answers and save in array userAllAnswers
@@ -42,102 +42,16 @@ function getUserAnswers()
     });
 };
 
-// download list of all countries and all capital cities names and save as a arrays
-
-// rest API with list of countries data - API settings
-var allCountriesSett = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://restcountries-v1.p.rapidapi.com/all",
-    "method": "GET",
-    "headers":
-    {
-        "x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
-        "x-rapidapi-key": "611a569c35msh65ff74f34b25d3ap19724bjsne5db4e1e1809"
-    }
-}
-
-// download list of countries and cities and save as a arrays
-
-var allWorldCountr = []; //array for all world countries
-var allCapitalCities = [] // array for all world capital cities
-// gett All countries name from rest API and save as array
-$.ajax(allCountriesSett).done(function (CountriesAPIData)
-{
-    CountriesAPIData.forEach(function (APIItem)
-    {
-        allWorldCountr.push(APIItem.name);
-        allCapitalCities.push(APIItem.capital);
-    })
-})
 
 
-// get list of animals from wikipedia by mediawiki api and save as array
-/**
- * parse.js
- *
- * MediaWiki API Demos
- * Demo of `Parse` module: Parse content of a page
- *
- * MIT License
- */
-
-var url = "https://en.wikipedia.org/w/api.php";
-
-var params = {
-    action: "parse",
-    page: "List_of_animal_names",
-    section: 2,
-    prop: "categories|links",
-    format: "json"
-};
-
-url = url + "?origin=*";
-Object.keys(params).forEach(function (key)
-{
-    url += "&" + key + "=" + params[key];
-});
 
 
-var ajSett = {
-    url: url,
-}
-// get list of links from wikipedia Animal list page
-var unfAnimList =[];
-var frmtAnimList =[];
-$.ajax(ajSett).done(function (response){
-    var WikiAnimLinks = response.parse.links;
-  
-    WikiAnimLinks.forEach(function(element){
-    
-    unfAnimList.push(element["*"]);
-})
-    console.log(unfAnimList)
-}).done(function (){
-    unfAnimList = unfAnimList.slice(3, 338);
-    unfAnimList.forEach(function(item, index){
-        var chckr = item.includes("List");
-        if (chckr === false) {
-            console.log(chckr);
-            frmtAnimList = unfAnimList.slice(index, 1)
-        }
-    })
-    console.log(unfAnimList);
-    console.log(frmtAnimList);
-})
 
 // format list of links as the list contain not only animal names
 
 
 
-unfAnimList.forEach(function(element){
-    itemPrcsCheck ++;
-    if (element.includes("List") === false) {
-        frmtAnimList.push(element);
-    };
 
-    return frmtAnimList;
-})
 
 
 

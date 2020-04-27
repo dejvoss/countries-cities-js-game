@@ -19,6 +19,8 @@ function closeUserNameForm() {
 	document.getElementById("userNameInp").value = "";
 	document.getElementById("userNameForm").style.display = "none";
 	document.getElementById("gameSettings").style.display = "none";
+	document.getElementById("gameSection").style.display = "none";
+
 };
 
 //   Click next in user name form, set the user name variable
@@ -82,39 +84,6 @@ function saveSettings() {
 	});
 	gameResults[0].push("Points");
 	document.getElementById("gameSettings").style.display = "none"; // hide game settings div
-};
-// create sleep function for showStartLetters function
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-// add event listener to the start button which will triger showStartLetters function
-document.getElementById("startBtn").addEventListener("click", showStartLetters);
-
-//letter choosing and loading alphabet spin
-var letterChoosingDiv = '<div id="letterChoos"><span class="xyzLetters transform" id="letters"></span></div>'
-var loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height: 3rem;" role="status"><span class="sr-only hidden" id="alphabetSayStatus">Saying alphabet...</span></div>'
-
-// function showStartLetters - when user press start button start round pop up window is show and display letters x y z, after this stop btn is visible
-async function showStartLetters() {
-	RoundCounter++; // add round number
-	$("#roundTitle").html("Round " + RoundCounter);
-	$('#roundPopUp').css('display', 'block')
-	$('#startBtn').css("display", "none");
-	$('#startInit').html(letterChoosingDiv);
-	var letters = ["X", "Y", "Z"]
-	for (i = 0; i < letters.length; i++) {
-		$('#letters').text(letters[i]);
-		$('.transform').addClass('transform-active');
-		await sleep(800);
-		$('.transform').removeClass('transform-active');
-		await sleep(800);
-	};
-	$('#startInit').html(loadingAlphabetSpin);
-	await sleep(500);
-	$('#stopButtonDiv').removeClass('hide');
-	$('#stopButtonDiv').addClass('showMyClass');
-	currentGameAlphabet = alphabetOnStart;
 };
 
 
