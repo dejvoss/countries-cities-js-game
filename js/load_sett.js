@@ -2,7 +2,7 @@
 
 function loadSettings(){
     loadCatSett();
-    loadDiffLev();
+   // loadDiffLev();
 };
 // function for loading different function for different category based on selected settings
 function loadCatSett(){
@@ -88,6 +88,7 @@ function loadCountryList(){
             allWorldCountr.push(APIItem.name);
         });
     });
+    console.log(allWorldCountr);
 };
 
 // download list of capital cities and save as array
@@ -98,7 +99,8 @@ function loadCptlCitList(){
             allCapitalCities.push(APIItem.capital);
         });
     });
-};;
+    console.log(allCapitalCities);
+};
 
 // get list of links from wikipedia Animal list page and format list as there are more links and some of these are not animal names
 var unfAnimList =[];
@@ -119,6 +121,7 @@ function loadAnimalList(){
             }
         })
     }).done(formatList)
+    console.log(frmtAnimList);
 };
 // remove none animal names from list and add extra names which was not in the list on the beginning
 function formatList(){
@@ -134,11 +137,24 @@ function formatList(){
     frmtAnimList.sort();
 };
 
-//function loadPlantList();
 
+// load plant list from CSV file by jquery.csv
+var plantAjSet = {
+    type: "GET",
+    url: "../gameFiles/PlantList.csv",
+    dataType: "text",
 
-
-
+}
+var plantList = [];
+function loadPlantList(){
+$.ajax(plantAjSet).done(function(response){
+   var mydat = $.csv.toObjects(response);
+   for (x = 0; x < mydat.length; x++){
+       plantList.push(mydat[x].name);
+   }
+});
+console.log(plantList);
+};
 
 
 
@@ -156,6 +172,7 @@ var loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height
 
 // function showStartLetters - when user press start button start round pop up window is show and display letters x y z, after this stop btn is visible
 async function showStartLetters() {
+    loadSettings();
 	RoundCounter++; // add round number
 	$("#roundTitle").html("Round " + RoundCounter);
 	$('#roundPopUp').css('display', 'block')
