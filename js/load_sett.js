@@ -1,8 +1,10 @@
+// ------------------------ FUNCTION LOADED WHEN START ROUND BUTTON IS CLICKED ---------------------------------------- //
 var difLvlTime;
 var CountryList = [];
 var CapitalCityList = [];
 var AnimalList =[];
 var PlantList = [];
+var RoundCounter = 0;
 
 
 
@@ -32,9 +34,9 @@ function loadCatSett(){
 // function for loading different settings for different difficulties level selected in settings
 
 function loadDiffLev(){
-    var myCtr = selCategor.length;
+    let myCtr = selCategor.length;
     if (difLevel == 1){      
-        let difLvlTime = myCtr * 3000
+        difLvlTime = myCtr * 3000
     } else if (difLevel == 2){
        difLvlTime = myCtr * 2000;
     }else if (difLevel == 3){
@@ -43,7 +45,7 @@ function loadDiffLev(){
 };
 
 // functions for loading list of words for each game category
-
+// ---------------------------------------------------------- RESTCOUNTRIES API ---------------------------------------------------------- //
     // restcountries API settings used below for download list of countries and list of capital cities
 var allCountriesSett = {
     "async": true,
@@ -56,6 +58,30 @@ var allCountriesSett = {
         "x-rapidapi-key": "611a569c35msh65ff74f34b25d3ap19724bjsne5db4e1e1809"
     }
 };
+
+// download list of countries and save as array
+function loadCountryList(){
+    $.ajax(allCountriesSett).done(function(APIData){
+        APIData.forEach(function (APIItem){
+            CountryList.push(APIItem.name);
+            CapitalCityList.push(APIItem.capital);
+
+        });
+    });
+
+};
+
+// download list of capital cities and save as array
+function loadCptlCitList(){
+    $.ajax(allCountriesSett).done(function(APIData){
+        APIData.forEach(function (APIItem){
+            CapitalCityList.push(APIItem.capital);
+        });
+    });
+
+};
+
+// ---------------------------------------------------------- MEDIAWIKI API ---------------------------------------------------------- //
 
     // MediaWiki API settings used below for download list of animals from wikipedia website (https://en.wikipedia.org/wiki/List_of_animal_names)
 /**
@@ -88,28 +114,7 @@ var ajSett = {
     url: url,
 };
 
-// download list of countries and save as array
 
-
-function loadCountryList(){
-    $.ajax(allCountriesSett).done(function(APIData){
-        APIData.forEach(function (APIItem){
-            CountryList.push(APIItem.name);
-        });
-    });
-
-};
-
-// download list of capital cities and save as array
-
-function loadCptlCitList(){
-    $.ajax(allCountriesSett).done(function(APIData){
-        APIData.forEach(function (APIItem){
-            CapitalCityList.push(APIItem.capital);
-        });
-    });
-
-};
 
 // get list of links from wikipedia Animal list page and format list as there are more links and some of these are not animal names
 var unfAnimList =[];
@@ -146,7 +151,7 @@ function formatList(){
     AnimalList.sort();
 };
 
-
+// ---------------------------------------------------------- READ FROM CSV FILE ---------------------------------------------------------- //
 // load plant list from CSV file by jquery.csv
 var plantAjSet = {
     type: "GET",
@@ -177,8 +182,8 @@ function sleep(ms) {
 document.getElementById("startBtn").addEventListener("click", roundStart);
 
 //letter choosing and loading alphabet spin
-var letterChoosingDiv = '<div id="letterChoos"><span class="xyzLetters transform" id="letters"></span></div>'
-var loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height: 3rem;" role="status"><span class="sr-only hidden" id="alphabetSayStatus">Saying alphabet...</span></div>'
+//var letterChoosingDiv = '<div id="letterChoos"><span class="xyzLetters transform" id="letters"></span></div>'
+//var loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height: 3rem;" role="status"><span class="sr-only hidden" id="alphabetSayStatus">Saying alphabet...</span></div>'
 
 // function on start round button press
 function roundStart(){
@@ -186,8 +191,13 @@ function roundStart(){
     showStartLetters();
 }
 
+
+// ---------------------------------------------------------- LETTER ANIMATION ON BEGINNING ROUND ---------------------------------------------------------- //
 // function showStartLetters - when user press start button start round pop up window is show and display letters x y z, after this stop btn is visible
 async function showStartLetters() {
+    let letterChoosingDiv = '<div id="letterChoos"><span class="xyzLetters transform" id="letters"></span></div>';
+    let loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height: 3rem;" role="status"><span class="sr-only hidden" id="alphabetSayStatus">Saying alphabet...</span></div>';
+
 	RoundCounter++; // add round number
 	$("#roundTitle").html("Round " + RoundCounter);
 	

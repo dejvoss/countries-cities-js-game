@@ -1,3 +1,8 @@
+var FinishRndBtnClick = 0; // variable to stop counting round time if user press finish round button
+
+
+
+
 // Generate computer answers, check user answers, show points and results, finish round,
 // when stop button is pressed 
 document.getElementById("stopBtn").addEventListener("click", stopButtonPress);
@@ -45,8 +50,8 @@ async function showCounter(){
 };
 
 
-let RoundCounter = 0;
-let FinishRndBtnClick = 0; // variable to stop counting round time if user press finish round button
+
+
 
 // action for finish round button in game round section
 document.getElementById("finishRdBtn").addEventListener("click", finishRound);
@@ -57,23 +62,12 @@ function finishRound(){
     $("#roundFinishPopUp").css("display", "block");
     getUserAnswers();
     getPCAnswers();
-    compareAnswers();
     }
-
-
-
-
-    
-
 
 // get user answers and save in array gameResults
 
 function getUserAnswers()
 {
-
-    gameResults.push([RoundCounter]); //add round number to the gameResults array
-    gameResults[RoundCounter].push(userName);
-
     $("#roundInput").ready(function ()
     {
         for (i = 0; i < selCategor.length; i++)
@@ -81,14 +75,14 @@ function getUserAnswers()
             var answerIdBase = "usrAnsw";
             var answerIdFull = answerIdBase + selCategor[i];
             var usrAnswer = $('#' + answerIdFull).val(); //get user answer for each category
-            gameResults[RoundCounter].push(usrAnswer); //add each user answer to game Result array
+            gameResults.push(usrAnswer); //add each user answer to game Result array
         };
         console.log(gameResults);
     });
 
 };
 
-// function for generate user answer based on round letter
+// function for generate PC answer based on round letter
     function generatePCAnswers(wordList, rndLetter){
         var tmpWordList = [];
         wordList.forEach(function(item){
@@ -102,34 +96,18 @@ function getUserAnswers()
     };
 
 function getPCAnswers(){
-    gameResults.push([RoundCounter]);
-    gameResults[RoundCounter + 1].push("Machine");
     if (selCategor.includes("Country")){
         let PCCountry = generatePCAnswers(CountryList, roundLetter);
-        gameResults[RoundCounter + 1].push(PCCountry);
+
     };
     if (selCategor.includes("CapitalCity")){
         let PCCity = generatePCAnswers(CapitalCityList, roundLetter);
-        gameResults[RoundCounter + 1].push(PCCity);
     };
     if (selCategor.includes("Animal")){
         let PCAnimal = generatePCAnswers(AnimalList, roundLetter);
-        gameResults[RoundCounter + 1].push(PCAnimal);
     }       
     if (selCategor.includes("Plant")){
         let PCPlant = generatePCAnswers(PlantList, roundLetter);
-        gameResults[RoundCounter + 1].push(PCPlant);
     }
 };
-
-function compareAnswers(){
-    console.log(gameResults)
-    let arrLength = gameResults[0].length;
-
-    let tmpusrAnswers = gameResults[1].slice(2, 6);
-    let PcAnswers = gameResults[RoundCounter + 1].slice(2, arrLength);
-    console.log(tmpusrAnswers);
-    console.log(PcAnswers);
-
-}
 
