@@ -137,9 +137,13 @@
 
 }
 /* start game button */
-.startBtn {
+.startRndBtn {
     width: 10rem;
     margin-top: 7rem;
+}
+
+.startGameBtn {
+    text-align: center;
 }
 
 #alphabetSayStatus {

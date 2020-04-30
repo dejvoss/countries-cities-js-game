@@ -32,7 +32,7 @@ function openSettings() {
 		userName = inputForm.value;
 		document.getElementById("userNameForm").style.display = "none"; // close username form
 		document.getElementById("gameSettings").style.display = "block"; // open game settings form
-		document.getElementById("gameSection").style.display = "block";
+		//document.getElementById("gameSection").style.display = "block";
 	}
 
 };
@@ -84,5 +84,6 @@ function saveSettings() {
 	});
 	gameResults[0].push("Points");
 	document.getElementById("gameSettings").style.display = "none"; // hide game settings div
+	document.getElementById("roundPopUp").style.display = "block"; // show game round div
 };
 

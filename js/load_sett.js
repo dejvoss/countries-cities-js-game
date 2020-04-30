@@ -190,7 +190,7 @@ function roundStart(){
 async function showStartLetters() {
 	RoundCounter++; // add round number
 	$("#roundTitle").html("Round " + RoundCounter);
-	$('#roundPopUp').css('display', 'block')
+	
 	$('#startBtn').css("display", "none");
 	$('#startInit').html(letterChoosingDiv);
 	var letters = ["X", "Y", "Z"]

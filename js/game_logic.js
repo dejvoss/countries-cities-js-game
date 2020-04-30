@@ -57,9 +57,11 @@ function finishRound(){
     $("#roundFinishPopUp").css("display", "block");
     getUserAnswers();
     getPCAnswers();
-    console.log(gameResults);
     compareAnswers();
-};
+    }
+
+
+
 
     
 
@@ -83,6 +85,7 @@ function getUserAnswers()
         };
         console.log(gameResults);
     });
+
 };
 
 // function for generate user answer based on round letter
@@ -120,10 +123,13 @@ function getPCAnswers(){
 };
 
 function compareAnswers(){
-    $.ajax(getUserAnswers()).done(function(){
+    console.log(gameResults)
     let arrLength = gameResults[0].length;
+
     let tmpusrAnswers = gameResults[1].slice(2, 6);
     let PcAnswers = gameResults[RoundCounter + 1].slice(2, arrLength);
+    console.log(tmpusrAnswers);
+    console.log(PcAnswers);
 
-})
 }
+
