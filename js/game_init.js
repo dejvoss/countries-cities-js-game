@@ -78,4 +78,3 @@ function saveSettings() {
 	document.getElementById("gameSettings").style.display = "none"; // hide game settings div
 	document.getElementById("roundPopUp").style.display = "block"; // show game round div
 };
-
