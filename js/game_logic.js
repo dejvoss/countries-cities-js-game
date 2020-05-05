@@ -1,5 +1,8 @@
 var FinishRndBtnClick = 0; // variable to stop counting round time if user press finish round button
-
+var usrAnswArr = []; // global array for user game Results
+var PCAnswArr = [];
+var usrRndPoint = 0;
+var usrTotPoints = 0;
 
 // Generate computer answers, check user answers, show points and results, finish round,
 // when stop button is pressed 
@@ -13,7 +16,7 @@ function stopButtonPress() {
   gameRoundInitialize(selCategor, roundLetter);
   showCounter();
 }
-// find random number as use as a index for alphabet variable to set the round letter
+// find random letter from alphabet and set as the round letter, also show in the round popup
 function chooseLetter() {
   var ltrIndicator = Math.floor(Math.random() * currentGameAlphabet.length);
   roundLetter = currentGameAlphabet[ltrIndicator];
@@ -30,6 +33,9 @@ function gameRoundInitialize(selCategor, roundLetter) {
   };
 }
 
+// -------------------------------------------------- Finish Round functions --------------------------------------------------------------//
+
+// --------------------------Finish round automatically after x seconds; x value different depend of the difficult level //
 // create function for round time counter which will start counting from 15 to 0 after time set by difficult level
 async function showCounter() {
   console.log(difLvlTime);
@@ -47,7 +53,7 @@ async function showCounter() {
   };
 };
 
-
+//----------------------------------- Finish round when user press finish round button - finish before end time //
 // action for finish round button in game round section
 document.getElementById("finishRdBtn").addEventListener("click", finishRound);
 
@@ -59,7 +65,7 @@ function finishRound() {
   getPCAnswers();
 }
 
-// get user answers and save in array gameResults
+// get user answers, capitalize letters and save in array gameResults
 
 function getUserAnswers() {
   $("#roundInput").ready(function () {
@@ -67,9 +73,14 @@ function getUserAnswers() {
       var answerIdBase = "usrAnsw";
       var answerIdFull = answerIdBase + selCategor[i];
       var usrAnswer = $('#' + answerIdFull).val(); //get user answer for each category
-      gameResults.push(usrAnswer); //add each user answer to game Result array
+      usrAnswer = usrAnswer.toUpperCase(); // convert answer to uppercase
+      let usrAnswStLtr = usrAnswer.charAt(0);
+      if (usrAnswArr !== roundLetter) {
+        
+      }
+      usrAnswArr.push(usrAnswer); //add each user answer to game Result array
     };
-    console.log(gameResults);
+    console.log(usrAnswArr);
   });
 
 };
@@ -90,15 +101,41 @@ function generatePCAnswers(wordList, rndLetter) {
 function getPCAnswers() {
   if (selCategor.includes("Country")) {
     let PCCountry = generatePCAnswers(CountryList, roundLetter);
-
+    PCCountry = PCCountry.toUpperCase();
+    PCAnswArr.push(PCCountry);
   };
   if (selCategor.includes("CapitalCity")) {
     let PCCity = generatePCAnswers(CapitalCityList, roundLetter);
+    PCCity = PCCity.toUpperCase();
+    PCAnswArr.push(PCCity);
   };
   if (selCategor.includes("Animal")) {
     let PCAnimal = generatePCAnswers(AnimalList, roundLetter);
+    PCAnimal = PCAnimal.toUpperCase();
+    PCAnswArr.push(PCAnimal);
   }
   if (selCategor.includes("Plant")) {
     let PCPlant = generatePCAnswers(PlantList, roundLetter);
+    PCPlant = PCPlant.toUpperCase();
+    PCAnswArr.push(PCPlant);
   }
 };
+
+// ------------------------------------------- Compare user and PC answers and assign points -------------------------------------- //
+
+// check if user answers are start with correct letter and assign wrong letter value if no
+function checkFirstLetter(){
+  usrAnswArr.forEach(function (element, index){
+    let frstLet = element.charAt(0);
+    if (frstLet !== roundLetter){
+      usrAnswArr[index] = "wrong letter"
+    }
+  })
+};
+
+// check if user word is correct 
+
+function checkWord(){
+  usrAnswArr.forEach()
+
+}

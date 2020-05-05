@@ -6,7 +6,7 @@ var selCategor = []; // global variable for selected categories
 var alphabetOnStart = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var currentGameAlphabet = []; // global variable for current game alphabet - after each round the chosen letter is removed from that alphabet to don't repeat it in next rounds
 var roundLetter; // global variable for chosen letter for current game round
-var gameResults = [] // global array for game Results
+
 // Initialize User name form by clicking get started button
 function openUserNameForm() {
 	document.getElementById("userNameForm").style.display = "block";

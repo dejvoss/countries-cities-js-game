@@ -175,10 +175,6 @@ function sleep(ms) {
 // add event listener to the start round button which will triger showStartLetters function
 document.getElementById("startBtn").addEventListener("click", roundStart);
 
-//letter choosing and loading alphabet spin
-//var letterChoosingDiv = '<div id="letterChoos"><span class="xyzLetters transform" id="letters"></span></div>'
-//var loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height: 3rem;" role="status"><span class="sr-only hidden" id="alphabetSayStatus">Saying alphabet...</span></div>'
-
 // function on start round button press
 function roundStart() {
   loadSettings();
