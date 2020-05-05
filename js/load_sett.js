@@ -16,9 +16,11 @@ function loadSettings() {
 // function for loading different function for different category based on selected settings
 function loadCatSett() {
   selCategor.forEach(function (element) {
-    if (element === "Country" || element === "CapitalCity") {
+    if (element === "Country" ) {
       loadCountryList();
-    } else if (element === "Animal") {
+    } else if (element === "CapitalCity"){
+      loadCapitalCityList();
+  }else if (element === "Animal") {
       loadAnimalList();
     } else if (element === "Plant") {
       loadPlantList();
@@ -60,6 +62,15 @@ function loadCountryList() {
   $.ajax(allCountriesSett).done(function (APIData) {
     APIData.forEach(function (APIItem) {
       CountryList.push(APIItem.name);
+
+    });
+  });
+ 
+};
+// download list of capital cities and save as array
+function loadCapitalCityList() {
+  $.ajax(allCountriesSett).done(function (APIData) {
+    APIData.forEach(function (APIItem) {
       CapitalCityList.push(APIItem.capital);
 
     });

@@ -1,8 +1,6 @@
 var FinishRndBtnClick = 0; // variable to stop counting round time if user press finish round button
 var usrAnswArr = []; // global array for user game Results
 var PCAnswArr = [];
-var usrPointsArr = [];
-var PCPointsArr = [];
 var totalPoints = 0;
 var rndPoints = 0;
 
@@ -50,6 +48,7 @@ async function showCounter() {
     $("#endCount").html(x);
     await sleep(1000);
     if (FinishRndBtnClick == 1) {
+      x = 0;
       break
     }
     if (x == 0) {
@@ -65,10 +64,10 @@ document.getElementById("finishRdBtn").addEventListener("click", finishRound);
 
 function finishRound() {
   FinishRndBtnClick = 1;
-  getUserAnswers();
-  console.log(usrAnswArr);
   getPCAnswers();
-  checkAnswers();
+  getUserAnswers();
+  
+  // showPointsRes();
   $("#roundPopUp").css("display", "none");
   $("#roundFinishPopUp").css("display", "block");
 }
@@ -78,6 +77,7 @@ function finishRound() {
 function getUserAnswers() {
   $("#roundInput").ready(function () {
     for (i = 0; i < selCategor.length; i++) {
+
       var answerIdBase = "usrAnsw";
       var answerIdFull = answerIdBase + selCategor[i];
       var usrAnswer = $('#' + answerIdFull).val(); //get user answer for each category
@@ -87,8 +87,9 @@ function getUserAnswers() {
       } else {
       usrAnswArr.push(usrAnswer);}
     }
+    checkAnsw();
   });
-  
+
 };
 
 // function for generate PC answer based on round letter
@@ -122,3 +123,46 @@ function getPCAnswers() {
     PCAnswArr.push(PCPlant);
   }
 };
+
+
+function checkAnsw(){
+  for (i = 0; i <selCategor.length; i ++){
+    let uswrd = usrAnswArr[i];
+    let pcwrd = PCAnswArr[i];
+    let cat = selCategor[i];
+    if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter && uswrd === pcwrd){
+      rndPoints += 5;
+    } else if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter && cat === "Country" && CountryList.includes(uswrd)){
+        rndPoints += 10
+    } else if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter && cat === "CapitalCity" && CapitalCityList.includes(uswrd)){
+      rndPoints += 10
+  } else if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter && cat === "Animal" && AnimalList.includes(uswrd)){
+    rndPoints += 10
+} else if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter && cat === "Plant" && PlantList.includes(uswrd)){
+  rndPoints += 10
+} else {rndPoints += 0}
+    console.log(rndPoints)
+  }
+  totalPoints += rndPoints;
+  showPointsRes();
+};
+
+function showPointsRes(){
+$("#rndPointParagraph").html("You achieve " + rndPoints + " points in this round!");
+$("#totalPointParagraph").html("Your total results is " + totalPoints + " points!" );
+};
+
+document.getElementById("nxtRnd").addEventListener("click", nextRound);
+
+function nextRound(){
+  FinishRndBtnClick = 0; // variable to stop counting round time if user press finish round button
+  usrAnswArr = []; // global array for user game Results
+  PCAnswArr = [];
+  rndPoints = 0;
+  $('#roundInput').html("");
+  $('#finishRdBtn').addClass('hide');
+  $("#roundFinishPopUp").css("display", "none");
+  $("#roundPopUp").css("display", "block");
+  showStartLetters();
+
+}
