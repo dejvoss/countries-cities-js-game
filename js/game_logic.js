@@ -1,8 +1,8 @@
 var FinishRndBtnClick = 0; // variable to stop counting round time if user press finish round button
 var usrAnswArr = []; // global array for user game Results
 var PCAnswArr = [];
-var usrRndPoint = 0;
-var usrTotPoints = 0;
+var usrPointsArr = [];
+var PCPointsArr = [];
 
 // Generate computer answers, check user answers, show points and results, finish round,
 // when stop button is pressed 
@@ -35,7 +35,8 @@ function gameRoundInitialize(selCategor, roundLetter) {
 
 // -------------------------------------------------- Finish Round functions --------------------------------------------------------------//
 
-// --------------------------Finish round automatically after x seconds; x value different depend of the difficult level //
+// ------------------------------Finish round automatically after x seconds; x value different depend of the difficulty level //
+
 // create function for round time counter which will start counting from 15 to 0 after time set by difficult level
 async function showCounter() {
   console.log(difLvlTime);
@@ -57,15 +58,18 @@ async function showCounter() {
 // action for finish round button in game round section
 document.getElementById("finishRdBtn").addEventListener("click", finishRound);
 
+
 function finishRound() {
   FinishRndBtnClick = 1;
   $("#roundPopUp").css("display", "none");
   $("#roundFinishPopUp").css("display", "block");
   getUserAnswers();
+  console.log(usrAnswArr);
   getPCAnswers();
+  checkAnswers();
 }
 
-// get user answers, capitalize letters and save in array gameResults
+// get user answers, capitalize letters and save in array usrAnswArr
 
 function getUserAnswers() {
   $("#roundInput").ready(function () {
@@ -73,16 +77,13 @@ function getUserAnswers() {
       var answerIdBase = "usrAnsw";
       var answerIdFull = answerIdBase + selCategor[i];
       var usrAnswer = $('#' + answerIdFull).val(); //get user answer for each category
+      if (usrAnswer !== ""){
       usrAnswer = usrAnswer.toUpperCase(); // convert answer to uppercase
-      let usrAnswStLtr = usrAnswer.charAt(0);
-      if (usrAnswArr !== roundLetter) {
-        
       }
-      usrAnswArr.push(usrAnswer); //add each user answer to game Result array
-    };
-    console.log(usrAnswArr);
+      usrAnswArr.push(usrAnswer);
+    }
   });
-
+  
 };
 
 // function for generate PC answer based on round letter
@@ -124,18 +125,24 @@ function getPCAnswers() {
 // ------------------------------------------- Compare user and PC answers and assign points -------------------------------------- //
 
 // check if user answers are start with correct letter and assign wrong letter value if no
-function checkFirstLetter(){
-  usrAnswArr.forEach(function (element, index){
-    let frstLet = element.charAt(0);
-    if (frstLet !== roundLetter){
-      usrAnswArr[index] = "wrong letter"
+function checkAnswers () {
+  for (i = 0; i <selCategor.length; i++){
+    let listName = selCategor[i] + "List";
+    let usrWord = usrAnswArr[i];
+    let PCWord = PCAnswArr[i];
+    console.log(usrWord);
+    console.log(PCWord);
+    if (usrWord === "" &&  PCWord !== ""){
+      usrPointsArr[i].push(0);
+      PCPointsArr[i].push(15);
+    } else if(usrWord === PCWord) {
+      usrPointsArr[i].push(5);
+      PCPointsArr[i].push(5);
+    } else if (usrWord !== PCWord || listName.includes(usrWord) == true) {
+      usrPointsArr.push(10);
+      PCPointsArr.push(10);
     }
-  })
-};
-
-// check if user word is correct 
-
-function checkWord(){
-  usrAnswArr.forEach()
-
-}
+    }
+    console.log(usrPointsArr);
+    console.log(PCPointsArr);
+  }
