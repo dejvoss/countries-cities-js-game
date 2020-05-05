@@ -3,6 +3,10 @@ var usrAnswArr = []; // global array for user game Results
 var PCAnswArr = [];
 var usrPointsArr = [];
 var PCPointsArr = [];
+var totalPoints = 0;
+var rndPoints = 0;
+
+
 
 // Generate computer answers, check user answers, show points and results, finish round,
 // when stop button is pressed 
@@ -54,19 +58,19 @@ async function showCounter() {
   };
 };
 
-//----------------------------------- Finish round when user press finish round button - finish before end time //
+//--------Finish round when user press finish round button - finish before end time //
 // action for finish round button in game round section
 document.getElementById("finishRdBtn").addEventListener("click", finishRound);
 
 
 function finishRound() {
   FinishRndBtnClick = 1;
-  $("#roundPopUp").css("display", "none");
-  $("#roundFinishPopUp").css("display", "block");
   getUserAnswers();
   console.log(usrAnswArr);
   getPCAnswers();
   checkAnswers();
+  $("#roundPopUp").css("display", "none");
+  $("#roundFinishPopUp").css("display", "block");
 }
 
 // get user answers, capitalize letters and save in array usrAnswArr
@@ -78,9 +82,10 @@ function getUserAnswers() {
       var answerIdFull = answerIdBase + selCategor[i];
       var usrAnswer = $('#' + answerIdFull).val(); //get user answer for each category
       if (usrAnswer !== ""){
-      usrAnswer = usrAnswer.toUpperCase(); // convert answer to uppercase
-      }
-      usrAnswArr.push(usrAnswer);
+        usrAnswer = usrAnswer.charAt(0).toUpperCase() + usrAnswer.slice(1);
+        usrAnswArr.push(usrAnswer);
+      } else {
+      usrAnswArr.push(usrAnswer);}
     }
   });
   
@@ -102,47 +107,18 @@ function generatePCAnswers(wordList, rndLetter) {
 function getPCAnswers() {
   if (selCategor.includes("Country")) {
     let PCCountry = generatePCAnswers(CountryList, roundLetter);
-    PCCountry = PCCountry.toUpperCase();
     PCAnswArr.push(PCCountry);
   };
   if (selCategor.includes("CapitalCity")) {
     let PCCity = generatePCAnswers(CapitalCityList, roundLetter);
-    PCCity = PCCity.toUpperCase();
     PCAnswArr.push(PCCity);
   };
   if (selCategor.includes("Animal")) {
     let PCAnimal = generatePCAnswers(AnimalList, roundLetter);
-    PCAnimal = PCAnimal.toUpperCase();
     PCAnswArr.push(PCAnimal);
   }
   if (selCategor.includes("Plant")) {
     let PCPlant = generatePCAnswers(PlantList, roundLetter);
-    PCPlant = PCPlant.toUpperCase();
     PCAnswArr.push(PCPlant);
   }
 };
-
-// ------------------------------------------- Compare user and PC answers and assign points -------------------------------------- //
-
-// check if user answers are start with correct letter and assign wrong letter value if no
-function checkAnswers () {
-  for (i = 0; i <selCategor.length; i++){
-    let listName = selCategor[i] + "List";
-    let usrWord = usrAnswArr[i];
-    let PCWord = PCAnswArr[i];
-    console.log(usrWord);
-    console.log(PCWord);
-    if (usrWord === "" &&  PCWord !== ""){
-      usrPointsArr[i].push(0);
-      PCPointsArr[i].push(15);
-    } else if(usrWord === PCWord) {
-      usrPointsArr[i].push(5);
-      PCPointsArr[i].push(5);
-    } else if (usrWord !== PCWord || listName.includes(usrWord) == true) {
-      usrPointsArr.push(10);
-      PCPointsArr.push(10);
-    }
-    }
-    console.log(usrPointsArr);
-    console.log(PCPointsArr);
-  }

@@ -16,10 +16,8 @@ function loadSettings() {
 // function for loading different function for different category based on selected settings
 function loadCatSett() {
   selCategor.forEach(function (element) {
-    if (element === "Country") {
+    if (element === "Country" || element === "CapitalCity") {
       loadCountryList();
-    } else if (element === "CapitalCity") {
-      loadCptlCitList();
     } else if (element === "Animal") {
       loadAnimalList();
     } else if (element === "Plant") {
@@ -66,18 +64,9 @@ function loadCountryList() {
 
     });
   });
-
+ 
 };
 
-// download list of capital cities and save as array
-function loadCptlCitList() {
-  $.ajax(allCountriesSett).done(function (APIData) {
-    APIData.forEach(function (APIItem) {
-      CapitalCityList.push(APIItem.capital);
-    });
-  });
-
-};
 
 // ---------------------------------------------------------- MEDIAWIKI API ---------------------------------------------------------- //
 
@@ -139,12 +128,15 @@ function formatList() {
   listOfNoneAnimal.forEach(function (element) {
     var indxInFrmtList = AnimalList.indexOf(element);
     AnimalList.splice(indxInFrmtList, 1);
-  })
-  var listOfExtraAnimal = ["Buffalo", "Chimpanzee", "Dogfish", "Eland", "Gnu", "Goldfinch", "Goosander", "Pig", "Seal", "Turkey", "Vinegaroon"];
+  });
+  var listOfExtraAnimal = ["Buffalo", "Chimpanzee", "Dogfish", "Eland", "Gnu", "Goldfinch", "Goosander", "Pig", "Seal", "Turkey", "Vinegaroon", "Zebra"];
   listOfExtraAnimal.forEach(function (element) {
     AnimalList.push(element);
-  })
+  });
   AnimalList.sort();
+
+ 
+
 };
 
 // ---------------------------------------------------------- READ FROM CSV FILE ---------------------------------------------------------- //
@@ -163,7 +155,6 @@ function loadPlantList() {
       PlantList.push(mydat[x].name);
     }
   });
-
 };
 
 
