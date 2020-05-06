@@ -75,9 +75,7 @@
 
 /* ↑User name input form↑ */
 
-.btnInGroup {
-    margin: 10px;
-}
+
 /* option pup up window */
 .settChsCategor{
     border: 1px solid #ced4da;
@@ -97,45 +95,6 @@
 }
     
 
-
-/* gameBoard */
-
-.gameSection {
-    margin-top: 5%;
-    display: none;
-}
- #menuGroupBtns {
-     background-color: #007bff;
-     text-align: center;
- }
-
- #menuGroupBtns button {
-     margin: 0.1rem;
-     width: 10rem;
- }
-
-.gameBoard {
-    background-color: #ffffff;
-    text-align: left;
-    text-transform: uppercase;
-    padding: 1rem;
-
-}
-.gameBoard h5 {
-    padding-bottom: 0;
-    margin-bottom: 0;
-    border: 1px solid #4949e6;
-    border-bottom: none;
-}
-
-.gameBoardTable {
-    min-height: 50vh;
-    color: #330867;
-    background-image: url(../images/emptyCard.jpg);
-    background-size: cover;
-    text-align: center;
-
-}
 /* start game button */
 .startRndBtn {
     width: 10rem;
