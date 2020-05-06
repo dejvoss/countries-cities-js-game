@@ -35,11 +35,11 @@ function loadCatSett() {
 function loadDiffLev() {
   let myCtr = selCategor.length;
   if (difLevel == 1) {
-    difLvlTime = myCtr * 3000
+    difLvlTime = myCtr * 13000
   } else if (difLevel == 2) {
-    difLvlTime = myCtr * 2000;
+    difLvlTime = myCtr * 80000;
   } else if (difLevel == 3) {
-    difLvlTime = myCtr * 1000;
+    difLvlTime = myCtr * 5000;
   };
 };
 

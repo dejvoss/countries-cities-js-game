@@ -14,8 +14,10 @@
 	<link rel="stylesheet" type="text/css" href="css/main_style.css">
 	<!-- Game board CSS -->
 	<link rel="stylesheet" type="text/css" href="css/game_style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 	<!-- font awesome -->
 	<script src="https://kit.fontawesome.com/5a4d742966.js" crossorigin="anonymous"></script>
+	
 
 </head>
 
@@ -46,7 +48,7 @@
 				</ul>
 
 			</div>
-			<!-- Start game button - trigged pop-up to enter user name -->
+			
 			
 		</div>
 	</nav>
@@ -54,19 +56,7 @@
 	<!-- Game board section hidden in default -->
 	<section class="container gameSection" id="gameSection">
 
-		<!-- game menu futures-->
-		<!-- <div class="btn-group-md menuButtons" role="group" aria-label="Menu group buttons">
-			<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse"
-				data-target="#menuGroupBtns" aria-expanded="false">Game Menu</button>
 
-			<div class="collapse" id="menuGroupBtns">
-				<button type="button" class="btn btn-secondary">New Game</button>
-				<button type="button" class="btn btn-secondary">Settings</button>
-				<button type="button" class="btn btn-secondary">Restart</button>
-				<button type="button" class="btn btn-secondary">Exit</button>
-			</div>
-
-		</div> -->
 		<!-- game board -->
 		<div class="gameBoard">
 
@@ -164,7 +154,7 @@
 	</div>
 <!-- Pop up round finish -->
 <div class="PopUpDiv" id="roundFinishPopUp">
-	<div class="pupUp-container finish-round-popUp-container">
+	<div class="pupUp-container round-popUp-container">
 		<h2>Round is finished</h2>
 		<p id="rndPointParagraph">You achieve xx points</p>
 		<p id = "totalPointParagraph">Your total game score is: </p>
@@ -172,6 +162,18 @@
 		
 		
 		<button type="button" class="btn btn-primary" id="nxtRnd">Play next round</button>
+		<div>
+			<table class="table" id="gameResultTbl">
+				<thead>
+					<tr>
+						<th scope="col">Category</th>
+						<th scope="col" id="userHeader">usr answers</th>
+						<th scope="col">PC answers</th>
+						<th scope="col">Points</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
 		</div>
 	</div>
 </div>

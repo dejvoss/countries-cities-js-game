@@ -158,12 +158,8 @@
     overflow-x: scroll;
 }
 
-.finish-round-popUp-container {
-    margin-top: 15vh;
-    height: 50vh;
-}
 
-.finish-round-popUp-container button{
+#nxtRnd{
     margin: 1rem;
 }
 
@@ -182,6 +178,15 @@ border: solid .3rem black;
 border-radius: 50%;
 }
 
+.my-input {
+    background-image: url("../images/emptyCard.jpg");
+    background-size: cover;
+    font-family: 'Nanum Pen Script', cursive;
+    color: #000F55;
+    font-weight: bold;
+    font-size: 1.5rem;
+
+}
 
     /* animation on start round - animate letters x y z */
 .xyzLetters {

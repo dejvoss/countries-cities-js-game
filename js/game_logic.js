@@ -3,7 +3,7 @@ var usrAnswArr = []; // global array for user game Results
 var PCAnswArr = [];
 var totalPoints = 0;
 var rndPoints = 0;
-
+var usrPointsArr = [];
 
 
 // Generate computer answers, check user answers, show points and results, finish round,
@@ -30,7 +30,7 @@ function chooseLetter() {
 function gameRoundInitialize(selCategor, roundLetter) {
   $('#roundInput').html("");
   for (var i = 0; i < selCategor.length; i++) {
-    var htmlFormContent = "<div class='form-group'><label for='" + selCategor[i] + "'>" + selCategor[i] + "</label><input type='text' class='form-control' id='usrAnsw" + selCategor[i] + "' placeholder='" + roundLetter + "'></div>";
+    var htmlFormContent = "<div class='form-group'><label for='" + selCategor[i] + "'>" + selCategor[i] + "</label><input type='text' class='form-control my-input' id='usrAnsw" + selCategor[i] + "' placeholder='" + roundLetter + "'></div>";
     $('#roundInput').append(htmlFormContent);
   };
 }
@@ -66,13 +66,14 @@ function finishRound() {
   FinishRndBtnClick = 1;
   getPCAnswers();
   getUserAnswers();
-  
+  clearTimeout(sleep);
   // showPointsRes();
   $("#roundPopUp").css("display", "none");
   $("#roundFinishPopUp").css("display", "block");
+  printAnswers();
 }
 
-// get user answers, capitalize letters and save in array usrAnswArr
+// get user answers, capitalize first letter and save in array usrAnswArr
 
 function getUserAnswers() {
   $("#roundInput").ready(function () {
@@ -95,6 +96,9 @@ function getUserAnswers() {
 // function for generate PC answer based on round letter
 function generatePCAnswers(wordList, rndLetter) {
   var tmpWordList = [];
+  if (difLevel == 1){
+    tmpWordList.push("");
+  }
   wordList.forEach(function (item) {
     var wrdLetter = item.charAt(0);
     if (wrdLetter === rndLetter) {
@@ -124,41 +128,83 @@ function getPCAnswers() {
   }
 };
 
+// ---------------------------------- check and compare answers, assign points ---------------------------------------------------- //
 
 function checkAnsw(){
   for (i = 0; i <selCategor.length; i ++){
     let uswrd = usrAnswArr[i];
     let pcwrd = PCAnswArr[i];
     let cat = selCategor[i];
-    if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter && uswrd === pcwrd){
-      rndPoints += 5;
-    } else if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter && cat === "Country" && CountryList.includes(uswrd)){
-        rndPoints += 10
-    } else if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter && cat === "CapitalCity" && CapitalCityList.includes(uswrd)){
-      rndPoints += 10
-  } else if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter && cat === "Animal" && AnimalList.includes(uswrd)){
-    rndPoints += 10
-} else if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter && cat === "Plant" && PlantList.includes(uswrd)){
-  rndPoints += 10
-} else {rndPoints += 0}
+
+    if (uswrd === "undefined"){
+      usrPointsArr.push(0);
+    } else if (uswrd.length > 1 && uswrd.charAt(0) === roundLetter) {
+      if (uswrd === pcwrd){
+        usrPointsArr.push(5);
+      } else if (uswrd !== pcwrd && pcwrd !== "") {
+        if (cat === "Country" && CountryList.includes(uswrd)){
+          usrPointsArr.push(10);
+      } else if (cat === "CapitalCity" && CapitalCityList.includes(uswrd)){
+          usrPointsArr.push(10);
+      } else if (cat === "Animal" && AnimalList.includes(uswrd)){
+        usrPointsArr.push(10);
+      } else if (cat === "Plant" && PlantList.includes(uswrd)){
+        usrPointsArr.push(10);
+      } else {usrPointsArr.push(0);}
+      } else if(uswrd !== pcwrd && pcwrd === ""){
+        if (cat === "Country" && CountryList.includes(uswrd)){
+          usrPointsArr.push(15);
+      } else if (cat === "CapitalCity" && CapitalCityList.includes(uswrd)){
+          usrPointsArr.push(15);
+      } else if (cat === "Animal" && AnimalList.includes(uswrd)){
+        usrPointsArr.push(15);
+      } else if (cat === "Plant" && PlantList.includes(uswrd)){
+        usrPointsArr.push(15);
+      } else {usrPointsArr.push(0);}
+      } 
+    } else {usrPointsArr.push(0)}
+    rndPoints += usrPointsArr[i];
     console.log(rndPoints)
   }
+  
   totalPoints += rndPoints;
   showPointsRes();
+  printAnswers();
 };
+
+//  ---------------------------------------------------------- print answer table for user visibility --------------------------------------------------- //
+
+function printAnswers(){
+  let pernamentHtml1 = '<thead><tr><th scope="col">Category</th><th scope="col">PC Answer</th><th scope="col">' + userName + ' Answers</th><th scope="col">Points</th></tr></thead><tbody>';
+  var pernamentHtml2;
+  for (x = 0; x<selCategor.length; x++){
+    let tempHtml1 = '<tr><th scope="row">' + selCategor[x] + '</th><td>' + PCAnswArr[x] + '</td><td>' + usrAnswArr[x] + '</td><td>' + usrPointsArr[x] + '</td></tr>'
+    pernamentHtml2 = pernamentHtml2 + tempHtml1;
+  };
+  let fullHtml = pernamentHtml1 + pernamentHtml2;
+$("#gameResultTbl").html(fullHtml);
+}
+
+// ---------------------------------------------------- Show points qty --------------------------------------------------------- //
 
 function showPointsRes(){
 $("#rndPointParagraph").html("You achieve " + rndPoints + " points in this round!");
 $("#totalPointParagraph").html("Your total results is " + totalPoints + " points!" );
 };
 
+// ---------------------------------------- Next Round button ---------------------------------------------------------- //
+
 document.getElementById("nxtRnd").addEventListener("click", nextRound);
 
+// clear variables when new round is start, initiate new round
 function nextRound(){
+  usrPointsArr = [];
   FinishRndBtnClick = 0; // variable to stop counting round time if user press finish round button
   usrAnswArr = []; // global array for user game Results
   PCAnswArr = [];
   rndPoints = 0;
+  $("#endCountDiv").css('display', 'none');
+  $("#endCount").html("");
   $('#roundInput').html("");
   $('#finishRdBtn').addClass('hide');
   $("#roundFinishPopUp").css("display", "none");
