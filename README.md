@@ -1,17 +1,22 @@
-# Countries, Cities game
-This is my first Interactive Frontend Development Project maked during the Full Stack Web Development course in Code Institute.
-My project is a word game in which user can test his knowledge of countries, cities, animals and plants. Based on chosen letter user has to type the words under different categories. In the end his answers are compared with computer answers and for both are assigned points.
+# First Interactive Frontend Development Project - Countries, Cities game
+This is my second mileston project during learning WEB Development in Code Institute. My project is a word game in which user can test his word knowledge of countries, capital cities, animals and plants. By this game i try to give a second/ virtual life in a paper version of this game.
 
 ## UX
 I planned to make the general apperance of the webiste simple, intuitive and minimalistic with main focus on the game.
 I made this project for my friends with whom I played this game many times in our childhood. I wanted it to reflect the memories of playing on a piece of paper as much as possible, that's why i asked my friends what could bring them these memories if they will play in the game on the computer. Let see their answers:
-* >I think that the paper card is the most important in this game, thats how we start the game - we took the paper and created a game board.
+* >I think that the paper card is ver important in this game, thats how we start the game - we took the paper and created a game board.
 * >In my opinion the start of each round when one person say loud X, Y, Z and the other one stopped him to choose the letter.
+* >I expect that game will be not too easy, but also not hard, i want to win, but not too ease. I would like to see also correct answers as from i remember i learn a lot of new words during play in the game when i was kid.
 * >Definietevly the paper and pen - when you told me countries, cities i have paper and pen in memory. And that pressure when somebody finish writing and start counting. Yes you need to feel that pressure.
 
-Based on that I decided to focus on elements of paper and pen in website and exact game board as we use to play on. I created a simple picture of my project as below and i started writing code.
+Taking to the consideration above stories i decide to focus on simple website with element of paper and pen in visual laid. I also thought about people who don't know the game and i decide to create section with game story and paper game version rules. I create first view of web as in below picture. During developing i change the game board place to the pop up window instead of the section in main page.
 
 ![Firt project view](/readme_purpose/prViewImg.png)
+### Colors and pictures
+I try to find a nice picture with element of pen and paper which could be a background of my page, and picture of empty paper card as the element of the game board. To give more real feeling of the game i use the font color very similar to pen color and also hand writing font in the game board.
+
+![Background picture](/readme_purpose/notebook_pen.jpg)
+![paper card](/readme_purpose/emptyCard.jpg)
 
 
 ## Features
