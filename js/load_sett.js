@@ -1,4 +1,6 @@
-// ------------------------ FUNCTION LOADED WHEN START ROUND BUTTON IS CLICKED ---------------------------------------- //
+// ------------------------ LOAD SETTINGS ON START GAME ROUND ---------------------------------------- //
+
+// --------------------- VARIABLES ----------------------------------------------
 var difLvlTime;
 var CountryList = [];
 var CapitalCityList = [];
@@ -8,43 +10,58 @@ var RoundCounter = 0;
 
 
 // load game settings when the start round button is pressed
-
+// 
 function loadSettings() {
   loadCatSett();
   loadDiffLev();
 };
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// -------------------------------------------- LOAD LISTS FROM DIFFERENT API DEPENCE OF THE CATEGORIES ---------------------------------------
 // function for loading different function for different category based on selected settings
 function loadCatSett() {
   selCategor.forEach(function (element) {
-    if (element === "Country" ) {
+    if (element === "Country") {
       loadCountryList();
-    } else if (element === "CapitalCity"){
+    }
+    else if (element === "CapitalCity") {
       loadCapitalCityList();
-  }else if (element === "Animal") {
+    }
+    else if (element === "Animal") {
       loadAnimalList();
-    } else if (element === "Plant") {
+    }
+    else if (element === "Plant") {
       loadPlantList();
-    } else {
+    }
+    else {
       alert("Something went wrong - it looks like you didn't save game settings");
 
     }
   })
 };
-// function for loading different settings for different difficulties level selected in settings
 
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// ------------------------------------------- SET DIFFICULT LEVEL ------------------------------------------------
+
+// function for loading different settings for different difficulties level selected in settings
 function loadDiffLev() {
   let myCtr = selCategor.length;
   if (difLevel == 1) {
     difLvlTime = myCtr * 13000
-  } else if (difLevel == 2) {
+  }
+  else if (difLevel == 2) {
     difLvlTime = myCtr * 80000;
-  } else if (difLevel == 3) {
+  }
+  else if (difLevel == 3) {
     difLvlTime = myCtr * 5000;
   };
 };
 
-// functions for loading list of words for each game category
-// ---------------------------------------------------------- RESTCOUNTRIES API ---------------------------------------------------------- //
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// ------------------------------------------------------------- API -----------------------------------------------------
+
+// ---------------------------------------------------------- RESTCOUNTRIES API FOR CAPITAL CITIES AND COUNTRIES---------------------------------------------------------- //
 // restcountries API settings used below for download list of countries and list of capital cities
 var allCountriesSett = {
   "async": true,
@@ -65,7 +82,7 @@ function loadCountryList() {
 
     });
   });
- 
+
 };
 // download list of capital cities and save as array
 function loadCapitalCityList() {
@@ -75,11 +92,11 @@ function loadCapitalCityList() {
 
     });
   });
- 
+
 };
 
-
-// ---------------------------------------------------------- MEDIAWIKI API ---------------------------------------------------------- //
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// ---------------------------------------------------------- MEDIAWIKI API OR ANIMAL LIST ---------------------------------------------------------- //
 
 // MediaWiki API settings used below for download list of animals from wikipedia website (https://en.wikipedia.org/wiki/List_of_animal_names)
 /**
@@ -90,6 +107,7 @@ function loadCapitalCityList() {
  *
  * MIT License
  */
+// API SETTINGS
 
 var url = "https://en.wikipedia.org/w/api.php";
 
@@ -146,11 +164,11 @@ function formatList() {
   });
   AnimalList.sort();
 
- 
 
 };
 
-// ---------------------------------------------------------- READ FROM CSV FILE ---------------------------------------------------------- //
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// ---------------------------------------------------------- READ PLANT LIST FROM CSV FILE ---------------------------------------------------------- //
 // load plant list from CSV file by jquery.csv
 var plantAjSet = {
   type: "GET",
@@ -169,11 +187,16 @@ function loadPlantList() {
 };
 
 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// ---------------------------------------------------- SLEEP FUNCTION ----------------------------------------------
 // create sleep function for showStartLetters function
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// ------------------------------------------------- START ROUND BUTTON - TRIGGER ABOVE FUNCTIONS WHEN BUTTON IS CLICKED --------------------------------------------
 // add event listener to the start round button which will triger showStartLetters function
 document.getElementById("startBtn").addEventListener("click", roundStart);
 
@@ -183,8 +206,8 @@ function roundStart() {
   showStartLetters();
 }
 
-
-// ---------------------------------------------------------- LETTER ANIMATION ON BEGINNING ROUND ---------------------------------------------------------- //
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// ----------------------------------------- LETTER ANIMATION ON BEGINNING ROUND ----------------------------------------- //
 // function showStartLetters - when user press start button start round pop up window is show and display letters x y z, after this stop btn is visible
 async function showStartLetters() {
   let letterChoosingDiv = '<div id="letterChoos"><span class="xyzLetters transform" id="letters"></span></div>';
