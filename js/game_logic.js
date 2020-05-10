@@ -57,6 +57,7 @@ function gameRoundInitialize(selCategor, roundLetter) {
 async function showCounter() {
   console.log(difLvlTime);
   await sleep(difLvlTime);
+  console.log(difLvlTime);
   $("#endCountDiv").css('display', 'block');
   for (var x = 15; x >= 0; x--) {
     $("#endCount").html(x);
@@ -120,7 +121,7 @@ function getUserAnswers() {
 // -------------- GENERAL GET ANSWER FUNCTION ------------------------
 function generatePCAnswers(wordList, rndLetter) {
   var tmpWordList = [];
-  if (difLevel == 1) {
+  if (difLevel == 1 || difLevel == 2) {
     tmpWordList.push("");
   }
   wordList.forEach(function (item) {
