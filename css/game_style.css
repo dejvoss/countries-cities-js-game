@@ -143,7 +143,7 @@ border-radius: 50%;
     font-family: 'Nanum Pen Script', cursive;
     color: #000F55;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 2rem;
 
 }
 
@@ -189,7 +189,24 @@ border-radius: 50%;
     text-transform: capitalize;
 }
 
+/* Game Result table  */ 
 
+
+.resultGameTable {
+    background-image: url("../images/emptyCard.jpg");
+    background-size: cover;
+    font-family: 'Nanum Pen Script', cursive;
+    color: #001ca2;
+    font-weight: bold;
+    font-size: 2rem;
+    
+}
+.resultGameTable thead {
+    border-bottom: solid 0.3rem #001ca2;
+}
+.resultGameTable th, .resultGameTable td {
+    border-right: solid 0.3rem #001ca2;
+}
 
 /* User name input form - message when input is not filled in  - position for small screen*/
 

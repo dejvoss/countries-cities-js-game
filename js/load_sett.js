@@ -158,7 +158,7 @@ function formatList() {
     var indxInFrmtList = AnimalList.indexOf(element);
     AnimalList.splice(indxInFrmtList, 1);
   });
-  var listOfExtraAnimal = ["Buffalo", "Chimpanzee", "Dogfish", "Eland", "Gnu", "Goldfinch", "Goosander", "Pig", "Seal", "Turkey", "Vinegaroon", "Zebra"];
+  var listOfExtraAnimal = ["Buffalo", "Bizon", "Chimpanzee", "Dogfish", "Eland", "Gnu", "Goldfinch", "Goosander", "Pig", "Seal", "Turkey", "Vinegaroon", "Zebra"];
   listOfExtraAnimal.forEach(function (element) {
     AnimalList.push(element);
   });

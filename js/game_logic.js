@@ -55,9 +55,7 @@ function gameRoundInitialize(selCategor, roundLetter) {
 
 // create function for round time counter which will start counting from 15 to 0 after time set by difficult level
 async function showCounter() {
-  console.log(difLvlTime);
   await sleep(difLvlTime);
-  console.log(difLvlTime);
   $("#endCountDiv").css('display', 'block');
   for (var x = 15; x >= 0; x--) {
     $("#endCount").html(x);
