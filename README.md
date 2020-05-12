@@ -153,6 +153,7 @@ Manual and automated tests were done systematically and also were fixed in the s
 1. Time in round is too low.
 2. Undefined as computer answer in plant category.
 3. Time for each round is not reset. 
+4. Missing some of the animals names.
 
 ## Fix
 
@@ -166,8 +167,9 @@ Manual and automated tests were done systematically and also were fixed in the s
 
 ### Fixes bugs discovered during User tests:
 1. Adjust the time for finish each round.
-2. Not fixed yet.
-3. 
+2. Undefined was showing only in github page, not on local server. Link to the file were wrong. It is corrected and work well (Thanks Reuben).
+3. Add the clearTimeOut function.
+4. Add the animal name to the list and create a contact form for reporting issues.
 
 ## Deployment
 

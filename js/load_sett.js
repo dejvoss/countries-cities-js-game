@@ -172,7 +172,7 @@ function formatList() {
 // load plant list from CSV file by jquery.csv
 var plantAjSet = {
   type: "GET",
-  url: "https://dejvoss.github.io/countries_cities/gameFiles/PlanList.csv",
+  url: "/gameFiles/PlantList.csv",
   dataType: "text",
 
 }
