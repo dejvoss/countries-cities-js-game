@@ -117,17 +117,18 @@
     overflow-x: scroll;
 }
 
-
+/* next round button */
 #nxtRnd{
     margin: 1rem;
 }
-
+/* div which shows counting down to end of round  */
 .counterDiv {
     position: absolute;
     display: none;
     padding: 2rem;
 }
 
+/* span in counter div - shows number counted down to end round */
 .ctrspan {
 font-size: 3rem;
 font-weight: bold;
@@ -137,6 +138,7 @@ border: solid .3rem black;
 border-radius: 50%;
 }
 
+/* user input for typing words - game answer */
 .my-input {
     background-image: url("../images/emptyCard.jpg");
     background-size: cover;
