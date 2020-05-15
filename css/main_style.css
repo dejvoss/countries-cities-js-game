@@ -40,7 +40,6 @@ body {
 
 .whiteBackground {
     width: 100%;
-    /* margin: 5% auto 5% auto; */
     padding: 5%;
     background-color: #ffffff;
 
@@ -51,7 +50,6 @@ body {
 
 .transpBlackBackground {
     width: 100%;
-    /* margin: 5% auto 5% auto; */
     padding: 5%;
     background-color: rgba(0,0,0,.5);
     color: #ffffff;
