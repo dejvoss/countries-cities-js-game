@@ -171,8 +171,8 @@ function formatList() {
 // ---------------------------------------------------------- READ PLANT LIST FROM CSV FILE ---------------------------------------------------------- //
 // load plant list from CSV file by jquery.csv
 var plantAjSet = {
-  type: "GET",
   url: "./gameFiles/PlantList.csv",
+  async: false,
   dataType: "text",
 
 }
@@ -185,6 +185,8 @@ function loadPlantList() {
     }
   });
 };
+
+
 
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
