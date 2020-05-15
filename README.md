@@ -56,8 +56,12 @@ I try to find a nice picture with element of pen and paper which could be a back
 * Navigation menu bar.
 * Navigation links in footer.
 * User name form.
-* Choosing the game difficulties level - user can choose 1 from 3 different difficulties levels - depence of the level, player has different time for typing the words. In ease and medium level also is a chance that computer will don't know the answer and user can achieve extra points in that case.
-* Choosing the game categories - user can choose all 4 categories (countries, capital cities, animals, plants) or only some of these.
+* Game that consists of entering words into a random letter in a given category.
+* Game difficulties level - 3 difficulties level to choose:
+    * easy - user has 30 second per category to type words, computer can make mistake (can have no word in some categories, this give a chance for user to achieve 15 points)
+    * medium - user has 20 second per category to type words, computer can make mistake (can have no word in some categories, this give a chance for user to achieve 15 points)
+    * hard - user has 15 second per category to type words, computer can not make mistake, if there is no computer answer the word doesn't exist on that letter.
+* Game categories - user can choose all 4 categories (countries, capital cities, animals, plants) or only some of these.
 * Learnign new words, by seeing the computer answers after each round.
 * Earning points during each rounds.
 
@@ -65,6 +69,7 @@ I try to find a nice picture with element of pen and paper which could be a back
 
 * more game categories - cars, cities(all not only capital), things, names
 * game ranking
+* contact form for reporting issues
 * multiplayer game mode
 
 ## Technologies Used
@@ -113,21 +118,15 @@ Detailed list of manual tests:
     * large screen - 24" windows 10
     * extra large screen - 50" linux lubunto 19.04
 5. Check if webpage is correctly work in different web browsers:
-    * google chrome
-    * microsoft edge
-    *
-    *
-    *
-    *
+    * Google chrome 81.0.4044.138 (64-bit)
+    * Brave Version 1.8.90 Chromium: 81.0.4044.129 (Official Build) (64-bit)
+    * Firefox 71.0 (64-bit) - test passed positive with one issue - on the time counter, rest work without issues
+    * Safari 5.1.7 - test failed, game didn't work
 
 ### Automated testing
 I use few tools to do automate tests for my project:
 1. HTML validator for finding bugs and errors in code - few type mistakes were find.
 2. CSS Validator for finidng errors - none were find.
-3. Jasmine test to check if function assign correct points in game.
-4. Jasmine test to check if user name is saved.
-5. Jasmine test to check if function for start next game correctly clear variables.
-6. Jasmine test to check if function save settings is adjusting correctly settings.
 
 ### User tests
 After my tests i share link to game with 3 friends and ask them to play and test it.
@@ -169,7 +168,7 @@ Manual and automated tests were done systematically and also were fixed in the s
 1. Adjust the time for finish each round.
 2. Undefined was showing only in github page, not on local server. Link to the file were wrong. It is corrected and work well (Thanks Reuben).
 3. Add the clearTimeOut function.
-4. Add the animal name to the list and create a contact form for reporting issues.
+4. Add the animal name to the list.
 
 ## Deployment
 
