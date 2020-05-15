@@ -1,13 +1,14 @@
 // ------------------------ LOAD SETTINGS ON START GAME ROUND ---------------------------------------- //
 
 // --------------------- VARIABLES ----------------------------------------------
-var difLvlTime;
-var CountryList = [];
-var CapitalCityList = [];
-var AnimalList = [];
-var PlantList = [];
-var RoundCounter = 0;
-
+var difLvlTime; // time in milisecond counted depence of chosen difficulties level and categories
+var CountryList = []; // lsit with countries 
+var CapitalCityList = []; // list with Capital cities
+var AnimalList = []; // list with animals
+var PlantList = []; // list with plants
+var RoundCounter = 0; // variable for count number of rounds
+const ltrAnimTimeDelay = 800; // time in milisecond for x y z letters animation
+const AlphSpinDelay = 500; //time in milisecond for alphabet letter animation
 
 // load game settings when the start round button is pressed
 // 
@@ -224,12 +225,12 @@ async function showStartLetters() {
   for (i = 0; i < letters.length; i++) {
     $('#letters').text(letters[i]);
     $('.transform').addClass('transform-active');
-    await sleep(800);
+    await sleep(ltrAnimTimeDelay);
     $('.transform').removeClass('transform-active');
-    await sleep(800);
+    await sleep(ltrAnimTimeDelay);
   };
   $('#startInit').html(loadingAlphabetSpin);
-  await sleep(500);
+  await sleep(AlphSpinDelay);
   $('#stopButtonDiv').removeClass('hide');
   $('#stopButtonDiv').addClass('showMyClass');
   currentGameAlphabet = alphabetOnStart;
