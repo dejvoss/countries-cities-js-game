@@ -28,7 +28,7 @@ function stopButtonPress() {
 function chooseLetter() {
   if (currentGameAlphabet.length < 1) { // avoid situation when all letters from alphabet will be used, when it happen use full alphabet again
     currentGameAlphabet = alphabetOnStart;
-  };
+  }
   var ltrIndicator = Math.floor(Math.random() * currentGameAlphabet.length);
   roundLetter = currentGameAlphabet[ltrIndicator];
   currentGameAlphabet.splice(ltrIndicator, 1); // remove chosen letter from current game alphabet to avoid repeating letters
@@ -44,7 +44,7 @@ function gameRoundInitialize(selCategor, roundLetter) {
   for (var i = 0; i < selCategor.length; i++) {
     var htmlFormContent = "<div class='form-group'><label for='" + selCategor[i] + "'>" + selCategor[i] + "</label><input type='text' class='form-control my-input' id='usrAnsw" + selCategor[i] + "' placeholder='" + roundLetter + "'></div>";
     $('#roundInput').append(htmlFormContent);
-  };
+  }
 }
 
 
@@ -62,13 +62,13 @@ async function showCounter() {
     await sleep(1000);
     if (FinishRndBtnClick == 1) { // finish counting if user finished round alone by pressing finish btn
       x = 0;
-      break
+      break;
     }
     if (x == 0) {
       finishRound();
     }
-  };
-};
+  }
+}
 
 //--------Initialize Finish round function when user press finish round button - finish before end time //
 // action for finish round button in game round section
@@ -110,7 +110,7 @@ function getUserAnswers() {
     checkAnsw();
   });
 
-};
+}
 
 // --------------------------------------------- GENERATE PC ANSWERS AND SAVE AS ARRAY ----------------------------------------
 
@@ -126,11 +126,11 @@ function generatePCAnswers(wordList, rndLetter) {
     var wrdLetter = item.charAt(0);
     if (wrdLetter === rndLetter) {
       tmpWordList.push(item);
-    };
+    }
   });
   var rndCntr = Math.floor(Math.random() * tmpWordList.length);
   return PCanswer = tmpWordList[rndCntr];
-};
+}
 
 
 // ------------------------------ GET ANSWER FOR EACH CATEGORY DEPENCE OF SELECTION IN THE SETTINGS ------------------------------------
@@ -139,11 +139,11 @@ function getPCAnswers() {
   if (selCategor.includes("Country")) {
     let PCCountry = generatePCAnswers(CountryList, roundLetter);
     PCAnswArr.push(PCCountry);
-  };
+  }
   if (selCategor.includes("CapitalCity")) {
     let PCCity = generatePCAnswers(CapitalCityList, roundLetter);
     PCAnswArr.push(PCCity);
-  };
+  }
   if (selCategor.includes("Animal")) {
     let PCAnimal = generatePCAnswers(AnimalList, roundLetter);
     PCAnswArr.push(PCAnimal);
@@ -152,7 +152,7 @@ function getPCAnswers() {
     let PCPlant = generatePCAnswers(PlantList, roundLetter);
     PCAnswArr.push(PCPlant);
   }
-};
+}
 
 // ---------------------------------- COMPARE ANSWERS AND ASSIGN POINTS ---------------------------------------------------- //
 // check each answer and assign points to array
@@ -207,7 +207,7 @@ function checkAnsw() {
       }
     }
     else {
-      usrPointsArr.push(0)
+      usrPointsArr.push(0);
     } // if user answer start from wrong letter assing 0 points
     rndPoints += usrPointsArr[i]; // add point from array to rndPoint variable
 
@@ -216,7 +216,7 @@ function checkAnsw() {
   totalPoints += rndPoints; // add round points to total points variable  
   showPointsRes(); // run function which show points and answers
   printAnswers();
-};
+}
 
 
 //  ----------------------------------------- SHOW ANSWERS AND POINTS RESULT --------------------------------------------------- //
@@ -225,9 +225,9 @@ function printAnswers() {
   let pernamentHtml1 = '<thead><tr><th scope="col">Category</th><th scope="col">PC Answer</th><th scope="col">' + userName + ' Answers</th><th scope="col">Points</th></tr></thead><tbody>';
   var pernamentHtml2;
   for (x = 0; x < selCategor.length; x++) {
-    let tempHtml1 = '<tr><th scope="row">' + selCategor[x] + '</th><td>' + PCAnswArr[x] + '</td><td>' + usrAnswArr[x] + '</td><td>' + usrPointsArr[x] + '</td></tr>'
+    let tempHtml1 = '<tr><th scope="row">' + selCategor[x] + '</th><td>' + PCAnswArr[x] + '</td><td>' + usrAnswArr[x] + '</td><td>' + usrPointsArr[x] + '</td></tr>';
     pernamentHtml2 = pernamentHtml2 + tempHtml1;
-  };
+  }
   let fullHtml = pernamentHtml1 + pernamentHtml2;
   $("#gameResultTbl").html(fullHtml);
 }
@@ -237,7 +237,7 @@ function printAnswers() {
 function showPointsRes() {
   $("#rndPointParagraph").html("You achieve " + rndPoints + " points in this round!");
   $("#totalPointParagraph").html("Your total results is " + totalPoints + " points!");
-};
+}
 
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

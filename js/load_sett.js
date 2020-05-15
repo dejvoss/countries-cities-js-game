@@ -15,7 +15,7 @@ const AlphSpinDelay = 500; //time in milisecond for alphabet letter animation
 function loadSettings() {
   loadCatSett();
   loadDiffLev();
-};
+}
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // -------------------------------------------- LOAD LISTS FROM DIFFERENT API DEPENCE OF THE CATEGORIES ---------------------------------------
@@ -38,8 +38,8 @@ function loadCatSett() {
       alert("Something went wrong - it looks like you didn't save game settings");
 
     }
-  })
-};
+  });
+}
 
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -49,15 +49,15 @@ function loadCatSett() {
 function loadDiffLev() {
   let myCtr = selCategor.length;
   if (difLevel == 1) {
-    difLvlTime = myCtr * 30000
+    difLvlTime = myCtr * 30000;
   }
   else if (difLevel == 2) {
     difLvlTime = myCtr * 20000;
   }
   else if (difLevel == 3) {
     difLvlTime = myCtr * 15000;
-  };
-};
+  }
+}
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // ------------------------------------------------------------- API -----------------------------------------------------
@@ -84,7 +84,7 @@ function loadCountryList() {
     });
   });
 
-};
+}
 // download list of capital cities and save as array
 function loadCapitalCityList() {
   $.ajax(allCountriesSett).done(function (APIData) {
@@ -94,7 +94,7 @@ function loadCapitalCityList() {
     });
   });
 
-};
+}
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // ---------------------------------------------------------- MEDIAWIKI API OR ANIMAL LIST ---------------------------------------------------------- //
@@ -139,19 +139,19 @@ function loadAnimalList() {
     var WikiAnimLinks = response.parse.links;
     WikiAnimLinks.forEach(function (element) {
       unfAnimList.push(element["*"]);
-    })
+    });
   }).done(function () {
     unfAnimList = unfAnimList.slice(3, 338);
     unfAnimList.forEach(function (item, index) {
       var chckr = item.includes("List");
-      var chckr2 = item.includes("identifier")
+      var chckr2 = item.includes("identifier");
       if (chckr === false && chckr2 === false) {
         AnimalList.push(item);
       }
-    })
-  }).done(formatList)
+    });
+  }).done(formatList);
 
-};
+}
 // remove none animal names from list and add extra names which was not in the list on the beginning
 function formatList() {
   var listOfNoneAnimal = ["African buffalo", "Bacon", "Beef", "Capon", "Carabeef", "Common chimpanzee", "Common merganser", "Collateral adjective", "Collective noun", "Colt (horse)", "Common merganser", "Domestic pig", "Domesticated turkey", "Escargot", "Black panther", "Blackback", "Blubber", "European goldfinch", "Female", "Flake (fish)", "Flocking (behaviour)", "Foal", "Goat meat", "Ham", "Herd", "Herpetoculture", "Jenny (donkey)", "Juliana Berners", "Kettle (birds)", "Kitten", "Lamb and mutton", "Male", "Mare", "Meat", "Planula", "Polyp (zoology)", "Pork", "Poultry", "Pristella maxillaris", "Puppy", "Rock salmon", "Scyphozoa", "Silverback", "Squab (food)", "Stallion (horse)", "Swarm", "Tim Caro", "Veal", "Venison", "Vixen", "Wayback Machine", "Wildebeest", "William Blades", "Spiny dogfish"];
@@ -166,7 +166,7 @@ function formatList() {
   AnimalList.sort();
 
 
-};
+}
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // ---------------------------------------------------------- READ PLANT LIST FROM CSV FILE ---------------------------------------------------------- //
@@ -176,7 +176,7 @@ var plantAjSet = {
   async: false,
   dataType: "text",
 
-}
+};
 
 function loadPlantList() {
   $.ajax(plantAjSet).done(function (response) {
@@ -185,7 +185,7 @@ function loadPlantList() {
       PlantList.push(mydat[x].name);
     }
   });
-};
+}
 
 
 
@@ -221,17 +221,17 @@ async function showStartLetters() {
 
   $('#startBtn').css("display", "none");
   $('#startInit').html(letterChoosingDiv);
-  var letters = ["X", "Y", "Z"]
+  var letters = ["X", "Y", "Z"];
   for (i = 0; i < letters.length; i++) {
     $('#letters').text(letters[i]);
     $('.transform').addClass('transform-active');
     await sleep(ltrAnimTimeDelay);
     $('.transform').removeClass('transform-active');
     await sleep(ltrAnimTimeDelay);
-  };
+  }
   $('#startInit').html(loadingAlphabetSpin);
   await sleep(AlphSpinDelay);
   $('#stopButtonDiv').removeClass('hide');
   $('#stopButtonDiv').addClass('showMyClass');
   currentGameAlphabet = alphabetOnStart;
-};
+}
