@@ -172,12 +172,15 @@ Manual and automated tests were done systematically and also were fixed in the s
 
 ## Deployment
 
-My website is hosted on GitHub Pages. You can get access by [clicking here]([https://dejvoss.github.io/countries_cities/) or by following below steps:
-
-1. Go to my Github respository: https://github.com/dejvoss/countries_cities
-2. Go to the settings by clicking on the settings tab in the top of the page.
+1. Navigate to my Github repository - https://github.com/dejvoss/countries_cities
+2. Click on the settings tab at the top of the page.
 3. Scroll down to the GitHub Pages section.
-4. Click the link to the published site.
+4. Change the source to master branch.
+5. After selecting master branch the page will refresh.
+6. Scroll down to the GitHub Pages section and a green box saying "your site is published at" will appear.
+7. Click the link to go to the published website.
+
+You can view the deployed website [here](https://dejvoss.github.io/countries_cities/index.html)
 
 ## Credits
 
