@@ -123,9 +123,11 @@ function generatePCAnswers(wordList, rndLetter) {
     tmpWordList.push("");
   }
   wordList.forEach(function (item) {
-    var wrdLetter = item.charAt(0);
-    if (wrdLetter === rndLetter) {
-      tmpWordList.push(item);
+    if (typeof item === 'string') {
+      var wrdLetter = item.charAt(0);
+      if (wrdLetter === rndLetter) {
+        tmpWordList.push(item);
+      }
     }
   });
   var rndCntr = Math.floor(Math.random() * tmpWordList.length);

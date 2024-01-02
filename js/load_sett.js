@@ -67,19 +67,20 @@ function loadDiffLev() {
 var allCountriesSett = {
   "async": true,
   "crossDomain": true,
-  "url": "https://restcountries-v1.p.rapidapi.com/all",
+  "url": "https://restcountries.com/v3.1/all?fields=name,capital",
   "method": "GET",
-  "headers": {
-    "x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
-    "x-rapidapi-key": "611a569c35msh65ff74f34b25d3ap19724bjsne5db4e1e1809"
-  }
 };
 
 // download list of countries and save as array
 function loadCountryList() {
   $.ajax(allCountriesSett).done(function (APIData) {
     APIData.forEach(function (APIItem) {
-      CountryList.push(APIItem.name);
+      CountryList.push(APIItem.name.official);
+      CountryList.push(APIItem.name.common);
+      if (APIItem.name.nativeName.eng) {
+        CountryList.push(APIItem.name.nativeName.eng.official);
+        CountryList.push(APIItem.name.nativeName.eng.common);
+      }
 
     });
   });
@@ -89,7 +90,7 @@ function loadCountryList() {
 function loadCapitalCityList() {
   $.ajax(allCountriesSett).done(function (APIData) {
     APIData.forEach(function (APIItem) {
-      CapitalCityList.push(APIItem.capital);
+      CapitalCityList.push(APIItem.capital[0]);
 
     });
   });
