@@ -180,7 +180,7 @@ Manual and automated tests were done systematically and also were fixed in the s
 6. Scroll down to the GitHub Pages section and a green box saying "your site is published at" will appear.
 7. Click the link to go to the published website.
 
-You can view the deployed website [here](https://dejvoss.github.io/countries_cities/index.html)
+You can view the deployed website [here](https://dejvoss.github.io/countries-cities-js-game/)
 
 ## Credits
 
