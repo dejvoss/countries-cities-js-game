@@ -1,87 +1,117 @@
+var gameState = {
+    userName: null,
+    difLevel: null,
+    selCategor: [],
+    alphabetOnStart: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+    currentGameAlphabet: [],
+    roundLetter: null,
+    totalPoints: 0,
+    rndPoints: 0,
+    usrAnswArr: [],
+    PCAnswArr: [],
+    usrPointsArr: [],
+    FinishRndBtnClick: 0,
+    CountryList: [],
+    CapitalCityList: [],
+    AnimalList: [],
+    PlantList: [],
+    roundTimerId: null,
+    RoundCounter: 0
+};
+
 // --------------------------------- GAME INITIALIZE ------------------------------------------------------------
-//game initialization, user name form, game settings, declaring 3 important variable for game - user name, difficult level and categories
+// Handles game initialization, user name form, and game settings.
+// Core game state variables (userName, difLevel, selCategor) are managed within the gameState object.
 
+var gameSetup = {
+    /**
+     * @description Displays the user name input form.
+     */
+    openUserNameForm: function() {
+        $("#userNameForm").addClass("visible");
+    },
 
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// ----------------------------------------------- DECLARED VARIABLES -----------------------------------------------------
+    /**
+     * @description Closes the user name input form and resets related UI elements.
+     */
+    closeUserNameForm: function() {
+        $("#userNameInp").val(""); // Use jQuery val()
+        $("#userNameForm").removeClass("visible");
+        $("#gameSettings").removeClass("visible");
+        $("#gameSection").removeClass("visible"); // Assuming gameSection is controlled this way
+    },
 
-var userName; //declare global variable user name    
-var difLevel; // global variable for difficult level
-var selCategor = []; // global variable for selected categories
-var alphabetOnStart = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var currentGameAlphabet = []; // global variable for current game alphabet - after each round the chosen letter is removed from that alphabet to don't repeat it in next rounds
-var roundLetter; // global variable for chosen letter for current game round
+    /**
+     * @description Validates user name and proceeds to game settings, or shows an error.
+     */
+    openSettings: function() {
+        var userNameValue = $("#userNameInp").val(); // Use jQuery val()
+        if (userNameValue == "") {
+            $("#noMessSpan").show();
+        } else {
+            gameState.userName = userNameValue;
+            $("#userNameForm").removeClass("visible");
+            $("#gameSettings").addClass("visible");
+        }
+    },
 
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// -------------------------------------------- USER NAME FORM -------------------------------------------------------//
-// Initialize User name form by clicking start game button
-function openUserNameForm() {
-  document.getElementById("userNameForm").style.display = "block";
-}
+    /**
+     * @description Saves the selected game settings (difficulty level, categories) and initializes the game.
+     */
+    saveSettings: function() {
+        // Get selected difficulty level
+        gameState.difLevel = $("#difLevel").val(); // Use jQuery val()
 
-// Close user name form by clicking cancel
-function closeUserNameForm() {
-  document.getElementById("userNameInp").value = "";
-  document.getElementById("userNameForm").style.display = "none";
-  document.getElementById("gameSettings").style.display = "none";
-  document.getElementById("gameSection").style.display = "none";
+        // Get selected categories
+        var tempSelCategor = [];
+        var $inputCheck = $("#setCatCheckboxes input"); // Use jQuery selector
+        // Iterate through checkboxes to find selected categories
+        $inputCheck.each(function() {
+            if (this.checked) { // 'this' refers to the current input element in the loop
+                tempSelCategor.push(this.value);
+            }
+        });
 
-}
+        // Validate that at least one category is selected
+        if (tempSelCategor.length === 0) {
+            alert("You need to choose at least one category.");
+            return; // Stop execution if no category is selected
+        }
+        gameState.selCategor = tempSelCategor;
 
-//   Click next in user name form, save the user name in variable
-function openSettings() {
-  var inputForm = document.getElementById("userNameInp");
-  if (inputForm.value == "") {
-    document.getElementById("noMessSpan").style.display = "block"; // show message when userName field is empty
-  }
-  else {
-    userName = inputForm.value;
-    document.getElementById("userNameForm").style.display = "none"; // close username form
-    document.getElementById("gameSettings").style.display = "block"; // open game settings form
-    //document.getElementById("gameSection").style.display = "block";
-  }
+        // Initialize game alphabet for the new game
+        gameState.currentGameAlphabet = [...gameState.alphabetOnStart];
 
-}
+        // Hide settings and show the round pop-up
+        $("#gameSettings").removeClass("visible");
+        $("#roundPopUp").addClass("visible");
 
-// remove message when user name was empty but user click on user name input field
+        // If gameLogic is available, call showStartLetters (relevant for starting the game flow)
+        if (window.gameLogic && typeof window.gameLogic.showStartLetters === 'function') {
+            window.gameLogic.showStartLetters();
+        }
+    }
+};
+
+window.gameSetup = gameSetup;
+
+// Remove message when user name was empty but user clicks on user name input field
 $("#userNameInp").focus(function () {
-  document.getElementById("noMessSpan").style.display = "none";
+  $("#noMessSpan").hide(); // Use jQuery hide()
 });
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // ----------------------------------------------------- GAME SETTINGS -------------------------------------------------//
 
-// game settings category buttons - select all
-var inputCheck = document.getElementById("setCatCheckboxes").getElementsByTagName("input");
-document.getElementById("selectAllCat").addEventListener("click", function () {
-  for (i = 0; i < inputCheck.length; i++) {
-    inputCheck[i].checked = true;
-  }
-});
-// game settings category buttons - unselect all
-document.getElementById("unSelectAllCat").addEventListener("click", function () {
-  for (i = 0; i < inputCheck.length; i++) {
-    inputCheck[i].checked = false;
-  }
+// Game settings category buttons - select all
+$("#selectAllCat").on("click", function () {
+  $("#setCatCheckboxes input").prop("checked", true);
 });
 
-// click save settings button in game settings form, set categories and difficult level
-document.getElementById("saveSettBtn").addEventListener("click", saveSettings);
+// Game settings category buttons - unselect all
+$("#unSelectAllCat").on("click", function () {
+  $("#setCatCheckboxes input").prop("checked", false);
+});
 
-function saveSettings() {
-  difLevel = document.getElementById("difLevel").value;
-  var tempSelCategor = []; //declare local empty variable for categoriers
-  for (i = 0; i < inputCheck.length; i++) { //check if category is choosen and add to the local category variable
-    if (inputCheck[i].checked === true) {
-      tempSelCategor.push(inputCheck[i].value);
-    }
-  }
-  // show alert if none category is selected
-  if (tempSelCategor.length === 0) {
-    alert("You need to choose at least one category.");
-  }
-  selCategor = tempSelCategor; // assing local category variable to the global one 
-  // create a base game Result Array - add headings based on chosen categories
-  document.getElementById("gameSettings").style.display = "none"; // hide game settings div
-  document.getElementById("roundPopUp").style.display = "block"; // show game round div
-}
+// Click save settings button in game settings form, set categories and difficult level
+$("#saveSettBtn").on("click", gameSetup.saveSettings);

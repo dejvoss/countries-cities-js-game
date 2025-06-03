@@ -184,6 +184,12 @@ border-radius: 50%;
 .showMyClass {
     display: block;
 }
+
+/* Class to explicitly make elements visible (e.g., popups) */
+.visible {
+    display: block;
+}
+
 /* Style letter chosen for round */
 .showLetter {
     font-size: 3rem;
