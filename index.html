@@ -64,8 +64,8 @@
 			<input type="text" placeholder="type here" name="userName" required class="inputName" id="userNameInp">
 
 			<div class="btnDiv">
-				<button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
-				<button type="button" class="btn btn-primary btn-next" onclick="openSettings()">Next</button>
+				<button type="button" class="btn btn-danger btn-cancel" onclick="gameSetup.closeUserNameForm()">Cancel</button>
+				<button type="button" class="btn btn-primary btn-next" onclick="gameSetup.openSettings()">Next</button>
 			</div>
 		</form>
 	</div>
@@ -111,7 +111,7 @@
 			</div>
 
 			<div class="btnDiv">
-				<button type="button" class="btn btn-danger btn-cancel" onclick="closeUserNameForm()">Cancel</button>
+				<button type="button" class="btn btn-danger btn-cancel" onclick="gameSetup.closeUserNameForm()">Cancel</button>
 				<button type="button" class="btn btn-primary btn-next" id="saveSettBtn">Save</button>
 			</div>
 		</form>
@@ -203,7 +203,7 @@
 				<p>At the end of every round you will see results and achieved points.</p>
 				<p>Get a lot of points and enjoy the game!</p>
 				<div class="startGameBtn" id="startGameButton">
-					<button class=" btn btn-lg btn-success" onclick="openUserNameForm()">Start Game</button>
+					<button class=" btn btn-lg btn-success" onclick="gameSetup.openUserNameForm()">Start Game</button>
 				</div>
 			</div>
 

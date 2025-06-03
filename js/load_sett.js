@@ -1,27 +1,27 @@
 // ------------------------ LOAD SETTINGS ON START GAME ROUND ---------------------------------------- //
 
-// --------------------- VARIABLES ----------------------------------------------
-var difLvlTime; // time in milisecond counted depence of chosen difficulties level and categories
-var CountryList = []; // lsit with countries 
-var CapitalCityList = []; // list with Capital cities
-var AnimalList = []; // list with animals
-var PlantList = []; // list with plants
-var RoundCounter = 0; // variable for count number of rounds
-const ltrAnimTimeDelay = 800; // time in milisecond for x y z letters animation
-const AlphSpinDelay = 500; //time in milisecond for alphabet letter animation
-
 // load game settings when the start round button is pressed
-// 
 function loadSettings() {
   loadCatSett();
-  loadDiffLev();
+  // loadDiffLev(); // Removed as difLvlTime calculation is handled in gameLogic.showCounter based on gameState.difLevel
 }
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // -------------------------------------------- LOAD LISTS FROM DIFFERENT API DEPENCE OF THE CATEGORIES ---------------------------------------
 // function for loading different function for different category based on selected settings
 function loadCatSett() {
-  selCategor.forEach(function (element) {
+  if (!window.gameState || !window.gameState.selCategor) {
+    console.error("gameState or gameState.selCategor not available in loadCatSett.");
+    alert("Something went wrong - game settings might not have been saved correctly. Please refresh.");
+    return;
+  }
+  // Initialize lists in gameState to ensure they are empty before loading
+  gameState.CountryList = [];
+  gameState.CapitalCityList = [];
+  gameState.AnimalList = [];
+  gameState.PlantList = [];
+
+  gameState.selCategor.forEach(function (element) {
     if (element === "Country") {
       loadCountryList();
     }
@@ -35,28 +35,9 @@ function loadCatSett() {
       loadPlantList();
     }
     else {
-      alert("Something went wrong - it looks like you didn't save game settings");
-
+      alert("Something went wrong - an unknown category was selected: " + element);
     }
   });
-}
-
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// ------------------------------------------- SET DIFFICULT LEVEL ------------------------------------------------
-
-// function for loading different settings for different difficulties level selected in settings
-function loadDiffLev() {
-  let myCtr = selCategor.length;
-  if (difLevel == 1) {
-    difLvlTime = myCtr * 30000;
-  }
-  else if (difLevel == 2) {
-    difLvlTime = myCtr * 20000;
-  }
-  else if (difLevel == 3) {
-    difLvlTime = myCtr * 15000;
-  }
 }
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -73,28 +54,53 @@ var allCountriesSett = {
 
 // download list of countries and save as array
 function loadCountryList() {
-  $.ajax(allCountriesSett).done(function (APIData) {
-    APIData.forEach(function (APIItem) {
-      CountryList.push(APIItem.name.official);
-      CountryList.push(APIItem.name.common);
-      if (APIItem.name.nativeName.eng) {
-        CountryList.push(APIItem.name.nativeName.eng.official);
-        CountryList.push(APIItem.name.nativeName.eng.common);
+  let localCountryList = [];
+  $.ajax(allCountriesSett)
+    .done(function (APIData) {
+      if (APIData && Array.isArray(APIData)) {
+        APIData.forEach(function (APIItem) {
+          if (APIItem && APIItem.name) {
+            if (APIItem.name.official) localCountryList.push(APIItem.name.official);
+            if (APIItem.name.common) localCountryList.push(APIItem.name.common);
+            if (APIItem.name.nativeName && APIItem.name.nativeName.eng) {
+              if (APIItem.name.nativeName.eng.official) localCountryList.push(APIItem.name.nativeName.eng.official);
+              if (APIItem.name.nativeName.eng.common) localCountryList.push(APIItem.name.nativeName.eng.common);
+            }
+          }
+        });
+        gameState.CountryList = localCountryList;
+      } else {
+        console.error("Unexpected data structure for countries:", APIData);
+        alert('Failed to parse country list. Data might be incomplete.');
       }
-
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      console.error('Error loading Country list:', textStatus, errorThrown);
+      alert('Failed to load country list. Please try refreshing the page.');
     });
-  });
-
 }
+
 // download list of capital cities and save as array
 function loadCapitalCityList() {
-  $.ajax(allCountriesSett).done(function (APIData) {
-    APIData.forEach(function (APIItem) {
-      CapitalCityList.push(APIItem.capital[0]);
-
+  let localCapitalCityList = [];
+  $.ajax(allCountriesSett)
+    .done(function (APIData) {
+      if (APIData && Array.isArray(APIData)) {
+        APIData.forEach(function (APIItem) {
+          if (APIItem && APIItem.capital && APIItem.capital[0]) {
+            localCapitalCityList.push(APIItem.capital[0]);
+          }
+        });
+        gameState.CapitalCityList = localCapitalCityList;
+      } else {
+        console.error("Unexpected data structure for capital cities:", APIData);
+        alert('Failed to parse capital city list. Data might be incomplete.');
+      }
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      console.error('Error loading Capital City list:', textStatus, errorThrown);
+      alert('Failed to load capital city list. Please try refreshing the page.');
     });
-  });
-
 }
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -133,40 +139,62 @@ var ajSett = {
 
 
 // get list of links from wikipedia Animal list page and format list as there are more links and some of these are not animal names
-var unfAnimList = [];
-
 function loadAnimalList() {
-  $.ajax(ajSett).done(function (response) {
-    var WikiAnimLinks = response.parse.links;
-    WikiAnimLinks.forEach(function (element) {
-      unfAnimList.push(element["*"]);
-    });
-  }).done(function () {
-    unfAnimList = unfAnimList.slice(3, 338);
-    unfAnimList.forEach(function (item, index) {
-      var chckr = item.includes("List");
-      var chckr2 = item.includes("identifier");
-      if (chckr === false && chckr2 === false) {
-        AnimalList.push(item);
-      }
-    });
-  }).done(formatList);
+  let localUnfAnimList = [];
+  let localAnimalList = []; // Use a local list for processing
 
+  $.ajax(ajSett)
+    .done(function (response) {
+      if (response && response.parse && response.parse.links && Array.isArray(response.parse.links)) {
+        var WikiAnimLinks = response.parse.links;
+        WikiAnimLinks.forEach(function (element) {
+          if (element && element["*"]) {
+            localUnfAnimList.push(element["*"]);
+          }
+        });
+      } else {
+        console.error("Unexpected response structure from MediaWiki API:", response);
+        alert('Failed to parse animal list from Wikipedia. Data might be incomplete.');
+        return;
+      }
+
+      // Process the unfAnimList
+      // The slicing range (3, 338) should be verified for its purpose.
+      localUnfAnimList = localUnfAnimList.slice(3, 338);
+      localUnfAnimList.forEach(function (item) {
+        var chckr = item.includes("List");
+        var chckr2 = item.includes("identifier");
+        if (chckr === false && chckr2 === false) {
+          localAnimalList.push(item);
+        }
+      });
+
+      formatAnimalList(localAnimalList);
+      gameState.AnimalList = localAnimalList;
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      console.error('Error loading Animal list from Wikipedia:', textStatus, errorThrown);
+      alert('Failed to load animal list from Wikipedia. Please try refreshing the page.');
+    });
 }
+
 // remove none animal names from list and add extra names which was not in the list on the beginning
-function formatList() {
+function formatAnimalList(listToFormat) { // Renamed from formatList
   var listOfNoneAnimal = ["African buffalo", "Bacon", "Beef", "Capon", "Carabeef", "Common chimpanzee", "Common merganser", "Collateral adjective", "Collective noun", "Colt (horse)", "Common merganser", "Domestic pig", "Domesticated turkey", "Escargot", "Black panther", "Blackback", "Blubber", "European goldfinch", "Female", "Flake (fish)", "Flocking (behaviour)", "Foal", "Goat meat", "Ham", "Herd", "Herpetoculture", "Jenny (donkey)", "Juliana Berners", "Kettle (birds)", "Kitten", "Lamb and mutton", "Male", "Mare", "Meat", "Planula", "Polyp (zoology)", "Pork", "Poultry", "Pristella maxillaris", "Puppy", "Rock salmon", "Scyphozoa", "Silverback", "Squab (food)", "Stallion (horse)", "Swarm", "Tim Caro", "Veal", "Venison", "Vixen", "Wayback Machine", "Wildebeest", "William Blades", "Spiny dogfish"];
-  listOfNoneAnimal.forEach(function (element) {
-    var indxInFrmtList = AnimalList.indexOf(element);
-    AnimalList.splice(indxInFrmtList, 1);
-  });
+
+  let tempFilteredList = listToFormat.filter(item => !listOfNoneAnimal.includes(item));
+
   var listOfExtraAnimal = ["Buffalo", "Bizon", "Chimpanzee", "Dogfish", "Eland", "Gnu", "Goldfinch", "Goosander", "Pig", "Seal", "Turkey", "Vinegaroon", "Zebra"];
   listOfExtraAnimal.forEach(function (element) {
-    AnimalList.push(element);
+    if (!tempFilteredList.includes(element)) {
+        tempFilteredList.push(element);
+    }
   });
-  AnimalList.sort();
 
+  tempFilteredList.sort();
 
+  listToFormat.length = 0;
+  tempFilteredList.forEach(item => listToFormat.push(item));
 }
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -174,65 +202,50 @@ function formatList() {
 // load plant list from CSV file by jquery.csv
 var plantAjSet = {
   url: "./gameFiles/PlantList.csv",
-  async: false,
+  // async: false, // Consider changing to true if possible, but leaving as is for now.
   dataType: "text",
-
 };
 
 function loadPlantList() {
-  $.ajax(plantAjSet).done(function (response) {
-    var mydat = $.csv.toObjects(response);
-    for (x = 0; x < mydat.length; x++) {
-      PlantList.push(mydat[x].name);
-    }
-  });
+  let localPlantList = [];
+  $.ajax(plantAjSet)
+    .done(function (response) {
+      if (response) {
+        var mydat = $.csv.toObjects(response);
+        if (mydat && Array.isArray(mydat)) {
+          for (var x = 0; x < mydat.length; x++) {
+            if (mydat[x] && mydat[x].name) {
+              localPlantList.push(mydat[x].name);
+            }
+          }
+          gameState.PlantList = localPlantList;
+        } else {
+          console.error("Unexpected data structure from PlantList CSV:", mydat);
+          alert('Failed to parse plant list. Data might be incomplete.');
+        }
+      } else {
+        console.error("Empty response from PlantList CSV");
+        alert('Failed to load plant list, empty data received.');
+      }
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+      console.error('Error loading Plant list from CSV:', textStatus, errorThrown);
+      alert('Failed to load plant list. Please try refreshing the page.');
+    });
 }
-
-
-
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// ---------------------------------------------------- SLEEP FUNCTION ----------------------------------------------
-// create sleep function for showStartLetters function
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // ------------------------------------------------- START ROUND BUTTON - TRIGGER ABOVE FUNCTIONS WHEN BUTTON IS CLICKED --------------------------------------------
-// add event listener to the start round button which will triger showStartLetters function
-document.getElementById("startBtn").addEventListener("click", roundStart);
+// Add event listener to the start round button to trigger round initialization and letter animation.
+$("#startBtn").on("click", roundStart);
 
-// function on start round button press
+// Function called when the start round button is pressed.
 function roundStart() {
   loadSettings();
-  showStartLetters();
-}
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// ----------------------------------------- LETTER ANIMATION ON BEGINNING ROUND ----------------------------------------- //
-// function showStartLetters - when user press start button start round pop up window is show and display letters x y z, after this stop btn is visible
-async function showStartLetters() {
-  let letterChoosingDiv = '<div id="letterChoos"><span class="xyzLetters transform" id="letters"></span></div>';
-  let loadingAlphabetSpin = '<div class="spinner-grow " style="width: 3rem; height: 3rem;" role="status"><span class="sr-only hidden" id="alphabetSayStatus">Saying alphabet...</span></div>';
-
-  RoundCounter++; // add round number
-  $("#roundTitle").html("Round " + RoundCounter);
-
-  $('#startBtn').css("display", "none");
-  $('#startInit').html(letterChoosingDiv);
-  var letters = ["X", "Y", "Z"];
-  for (i = 0; i < letters.length; i++) {
-    $('#letters').text(letters[i]);
-    $('.transform').addClass('transform-active');
-    await sleep(ltrAnimTimeDelay);
-    $('.transform').removeClass('transform-active');
-    await sleep(ltrAnimTimeDelay);
+  if (window.gameLogic && typeof window.gameLogic.showStartLetters === 'function') {
+    window.gameLogic.showStartLetters();
+  } else {
+    console.error("gameLogic.showStartLetters is not available at roundStart.");
+    alert("Critical error: Game cannot start. Please refresh.");
   }
-  $('#startInit').html(loadingAlphabetSpin);
-  await sleep(AlphSpinDelay);
-  $('#stopButtonDiv').removeClass('hide');
-  $('#stopButtonDiv').addClass('showMyClass');
-  currentGameAlphabet = alphabetOnStart;
 }
